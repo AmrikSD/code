@@ -37,3 +37,10 @@ resource "cloudflare_pages_domain" "amrik_co_uk" {
   domain       = "amrik.co.uk"
 }
 
+resource "cloudflare_record" "amrik_co_uk" {
+    zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.co.uk.zone_id"]
+    name = "@"
+    type = "CNAME"
+    value = "amrik-co-uk.pages.dev"
+}
+
