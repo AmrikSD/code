@@ -12,6 +12,12 @@ spec:
   secretRef:
     name: flux-system
   url: ssh://git@github.com/AmrikSD/code
+  ignore: |
+    # ignore everything
+    /*
+    # allow flux directories
+    !/infra/kubernetes/cluster-01
+
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
