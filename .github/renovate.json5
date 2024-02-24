@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
+  "enabled": true,
+  "semanticCommits": "enabled",
+  "suppressNotifications": [
+    "prIgnoreNotification"
+  ],
+  "rebaseWhen": "conflicted",
+  "schedule": [
+    "at any time"
+  ]
+}
