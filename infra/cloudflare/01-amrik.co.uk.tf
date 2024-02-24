@@ -5,6 +5,7 @@ resource "cloudflare_pages_project" "amrik_co_uk" {
 
   build_config {
     build_command   = "bundle exec jekyll build"
+    root_dir = "projects/amrik.co.uk"
     destination_dir = "_site"
   }
 
@@ -12,13 +13,14 @@ resource "cloudflare_pages_project" "amrik_co_uk" {
     type = "github"
     config {
       owner                         = "AmrikSD"
-      repo_name                     = "Amrik.de"
+      repo_name                     = "code"
       production_branch             = "main"
       deployments_enabled           = true
       production_deployment_enabled = true
       preview_deployment_setting    = "custom"
       preview_branch_includes       = ["dev", "preview"]
       preview_branch_excludes       = ["main", "prod"]
+      pr_comments_enabled           = true
     }
   }
 
