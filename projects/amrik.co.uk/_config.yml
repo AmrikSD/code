@@ -1,17 +1,16 @@
 # Site settings
-title: Amrik.DE
+title: Amrik.co.uk
 description: >
   Amrik's Personal blog, here you'll find everything from tutorials on various technologies
   to my uninformed opinions that are just slightly more structured than twitter rants.
 
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://amrik.de" # the base hostname & protocol for your site
+url: "https://amrik.co.uk" # the base hostname & protocol for your site
 
 author:
   fullname: Amrik Singh
   # googleplus: my g+
   github: AmrikSD
-  twitter: AsboTehG
   # disqus: your_disqus_forum_shortname
 
 # Syntax highlighting
