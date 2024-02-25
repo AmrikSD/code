@@ -21,7 +21,8 @@ RUN apt update -y && \
     zip \
     git \
     docker.io \
-    stow
+    stow \
+    gnupg
 
 RUN mkdir ~/.ssh && \
     touch ~/.ssh/known_hosts && \
