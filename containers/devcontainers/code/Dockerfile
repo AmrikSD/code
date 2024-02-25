@@ -1,4 +1,4 @@
-FROM docker.io/library/alpine:3.19.1@sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b
+FROM docker.io/library/ubuntu:20.04@sha256:a4fab1802f08df089c4b2e0a1c8f1a06f573bd1775687d07fef4076d3a2e4900
 
 LABEL org.opencontainers.image.source="https://github.com/amriksd/code/containers/code"
 LABEL org.opencontainers.image.description="A development container for everything in the AmrikSD/Code repository"
@@ -6,27 +6,22 @@ LABEL org.opencontainers.image.authors="Amrik Singh <code@amrik.co.uk>"
 LABEL org.opencontainers.image.licenses="MIT"
 
 # Set variables for software versions
-ENV BAZEL_VERSION=7.0.2
+ENV BAZELISK_VERSION=v1.19.0
+
 
 # Base
 
-RUN apk add --no-cache \
+ARG export DEBIAN_FRONTEND=noninteractive
+RUN apt update -y && \
+    apt upgrade -y && \
+    apt install -y \
     bash \
     tmux \
-    build-base \
-    curl \
-    linux-headers \
-    openjdk11-jdk \
-    python3 \
     unzip \
     zip \
     git \
-    docker \
-    stow \
-    openssh
-
-
-USER amrik
+    docker.io \
+    stow
 
 RUN mkdir ~/.ssh && \
     touch ~/.ssh/known_hosts && \
