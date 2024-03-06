@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: overseerr-deployment
+  namespace: media
+  labels:
+    app: overseerr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: overseerr
+  template:
+    metadata:
+      labels:
+        app: overseerr
+    spec:
+      containers:
+        - name: overseerr
+          image: ghcr.io/linuxserver/overseerr:2021.12.12
+          env:
+            - name: TZ
+              value: Europe/London
+            - name: PUID
+              value: "0"
+            - name: PGID
+              value: "0"
+          ports:
+            - name: web
+              containerPort: 5055
+          volumeMounts:
+            - mountPath: /config
+              name: overseerr-config-storage
+      volumes:
+        - name: overseerr-config-storage
+          persistentVolumeClaim:
+            claimName: overseerr-config-claim

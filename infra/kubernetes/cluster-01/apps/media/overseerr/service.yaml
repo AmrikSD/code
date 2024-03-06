@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: overseerr-svc
+  namespace: media
+spec:
+  selector:
+    app: overseerr
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: web

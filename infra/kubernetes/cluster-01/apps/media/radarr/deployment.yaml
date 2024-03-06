@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr-deployment
+  namespace: media
+  labels:
+    app: radarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radarr
+  template:
+    metadata:
+      labels:
+        app: radarr
+    spec:
+      containers:
+        - name: radarr
+          image: ghcr.io/linuxserver/radarr:latest
+          env:
+            - name: TZ
+              value: Europe/London
+            - name: PUID
+              value: "0"
+            - name: PGID
+              value: "0"
+          ports:
+            - name: web
+              containerPort: 7878
+          volumeMounts:
+            - mountPath: /config
+              name: radarr-config-storage
+            - mountPath: /movies
+              name: movies-nfs
+            - mountPath: /downloads
+              name: downloads-nfs
+      volumes:
+        - name: radarr-config-storage
+          persistentVolumeClaim:
+            claimName: radarr-config-claim
+        - name: movies-nfs
+          nfs:
+            server: 10.2.1.2
+            path: /mnt/pool_01/Plex
+        - name: downloads-nfs
+          nfs:
+            server: 10.2.1.2
+            path: /mnt/pool_01/Downloads

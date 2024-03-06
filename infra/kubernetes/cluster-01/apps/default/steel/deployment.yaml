@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: steel
+  namespace: default
+  labels:
+    app: steel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: steel
+  template:
+    metadata:
+      labels:
+        app: steel
+    spec:
+      containers:
+        - name: steel
+          image: ghcr.io/potato-blood/steel:latest
+          env:
+            - name: STEEL_PORT
+              value: "8080"
+            - name: STEEL_POSTGRES_HOST
+              value: postgres
+            - name: STEEL_POSTGRES_DB
+              value: postgres
+            - name: STEEL_POSTGRES_USER
+              value: "${SECRET_POSTGRES_USER}"
+            - name: STEEL_POSTGRES_PASS
+              value: "${SECRET_POSTGRES_PASS}"
+          ports:
+            - name: web
+              containerPort: 8080
+      imagePullSecrets:
+        - name: steel

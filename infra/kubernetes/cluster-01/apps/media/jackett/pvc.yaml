@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jackett-config-claim
+  namespace: media
+  labels:
+    app: jackett
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "zfs-nfs"
+spec:
+  storageClassName: freenas-nfs-csi
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi

@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: truenas-graphite-exporter
+  namespace: monitoring
+  labels:
+    app: truenas-graphite-exporter
+spec:
+  ports:
+    - port: 2003
+      targetPort: graphite-tcp
+      protocol: TCP
+  selector:
+    app: truenas-graphite-exporter
+  externalTrafficPolicy: Local
+  sessionAffinity: None
+  type: LoadBalancer
+  loadBalancerIP: 10.3.100.50

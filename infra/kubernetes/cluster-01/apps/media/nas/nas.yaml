@@ -1,0 +1,47 @@
+---
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: truenas
+  namespace: media
+spec:
+  selector:
+    app: truenas
+  type: ExternalName
+  ports:
+    - name: truenas
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  externalName: 10.2.1.2
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nas
+  namespace: media
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    external-dns.alpha.kubernetes.io/target: "ipv4.${SECRET_DOMAIN}"
+    external-dns/is-public: "true"
+    hajimari.io/enable: "true"
+    hajimari.io/icon: "simple-icons:truenas"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  tls:
+    - hosts:
+        - "nas.${SECRET_DOMAIN}"
+      secretName: "nas.${SECRET_DOMAIN}"
+  rules:
+    - host: "nas.${SECRET_DOMAIN}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: truenas
+                port:
+                  number: 80

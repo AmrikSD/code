@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeassistant-deployment
+  namespace: default
+  labels:
+    app: homeassistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeassistant
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+    spec:
+      # hostNetwork: true
+      containers:
+        - name: homeassistant
+          image: ghcr.io/home-assistant/home-assistant:stable
+          securityContext:
+            privileged: true
+          env:
+            - name: TZ
+              value: Europe/London
+          ports:
+            - name: web
+              containerPort: 8123
+          volumeMounts:
+            - mountPath: /config
+              name: homeassistant-config-storage
+      volumes:
+        - name: homeassistant-config-storage
+          persistentVolumeClaim:
+            claimName: homeassistant-config-claim

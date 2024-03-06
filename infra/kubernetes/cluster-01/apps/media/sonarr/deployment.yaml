@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sonarr-deployment
+  namespace: media
+  labels:
+    app: sonarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sonarr
+  template:
+    metadata:
+      labels:
+        app: sonarr
+    spec:
+      containers:
+        - name: sonarr
+          image: ghcr.io/linuxserver/sonarr:latest
+          env:
+            - name: TZ
+              value: Europe/London
+            - name: PUID
+              value: "0"
+            - name: PGID
+              value: "0"
+          ports:
+            - name: web
+              containerPort: 8989
+          volumeMounts:
+            - mountPath: /config
+              name: sonarr-config-storage
+            - mountPath: /movies
+              name: movies-nfs
+            - mountPath: /downloads
+              name: downloads-nfs
+      volumes:
+        - name: sonarr-config-storage
+          persistentVolumeClaim:
+            claimName: sonarr-config-claim
+        - name: movies-nfs
+          nfs:
+            server: 10.2.1.2
+            path: /mnt/pool_01/Plex
+        - name: downloads-nfs
+          nfs:
+            server: 10.2.1.2
+            path: /mnt/pool_01/Downloads

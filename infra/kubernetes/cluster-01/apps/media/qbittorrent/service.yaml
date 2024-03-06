@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: qbit-svc
+  namespace: media
+spec:
+  selector:
+    app: qbit
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: web
