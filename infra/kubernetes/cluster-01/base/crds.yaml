@@ -6,8 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./cluster/crds
+  path: ./infra/kubernetes/cluster-01/crds
   prune: false
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: code

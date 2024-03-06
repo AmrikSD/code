@@ -8,11 +8,11 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: crds
-  path: ./cluster/core
+  path: ./infra/kubernetes/cluster-01/core
   prune: false
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: code
   decryption:
     provider: sops
     secretRef:

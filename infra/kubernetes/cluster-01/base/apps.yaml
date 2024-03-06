@@ -8,11 +8,11 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: core
-  path: ./cluster/apps
+  path: ./infra/kubernetes/cluster-01/apps
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: code
   decryption:
     provider: sops
     secretRef:
