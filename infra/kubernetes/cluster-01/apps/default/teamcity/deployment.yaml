@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teamcity
+  namespace: default
+  labels:
+    app: teamcity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teamcity
+  template:
+    metadata:
+      labels:
+        app: teamcity
+    spec:
+      containers:
+        - name: teamcity
+          image: jetbrains/teamcity-server:2023.11.4
+          ports:
+            - name: web
+              containerPort: 8111
