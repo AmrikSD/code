@@ -9,4 +9,3 @@ resources:
   - renovate
   - postgres
   - steel
-  - teamcity
