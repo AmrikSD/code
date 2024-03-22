@@ -23,10 +23,3 @@ spec:
               containerPort: 5432
             - name: web
               containerPort: 9001
-          volumeMounts:
-            - mountPath: /mosquitto
-              name: mqtt-data-storage
-      volumes:
-        - name: mqtt-data-storage
-          persistentVolumeClaim:
-            claimName: mqtt-data-claim
