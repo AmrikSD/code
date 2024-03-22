@@ -16,7 +16,6 @@ spec:
       labels:
         app: homeassistant
     spec:
-      # hostNetwork: true
       containers:
         - name: homeassistant
           image: ghcr.io/home-assistant/home-assistant:stable
@@ -29,9 +28,9 @@ spec:
             - name: web
               containerPort: 8123
           volumeMounts:
-            - mountPath: /config
-              name: homeassistant-config-storage
+            - mountPath: /config/configuration.yaml
+              name: homeassistant-config
       volumes:
-        - name: homeassistant-config-storage
-          persistentVolumeClaim:
-            claimName: homeassistant-config-claim
+        - name: homeassistant-config
+          configMap:
+            name: homeassistant
