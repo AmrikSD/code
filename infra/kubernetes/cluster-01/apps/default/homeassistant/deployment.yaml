@@ -19,6 +19,7 @@ spec:
       containers:
         - name: homeassistant
           image: ghcr.io/home-assistant/home-assistant:stable
+          command: sh
           securityContext:
             privileged: true
           env:
