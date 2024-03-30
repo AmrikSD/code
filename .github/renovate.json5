@@ -19,17 +19,17 @@
   },
   "flux": {
     "fileMatch": [
-      "cluster/.+\\.ya?ml$"
+      "infra/kubernetes/cluster-01/.+\\.ya?ml$"
     ]
   },
   "helm-values": {
     "fileMatch": [
-      "cluster/.+\\.ya?ml$"
+      "infra/kubernetes/cluster-01/.+\\.ya?ml$"
     ]
   },
   "kubernetes": {
     "fileMatch": [
-      "cluster/.+\\.ya?ml$",
+      "infra/kubernetes/cluster-01/.+\\.ya?ml$",
       "provision/ansible/playbooks/templates/.+\\.ya?ml.j2$"
     ]
   },
@@ -37,7 +37,7 @@
     // Read and process GitHub Releases
     {
       "fileMatch": [
-        "cluster/.+\\.ya?ml$",
+        "infra/kubernetes/cluster-01/.+\\.ya?ml$",
         "ansible/.+\\.ya?ml$"
       ],
       "matchStrings": [
@@ -51,7 +51,7 @@
     // Read and process Custom Resource Definitions
     {
       "fileMatch": [
-        "cluster/.+\\.ya?ml$"
+        "infra/kubernetes/cluster-01/.+\\.ya?ml$"
       ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
