@@ -25,6 +25,7 @@ table {
 .tg .purchase-order-label {
     font-weight: 900;
     font-size: x-large;
+    white-space: nowrap;
 }
 
 .tg .tg-0lax {
