@@ -8,50 +8,66 @@
 </head>
 <body>
 
-    <div class="heading">   
-        <div class="heading-left">
-            <div class="logo-container">
-                <img class="logo" id="logo" src="logos/APC.png">
-            </div>
-            <div class="info">
-                <p id="company-name-thai">ห้างหุ้นส่วนจำกัด อภิโชคโลหะกิจ</p>
-                <p id="company-name-english">APICHOKLOHAKIT LIMITED PARTNERSHIP</p>
-                <p>134 ถ.บางบอน 4 แขวงบางบอนเหนือ เขตบางบอน กรุงเทพฯ 10150</p>
-                <div class="contact">
-                    <p>TEL: 02-4503250-4</p>
-                    <p>FAX: 02-4503255</p>
+    <div class="hidden-print">
+        <input type="file" id="input" class="hidden-print" />
+        <p>
+            instructions to do stuff here (this won't be printed don't worry :))
+        </p>
+
+        <ol>
+            <li>click the button</li>
+            <li>pick your file lole!</li>
+            <li>ctrl + p</li>
+            <li>profit</li>
+        </ol>
+        <hr>
+    </div>
+
+    <div id="content">
+        <div class="heading">
+            <div class="heading-left">
+                <div class="logo-container">
+                    <img class="logo" id="logo" src="logos/APC.png">
+                </div>
+                <div class="info">
+                    <p id="company-name-thai">ห้างหุ้นส่วนจำกัด อภิโชคโลหะกิจ</p>
+                    <p id="company-name-english">APICHOKLOHAKIT LIMITED PARTNERSHIP</p>
+                    <p>134 ถ.บางบอน 4 แขวงบางบอนเหนือ เขตบางบอน กรุงเทพฯ 10150</p>
+                    <div class="contact">
+                        <p>TEL: 02-4503250-4</p>
+                        <p>FAX: 02-4503255</p>
+                    </div>
                 </div>
             </div>
+            <div class="heading-right">
+                <table class="tg">
+                    <thead>
+                    <tr>
+                        <th class="tg-0lax purchase-order-label" rowspan="2">ใบสั่งสินค้า</th>
+                        <th class="tg-0lax">เลขที่</th>
+                        <th class="tg-0lax" id="order-number">&lt;number&gt;</th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax">วันที่</th>
+                        <th class="tg-0lax" id="date">&lt;date&gt;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="tg-0lax">ถึง</td>
+                        <td class="tg-0lax" id="company-name" colspan="2">&lt;company name&gt;</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">FAX</td>
+                        <td class="tg-0lax" id="company-fax" colspan="2">&lt;fax&gt;</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="heading-right">
-            <table class="tg">
+        <div id="output">
+            <table>
                 <thead>
-                  <tr>
-                    <th class="tg-0lax purchase-order-label" rowspan="2">ใบสั่งสินค้า</th>
-                    <th class="tg-0lax">เลขที่</th>
-                    <th class="tg-0lax" id="order-number">&lt;number&gt;</th>
-                  </tr>
-                  <tr>
-                    <th class="tg-0lax">วันที่</th>
-                    <th class="tg-0lax" id="date">&lt;date&gt;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="tg-0lax">ถึง</td>
-                    <td class="tg-0lax" id="company-name" colspan="2">&lt;company name&gt;</td>
-                  </tr>
-                  <tr>
-                    <td class="tg-0lax">FAX</td>
-                    <td class="tg-0lax" id="company-fax" colspan="2">&lt;fax&gt;</td>
-                  </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div id="output">
-        <table>  
-            <thead>
                 <tr>
                     <th scope="col">จำนวน</th>
                     <th scope="col">น้ำหนัก</th>
@@ -61,33 +77,17 @@
                     <th scope="col">หมายเหตุ</th>
                     <th scope="col">จำนวนเงิน</th>
                 </tr>
-            </thead>    
-            <tbody id="tableBody"></tbody>
-        </table>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+        <div class="sign-container">
+            <p class="sign-text">ผู้สั่ง</p>
+            <div class="dotted-line"></div>
+        </div>
+        <div class="new-page"></div>
     </div>
 
-    <br>
-
-    <div class="sign-container">
-        <p class="sign-text">ผู้สั่ง</p>
-        <div class="dotted-line"></div>
-    </div>
-
-    <br>
-
-    <div class="hidden-print">
-        <input type="file" id="input" class="hidden-print" />
-        <p>
-            instructions to do stuff here
-        </p>
-
-        <ol>
-            <li>click the button</li>
-            <li>pick your file lole!</li>
-            <li>ctrl + p</li>
-            <li>profit</li>
-        </ol>
-    </div>
 
     
 </body>

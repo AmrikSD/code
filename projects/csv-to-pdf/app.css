@@ -101,8 +101,12 @@ table {
     flex: 1;
 }
 
+
 @media print {
     .hidden-print {
-        display: none !important
+        display: none !important;
+    }
+    .new-page {
+        page-break-after: always;
     }
 }

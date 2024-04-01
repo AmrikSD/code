@@ -86,6 +86,10 @@ function displayContents(contents) {
         companyNameEnglish.innerText = "APICHOK STEEL GROUP CO., LTD."
     }
 
+
+    const content = document.getElementById("content")
+    content.innerHTML += content.innerHTML
+
     document.title = matrix[0].Order
 
 }
