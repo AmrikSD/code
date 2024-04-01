@@ -1,0 +1,34 @@
+table {
+    width: 100%;
+}
+
+.heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: orchid;
+}
+
+.heading > .heading-left {
+    flex: 1 1 60vw;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    background-color: orange;
+}
+.heading > .heading-left > .logo {
+    height: 10rem;
+}
+
+.heading > .heading-right {
+    flex: 1 1 40vw;
+    background-color: green;
+}
+
+
+@media print {
+    .hidden-print {
+        display: none !important
+    }
+}

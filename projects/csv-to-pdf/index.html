@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="heading">   
+        <div class="heading-left">
+            <img class="logo" src="./logo.png">
+            <div class="info">
+                <p>ห้างหุ้นส่วนจำกัด อภิโชคโลหะกิจ</p>
+                <p>APICHOCKLOHAKIT LIMITED PARTNERSHIP</p>
+                <p>134 ถ.บางบอน 4 แขวงบางบอน  เขตบางบอน กรุงเทพฯ 10150</p>
+                <p>02-4503250-4 FAX : 02-4503255</p>
+            </div>
+        </div>
+        <div class="heading-right">
+            <table class="tg">
+                <thead>
+                  <tr>
+                    <th class="tg-0lax" rowspan="2">"Purchase order"</th>
+                    <th class="tg-0lax">"number"</th>
+                    <th class="tg-0lax">&lt;number&gt;</th>
+                  </tr>
+                  <tr>
+                    <th class="tg-0lax">"date"</th>
+                    <th class="tg-0lax">&lt;date&gt;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-0lax">"TO"</td>
+                    <td class="tg-0lax" colspan="2">&lt;company name&gt;</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">FAX</td>
+                    <td class="tg-0lax" colspan="2">&lt;fax&gt;</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="output">
+        <table border="2">  
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Weight</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">@</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Cost</th>
+                </tr>
+            </thead>    
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <br>
+    <div class="hidden-print">
+        <input type="file" id="input" class="hidden-print" />
+        <p>instructions to do stuff here</p>
+
+        <ol>
+            <li>click the button</li>
+            <li>pick your file lole!</li>
+            <li>ctrl + p</li>
+            <li>profit</li>
+        </ol>
+    </div>
+
+    
+</body>
+
+<script src="./app.js"></script>
+</html>
