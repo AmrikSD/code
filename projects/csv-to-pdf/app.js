@@ -6,7 +6,6 @@ function readSingleFile(e) {
     var reader = new FileReader();
     reader.onload = function(e) {
       var contents = e.target.result;
-      console.log(contents)
       displayContents(contents);
     };
     reader.readAsText(file, 'TIS-620');
@@ -35,16 +34,20 @@ function displayContents(contents) {
                   .filter(arr => arr.length >= 19)
                   .map(item => {
                     return {
+                      Order: item[2],
+                      Company: item[4],
+                      Date: item[6],
+                      Fax: item[10],
                       Amount: `${item[18]} ${item[19]}`,
                       Weight: `${item[20]} ${item[21]}`,
                       Item: item[22],
-                      Discount: `${item[23]} ${item[24]}`,
+                      At: `${item[23]} ${item[24]}`,
                       Note: item[25],
                       Cost: item[26]
                     }
                   })
-
-    console.table(matrix)
+    
+    console.log(matrix)
 
     const tableData = matrix.map(value => {
         return (
@@ -52,16 +55,31 @@ function displayContents(contents) {
              <td>${value.Amount}</td>
              <td>${value.Weight}</td>
              <td>${value.Item}</td>
+             <td>${value.At}</td>
              <td></td>
-             <td>${value.Discount}</td>
              <td>${value.Note}</td>
              <td>${value.Cost}</td>
           </tr>`
         );
       }).join('');
 
-      const tableBody = document.querySelector("#tableBody");
-      tableBody.innerHTML = tableData;
+    const tableBody = document.querySelector("#tableBody");
+    tableBody.innerHTML = tableData;
+    
+    const orderNumber = document.getElementById("order-number")
+    orderNumber.innerHTML = matrix[0].Order
+
+    const date = document.getElementById("date")
+    date.innerHTML = matrix[0].Date
+
+    const companyName = document.getElementById("company-name")
+    companyName.innerHTML = matrix[0].Company
+
+    const companyFax = document.getElementById("company-fax")
+    companyFax.innerHTML = matrix[0].Fax
+
+    document.title = matrix[0].Order
+
 }
 
   

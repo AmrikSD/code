@@ -4,57 +4,62 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="app.css">
-    <title>Document</title>
+    <title>Flamingo</title>
 </head>
 <body>
 
     <div class="heading">   
         <div class="heading-left">
-            <img class="logo" src="./logo.png">
+            <div class="logo-container">
+                <img class="logo" src="./logo.png">
+            </div>
             <div class="info">
                 <p>ห้างหุ้นส่วนจำกัด อภิโชคโลหะกิจ</p>
-                <p>APICHOCKLOHAKIT LIMITED PARTNERSHIP</p>
+                <p>APICHOKLOHAKIT LIMITED PARTNERSHIP</p>
                 <p>134 ถ.บางบอน 4 แขวงบางบอน  เขตบางบอน กรุงเทพฯ 10150</p>
-                <p>02-4503250-4 FAX : 02-4503255</p>
+                <div class="contact">
+                    <p>TEL: 02-4503250-4</p>
+                    <p>FAX: 02-4503255</p>
+                </div>
             </div>
         </div>
         <div class="heading-right">
             <table class="tg">
                 <thead>
                   <tr>
-                    <th class="tg-0lax" rowspan="2">"Purchase order"</th>
-                    <th class="tg-0lax">"number"</th>
-                    <th class="tg-0lax">&lt;number&gt;</th>
+                    <th class="tg-0lax purchase-order-label" rowspan="2">ใบสั่งสินค้า</th>
+                    <th class="tg-0lax">เลขที่</th>
+                    <th class="tg-0lax" id="order-number">&lt;number&gt;</th>
                   </tr>
                   <tr>
-                    <th class="tg-0lax">"date"</th>
-                    <th class="tg-0lax">&lt;date&gt;</th>
+                    <th class="tg-0lax">วันที่</th>
+                    <th class="tg-0lax" id="date">&lt;date&gt;</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="tg-0lax">"TO"</td>
-                    <td class="tg-0lax" colspan="2">&lt;company name&gt;</td>
+                    <td class="tg-0lax">ถึง</td>
+                    <td class="tg-0lax" id="company-name" colspan="2">&lt;company name&gt;</td>
                   </tr>
                   <tr>
                     <td class="tg-0lax">FAX</td>
-                    <td class="tg-0lax" colspan="2">&lt;fax&gt;</td>
+                    <td class="tg-0lax" id="company-fax" colspan="2">&lt;fax&gt;</td>
                   </tr>
                 </tbody>
             </table>
         </div>
     </div>
     <div id="output">
-        <table border="2">  
-            <thead class="thead-dark">
+        <table>  
+            <thead>
                 <tr>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Weight</th>
-                    <th scope="col">Item</th>
+                    <th scope="col">จำนวน</th>
+                    <th scope="col">น้ำหนัก</th>
+                    <th scope="col">รายการ</th>
                     <th scope="col">@</th>
-                    <th scope="col">Discount</th>
-                    <th scope="col">Note</th>
-                    <th scope="col">Cost</th>
+                    <th scope="col">ส่วนลด</th>
+                    <th scope="col">หมายเหตุ</th>
+                    <th scope="col">จำนวนเงิน</th>
                 </tr>
             </thead>    
             <tbody id="tableBody"></tbody>
@@ -62,6 +67,7 @@
     </div>
 
     <br>
+
     <div class="hidden-print">
         <input type="file" id="input" class="hidden-print" />
         <p>instructions to do stuff here</p>
