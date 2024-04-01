@@ -44,3 +44,23 @@ resource "cloudflare_record" "amrik_co_uk" {
     value = "amrik-co-uk.pages.dev"
 }
 
+resource "cloudflare_pages_project" "kate_amrik_co_uk" {
+  account_id        = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
+  name              = "kate-amrik-co-uk"
+  production_branch = "main"
+}
+
+resource "cloudflare_pages_domain" "kate_amrik_co_uk" {
+  account_id   = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
+  project_name = "kate-amrik-co-uk"
+  domain       = "kate.amrik.co.uk"
+}
+
+resource "cloudflare_record" "kate_amrik_co_uk" {
+    zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.co.uk.zone_id"]
+    name = "kate"
+    type = "CNAME"
+    value = "kate-amrik-co-uk.pages.dev"
+}
+
+

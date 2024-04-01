@@ -2,7 +2,8 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/bpg/proxmox" {
-  version = "0.51.0"
+  version     = "0.51.0"
+  constraints = "0.51.0"
   hashes = [
     "h1:0uTU3kkCB0e77rClYwzmng5+bvQu+yDoeTJl5yTasx0=",
     "h1:3yDWnLqhh78gwFe2JUWMSU9bM9TGxdfC3kmACKQdrrw=",
@@ -40,6 +41,7 @@ provider "registry.terraform.io/carlpett/sops" {
   version     = "1.0.0"
   constraints = "~> 1.0.0"
   hashes = [
+    "h1:Ef2u9JLvoQv2TNT6rpuaKQu7Ps5teZKfGSxpoBMMEOk=",
     "h1:tnN2Mgl0NUF3cg7a0HtGmtOhHcG+tkaT6ncOPRuA9l8=",
     "zh:064e63ea800cd1a8e575064097bc7de6fd5faa8ad50dbb3f2f9d8a3ebc9d7b97",
     "zh:0663900085949d2faf24c170c7cdfbf76e545797915cc331da8304144c02bf27",
