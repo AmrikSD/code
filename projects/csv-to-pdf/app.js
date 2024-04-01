@@ -18,36 +18,34 @@ function displayContents(contents) {
 
     let regex = /,\s*(?=(?:[^"]|"[^"]*")*$)/g;
 
-    matrix = contents.split(regex)
-                  .map(str => str.replaceAll("\"",""))
-                  .reduce((resultArray, item, index) => { 
-                    const chunkIndex = Math.floor(index/chunkSize)
-                  
-                    if(!resultArray[chunkIndex]) {
-                      resultArray[chunkIndex] = [] // start a new chunk
-                    }
-                  
-                    resultArray[chunkIndex].push(item)
-                  
-                    return resultArray
-                  }, [])
-                  .filter(arr => arr.length >= 19)
-                  .map(item => {
-                    return {
-                      Order: item[2],
-                      Company: item[4],
-                      Date: item[6],
-                      Fax: item[10],
-                      Amount: `${item[18]} ${item[19]}`,
-                      Weight: `${item[20]} ${item[21]}`,
-                      Item: item[22],
-                      At: `${item[23]} ${item[24]}`,
-                      Note: item[25],
-                      Cost: item[26]
-                    }
-                  })
-    
-    console.log(matrix)
+    let matrix = contents.split(regex)
+        .map(str => str.replaceAll("\"", ""))
+        .reduce((resultArray, item, index) => {
+            const chunkIndex = Math.floor(index / chunkSize)
+
+            if (!resultArray[chunkIndex]) {
+                resultArray[chunkIndex] = [] // start a new chunk
+            }
+
+            resultArray[chunkIndex].push(item)
+
+            return resultArray
+        }, [])
+        .filter(arr => arr.length >= 19)
+        .map(item => {
+            return {
+                Order: item[2],
+                Company: item[4],
+                Date: item[6],
+                Fax: item[10],
+                Amount: `${item[18]} ${item[19]}`,
+                Weight: `${item[20]} ${item[21]}`,
+                Item: item[22],
+                At: `${item[23]} ${item[24]}`,
+                Note: item[25],
+                Cost: item[26]
+            }
+        })
 
     const tableData = matrix.map(value => {
         return (
@@ -77,6 +75,16 @@ function displayContents(contents) {
 
     const companyFax = document.getElementById("company-fax")
     companyFax.innerHTML = matrix[0].Fax
+
+    const companyLogo = document.getElementById("logo")
+    const companyNameThai = document.getElementById("company-name-thai")
+    const companyNameEnglish = document.getElementById("company-name-english")
+
+    if (matrix[0].Order[2] === 'S'){
+        companyLogo.outerHTML = "<img class='logo' id='logo' src='logos/ASG.png'>"
+        companyNameThai.innerText = "บริษัท อภิโชคสตีล กรุ๊ป จำกัด"
+        companyNameEnglish.innerText = "APICHOK STEEL GROUP CO., LTD."
+    }
 
     document.title = matrix[0].Order
 

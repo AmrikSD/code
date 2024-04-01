@@ -87,6 +87,20 @@ table {
     column-gap: 1rem;
 }
 
+.sign-container {
+    display: flex;
+    width: 40vw;
+}
+.sign-text {
+    font-size: 16px;
+    margin-right: 10px;
+}
+.dotted-line {
+    border-bottom: 1px dotted black;
+    width: 60vw;
+    flex: 1;
+}
+
 @media print {
     .hidden-print {
         display: none !important
