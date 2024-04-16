@@ -1,6 +1,6 @@
 import type { ActionFunction, ActionFunctionArgs, LoaderFunction } from "@remix-run/cloudflare";
 import { json } from "@remix-run/cloudflare";
-import { Form, useLoaderData } from "@remix-run/react";
+import CountDown from "./Countdown";
 
 interface Env {
   MY_DB: D1Database;
@@ -18,7 +18,7 @@ type rsvp = {
     diet:number
 }
 
-export const loader: LoaderFunction = async ({ context, params })  => {
+export const loader: LoaderFunction = async ({ context })  => {
   const env = context.cloudflare.env as Env
   const { results } = await env.MY_DB.prepare("SELECT * FROM rsvp ORDER BY rowid desc LIMIT 1").all();
   return json(results);
@@ -28,14 +28,14 @@ export const action: ActionFunction = async ({request, context} : ActionFunction
     const env = context.cloudflare.env
 
     const formData = await request.formData()
-    const    first_name = "first_name"
-    const    last_name = "last_name"
-    const    plus_one = 1
-    const    plus_one_first_name = "plus_one_first_name"
-    const    plus_one_last_name = "plus_one_last_name"
-    const    coming_to_thailand = 2
-    const    coming_to_uk = 2
-    const    diet = "diet"
+    const first_name = "first_name"
+    const last_name = "last_name"
+    const plus_one = 1
+    const plus_one_first_name = "plus_one_first_name"
+    const plus_one_last_name = "plus_one_last_name"
+    const coming_to_thailand = 2
+    const coming_to_uk = 2
+    const diet = "diet"
 
     console.log(formData)
 
@@ -58,60 +58,37 @@ export const action: ActionFunction = async ({request, context} : ActionFunction
 }
 
 export default function Index() {
-  const results: rsvp[] = useLoaderData<typeof loader>() as rsvp[];
-  return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <div>
-        A value from D1:
-        <pre><code>{JSON.stringify(results, null, 3)}</code></pre>
-      </div>
 
-      <div>
-        <Form method="POST">
-        <div>
-          <label>
-            First Name: <input type="text" name="first-name" required />
-          </label>
-        </div>
-        <div>
-          <label>
-            Last Name: <input type="text" name="last-name" required />
-          </label>
-        </div>
-        <div>
-          <label>
-            Plus One: <input type="text" name="plus-one" required />
-          </label>
-        </div>
-        <div>
-          <label>
-            Plus One First Name: <input type="text" name="plus-one-first-name" required />
-          </label>
-        </div>
-        <div>
-          <label>
-            Plus One Last Name: <input type="text" name="plus-one-first-name" required />
-          </label>
-        </div>
-        <div>
-          <label>
-            Coming To Thailand: <input type="text" name="coming-to-thailand" required />
-          </label>
-        </div>
-        <div>
-          <label>
-            Coming To UK: <input type="text" name="coming-to-uk" required />
-          </label>
-        </div>
-        <div>
-          <label>
-            Diet restrictions: <input type="text" name="diet" required />
-          </label>
-        </div>
-        <button type="submit">Add Resource</button>
-      </Form>
-      </div>
-    </div>
+
+  return (
+    <>
+        <section>
+            <div className="container">
+                <h1>We&apos;re getting married!</h1>
+                <h1>You&apos;re invited!</h1>
+                <p>We (<u className="kate">Kate</u> &amp; Amrik) would love to invite you to our wedding!</p>
+                <p>For more info, just scroll down!</p>
+                <p>To <b>RSVP</b> just scroll down, or <b>TEXT</b> us!</p>
+            </div>
+        </section>
+        <section>
+            <div className="container">
+                <h1>Hua Hin, Thailand</h1>
+                <CountDown target={new Date("2025-02-02")}/>
+                <p>yes, a destination wedding :)</p>
+                <p>Don&apos;t worry, there will be another celebration in the UK</p>
+            </div>
+        </section>
+        <section>
+            <div className="container">
+                <button type="submit">RSVP!</button>
+            </div>
+        </section>
+        <section>
+            <div className="container">
+                <p>Website created with ❤️ and 🫖 by <u className="amrik">Amrik</u></p>
+            </div>
+        </section>
+    </>
   );
 }

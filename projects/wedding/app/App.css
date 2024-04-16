@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: "Fira Code", sans-serif;
+  background-color: #E9DFD3;
+  color: #FFFFFF;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  background-image: url("https://cdn0.hitched.co.uk/article/3270/original/1280/jpg/40723-beach-destination-weddings-grand-cayman-ritz-carlton-d55549b.jpeg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+section {
+    min-height: 100vh;
+    min-width: 100vw;
+    scroll-snap-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background-color: rgb(255 255 255 / 30%);
+    backdrop-filter: blur(5px);
+    width: 95vw;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+h1 {
+    font-weight: 100;
+    font-size: 5rem;
+}
+
+.kate:hover:after {
+    content: " ((the cute one))";
+}
+.amrik:hover:after {
+    content: " ((the 🤓 one))";
+}
