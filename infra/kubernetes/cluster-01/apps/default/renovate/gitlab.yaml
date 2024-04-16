@@ -15,7 +15,7 @@ spec:
             - name: renovate
               # Update this to the latest available and then enable Renovate on
               # the manifest
-              image: renovate/renovate:37.280-full
+              image: renovate/renovate:37.301-full
               args:
                 - Potato-Blood
               # Environment Variables
