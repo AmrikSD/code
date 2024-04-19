@@ -1,23 +1,22 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
 }
 
 body, html {
-  font-family: "Fira Code", sans-serif;
-  background-color: #E9DFD3;
-  color: #FFFFFF;
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+    font-family: "Fira Code", sans-serif;
+    background-color: #E9DFD3;
+    color: #FFFFFF;
+    scroll-snap-type: y mandatory;
 }
 
 body {
-  background-image: url("https://cdn0.hitched.co.uk/article/3270/original/1280/jpg/40723-beach-destination-weddings-grand-cayman-ritz-carlton-d55549b.jpeg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+    background-image: url("https://cdn0.hitched.co.uk/article/3270/original/1280/jpg/40723-beach-destination-weddings-grand-cayman-ritz-carlton-d55549b.jpeg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 section {
@@ -51,3 +50,37 @@ h1 {
 .amrik:hover:after {
     content: " ((the 🤓 one))";
 }
+
+a, a:focus {
+    color: inherit;
+    text-decoration: underline dotted white 0.4rem;
+}
+a:active, a:hover {
+    text-decoration: underline solid white 0.4rem;
+    text-underline-offset: 0.4rem;
+}
+
+.container > fieldset{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 80%;
+    height: 80%;
+}
+
+legend {
+    font-size: 8rem;
+}
+
+.container > fieldset > * {
+    margin: 0.3rem;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
