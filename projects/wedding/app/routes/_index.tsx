@@ -2,7 +2,7 @@ import type { ActionFunction, ActionFunctionArgs, LoaderFunction } from "@remix-
 import { json } from "@remix-run/cloudflare";
 import CountDown from "./Countdown";
 import { Form, useLoaderData } from "@remix-run/react";
-import { PropsWithChildren, ReactNode, ReactPropTypes, RefObject, useEffect, useRef } from "react";
+import { PropsWithChildren, ReactNode, useRef } from "react";
 
 interface Env {
   MY_DB: D1Database;
@@ -22,7 +22,7 @@ type rsvp = {
 
 export const loader: LoaderFunction = async ({ context })  => {
   const env = context.cloudflare.env as Env
-  const { results } = await env.MY_DB.prepare("SELECT * FROM rsvp ORDER BY rowid desc LIMIT 99").all(); //TODO: remove LIMIT
+  const { results } = await env.MY_DB.prepare("SELECT * FROM rsvp ORDER BY rowid desc LIMIT 3").all(); //TODO: remove LIMIT
   return json(results);
 };
 
@@ -30,16 +30,27 @@ export const action: ActionFunction = async ({request, context} : ActionFunction
     const env = context.cloudflare.env
 
     const formData = await request.formData()
-    const first_name = "first_name"
-    const last_name = "last_name"
-    const plus_one = 1
-    const plus_one_first_name = "plus_one_first_name"
-    const plus_one_last_name = "plus_one_last_name"
-    const coming_to_thailand = 2
-    const coming_to_uk = 2
-    const diet = "diet"
+    
+    const first_name = formData.get("first_name")
+    const last_name = formData.get("last_name")
+    const plus_one = formData.get("plus_one")
+    const plus_one_first_name = formData.get("plus_one_first_name")
+    const plus_one_last_name = formData.get("plus_one_last_name")
+    const coming_to_thailand = formData.get("coming_to_thailand")
+    const coming_to_uk = formData.get("coming_to_uk")
+    const diet = formData.get("diet")
 
-    console.log(formData)
+
+    console.log(first_name)
+    console.log(last_name)
+    console.log(plus_one)
+    console.log(plus_one_first_name)
+    console.log(plus_one_last_name)
+    console.log(coming_to_thailand)
+    console.log(coming_to_uk)
+    console.log(diet)
+
+
 
     return await env.MY_DB.prepare(`
         INSERT INTO rsvp (first_name, last_name, plus_one, plus_one_first_name, plus_one_last_name, coming_to_thailand, coming_to_uk, diet)
@@ -78,7 +89,7 @@ const scrollPageIntoView = (name: string) => {
 
 const NavButton = ({to, text}: {to: string, text: string}): ReactNode => {
     return (
-        <button type="button" onClick={() => scrollPageIntoView(to)}>{text}</button>
+        <button className="nav-button" type="button" onClick={() => scrollPageIntoView(to)}>{text}</button>
     )
 }
 
@@ -115,6 +126,28 @@ export default function Index() {
                     <legend>RSVP</legend>
                     <div>
                         <div className="form-group names">
+                            <input type="text" placeholder="Name" name="first-name" required />
+                            <input type="text" placeholder="Surname" name="last-name" required />
+                        </div>
+                        <div className="form-group coming-thailand">
+                          <div className="switch">	
+                            <input type="radio" name="choice" id="yes" defaultChecked />
+                            <label htmlFor="yes">See you there</label>
+                            <input type="radio" name="choice" id="no" />
+                            <label htmlFor="no">Sorry, can&apos; make it!</label>
+                            <span className="switchFilter"></span>
+                          </div>
+                        </div>
+                        <NavButton to="countdown" text="Back"/>
+                        <NavButton to="rsvp-2" text="Next"/>
+                    </div>
+                </fieldset>
+            </Page>
+            <Page name="rsvp-2">
+                <fieldset>
+                    <legend>RSVP PART 2</legend>
+                    <div>
+                        <div className="form-group names">
                             <input type="text" placeholder="Name" required />
                             <input type="text" placeholder="Surname" required />
                         </div>
@@ -127,13 +160,11 @@ export default function Index() {
                             <span className="switchFilter"></span>
                           </div>
                         </div>
-                        <button type="button" onClick={() => scrollPageIntoView("landing")}>Back to start??</button>
+                        <button type="button" onClick={() => scrollPageIntoView("rsvp-1")}>Back</button>
+                        <button type="button" onClick={() => scrollPageIntoView("rsvp-2")}>Next</button>
+                        <button type="submit">Submit</button>
                     </div>
                 </fieldset>
-            </Page>
-            <Page>
-                <p>part 2</p>
-                <button type="submit">RSVP!</button>
             </Page>
         </Form>
         {
