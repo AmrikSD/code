@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:24.04@sha256:1f84a3ed33b02bf3ccd75b06654a5dc1e0faa02b2beac4c37013859f0a26eb52
+FROM docker.io/library/ubuntu:24.04@sha256:28a2b328825ac02db5c29d9356bfba80ba6c4b6ebfcac5a91a4656fa3453775a
 
 LABEL org.opencontainers.image.source="https://github.com/amriksd/code/containers/code"
 LABEL org.opencontainers.image.description="A development container for everything in the AmrikSD/Code repository"
