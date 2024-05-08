@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/unpoller/unpoller:v2.11.2
           env:
             - name: UP_INFLUXDB_DISABLE
-              value: true
+              value: "true"
             - name: UP_UNIFI_DEFAULT_PASS
               value: "${SECRET_UNPOLLER_PASSWORD}" 
             - name: UP_UNIFI_CONTROLLER_0_URL
