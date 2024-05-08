@@ -8,3 +8,4 @@ resources:
   - ./alertmanager
   - ./graphite-exporter
   - ./kube-state-metrics/helm-release.yaml
+  - unpoller

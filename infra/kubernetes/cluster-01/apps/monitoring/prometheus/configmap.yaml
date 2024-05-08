@@ -43,3 +43,6 @@ data:
       - job_name: 'kube-state-metrics'
         static_configs:
           - targets: ['kube-state-metrics:8080']
+      - job_name: 'unpoller'
+        static_configs:
+          - targets: ['unpoller:9130']
