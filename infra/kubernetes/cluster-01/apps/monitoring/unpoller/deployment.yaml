@@ -24,7 +24,7 @@ spec:
             - name: UP_UNIFI_DEFAULT_PASS
               value: "${SECRET_UNPOLLER_PASSWORD}" 
             - name: UP_UNIFI_CONTROLLER_0_URL
-              value: 10.0.0.1
+              value: https://10.0.0.1
           ports:
             - name: metrics
               containerPort: 9130
