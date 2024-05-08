@@ -20,7 +20,7 @@ spec:
           image: ghcr.io/unpoller/unpoller:v2.11.2
           env:
             - name: UP_UNIFI_DEFAULT_PASS
-              value: password
+              value: "${SECRET_UNPOLLER_PASSWORD}" 
           ports:
             - name: metrics
               containerPort: 9130
