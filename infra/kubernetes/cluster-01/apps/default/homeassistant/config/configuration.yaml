@@ -1,7 +1,7 @@
 http:
   server_port: 8123
-  base_url: ha.amrik.xyz
   use_x_forwarded_for: true
   trusted_proxies:
     - 127.0.0.1
     - 10.42.0.0/16
+  external_url: https://ha.amrik.xyz
