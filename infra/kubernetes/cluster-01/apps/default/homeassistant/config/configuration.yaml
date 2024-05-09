@@ -5,4 +5,5 @@ http:
     - 127.0.0.1
     - 10.42.0.0/16
 
-external_url: https://ha.amrik.xyz
+homeassistant:
+  external_url: https://ha.amrik.xyz
