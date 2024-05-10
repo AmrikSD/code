@@ -15,6 +15,10 @@ java_binary(
     runtime_deps = [":lc-library"]
 )
 
+java_library(
+    name = "twosum-lib",
+    srcs = ["TwoSum.java"],
+)
 
 filegroup(
     name = "srcs",
