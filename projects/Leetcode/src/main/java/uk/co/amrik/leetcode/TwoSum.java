@@ -1,5 +1,7 @@
 package uk.co.amrik.leetcode;
 
+import java.util.HashMap;
+
 public class TwoSum {
 
     /**
@@ -9,10 +11,16 @@ public class TwoSum {
      * You may assume that each input would have exactly one solution, and you may not use the same element twice.
      * You can return the answer in any order.
      **/
-    public static int[] Solve(){
-        int[] la = {2,2};
-
-        return la;
+    public static int[] Solve(int[] arr, int target){
+        HashMap<Integer, Integer>  hm = new HashMap<>();
+        int[] answer = {};
+        for (int i = 0; i < arr.length; i++) {
+            if (hm.containsKey(target - arr[i])) {
+                answer = new int[]{i, hm.get(target - arr[i])};
+            }
+            hm.put(arr[i], i);
+        }
+        return answer;
     }
 
 }
