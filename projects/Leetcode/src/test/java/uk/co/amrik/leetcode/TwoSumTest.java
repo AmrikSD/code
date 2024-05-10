@@ -11,7 +11,7 @@ public class TwoSumTest{
         int target = 9;
         int[] expected = {0, 1};
 
-        assertThat(TwoSum.Solve(nums, target))
+        assertThat(TwoSum.solve(nums, target))
             .hasSize(2)
             .containsExactlyInAnyOrder(expected);
     }
@@ -21,7 +21,7 @@ public class TwoSumTest{
         int target = 6;
         int[] expected = {1, 2};
 
-        assertThat(TwoSum.Solve(nums, target))
+        assertThat(TwoSum.solve(nums, target))
             .hasSize(2)
             .containsExactlyInAnyOrder(expected);
     }
@@ -30,7 +30,7 @@ public class TwoSumTest{
         int[] nums = {3, 3};
         int target = 6;
         int[] expected = {0, 1};
-        assertThat(TwoSum.Solve(nums, target))
+        assertThat(TwoSum.solve(nums, target))
             .hasSize(2)
             .containsExactlyInAnyOrder(expected);
     }

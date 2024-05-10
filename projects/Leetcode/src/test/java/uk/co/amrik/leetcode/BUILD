@@ -21,6 +21,17 @@ java_test(
     ]
 )
 
+java_test(
+    name = "MergeAlternatelyTest",
+    srcs = ["MergeAlternatelyTest.java"],
+
+    deps = [
+        "//projects/Leetcode/src/main/java/uk/co/amrik/leetcode:mergealternately-lib",
+        "@maven//:junit_junit",
+        "@maven//:org_assertj_assertj_core"
+    ]
+)
+
 filegroup(
     name = "srcs",
     srcs = glob(["**/*.java"]) + ["BUILD"],

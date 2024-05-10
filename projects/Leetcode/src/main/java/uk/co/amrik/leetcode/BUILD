@@ -20,6 +20,11 @@ java_library(
     srcs = ["TwoSum.java"],
 )
 
+java_library(
+    name = "mergealternately-lib",
+    srcs = ["MergeAlternately.java"],
+)
+
 filegroup(
     name = "srcs",
     srcs = ["BUILD"] + glob(["**/*.java"]),
