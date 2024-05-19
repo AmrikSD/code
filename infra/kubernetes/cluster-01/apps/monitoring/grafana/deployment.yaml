@@ -25,10 +25,7 @@ spec:
       serviceAccountName: grafana
       containers:
         - name: grafana
-          image: grafana/grafana:10.4.2
-          env:
-            - name: GF_INSTALL_PLUGINS
-              value: "grafana-clock-panel"
+          image: grafana/grafana:10.4.3
           ports:
             - name: web
               containerPort: 3000
