@@ -15,7 +15,7 @@ java_test(
     srcs = ["TwoSumTest.java"],
 
     deps = [
-        "//projects/Leetcode/src/main/java/uk/co/amrik/leetcode:twosum-lib",
+        "//projects/Leetcode/src/main/java/uk/co/amrik/leetcode:lc-library",
         "@maven//:junit_junit",
         "@maven//:org_assertj_assertj_core"
     ]
@@ -26,7 +26,7 @@ java_test(
     srcs = ["MergeAlternatelyTest.java"],
 
     deps = [
-        "//projects/Leetcode/src/main/java/uk/co/amrik/leetcode:mergealternately-lib",
+        "//projects/Leetcode/src/main/java/uk/co/amrik/leetcode:lc-library",
         "@maven//:junit_junit",
         "@maven//:org_assertj_assertj_core"
     ]
@@ -37,7 +37,18 @@ java_test(
     srcs = ["MoveZerosTest.java"],
 
     deps = [
-        "//projects/Leetcode/src/main/java/uk/co/amrik/leetcode:movezeros-lib",
+        "//projects/Leetcode/src/main/java/uk/co/amrik/leetcode:lc-library",
+        "@maven//:junit_junit",
+        "@maven//:org_assertj_assertj_core"
+    ]
+)
+
+java_test(
+    name = "IsSubsequenceTest",
+    srcs = ["IsSubsequenceTest.java"],
+
+    deps = [
+        "//projects/Leetcode/src/main/java/uk/co/amrik/leetcode:lc-library",
         "@maven//:junit_junit",
         "@maven//:org_assertj_assertj_core"
     ]

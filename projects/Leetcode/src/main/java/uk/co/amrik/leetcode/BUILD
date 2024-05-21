@@ -15,21 +15,6 @@ java_binary(
     runtime_deps = [":lc-library"]
 )
 
-java_library(
-    name = "twosum-lib",
-    srcs = ["TwoSum.java"],
-)
-
-java_library(
-    name = "mergealternately-lib",
-    srcs = ["MergeAlternately.java"],
-)
-
-java_library(
-    name = "movezeros-lib",
-    srcs = ["MoveZeros.java"],
-)
-
 filegroup(
     name = "srcs",
     srcs = ["BUILD"] + glob(["**/*.java"]),
