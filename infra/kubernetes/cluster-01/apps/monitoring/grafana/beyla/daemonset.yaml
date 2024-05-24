@@ -26,6 +26,8 @@ spec:
             # Select the executable by its name instead of BEYLA_OPEN_PORT
             - name: BEYLA_PROMETHEUS_PORT
               value: "9090"
+            - name: BEYLA_OPEN_PORT
+              value: "80,443,3000-3999,4000-4999,8000-8999,9000-9999"
               # required if you want kubernetes metadata decoration
             - name: BEYLA_KUBE_METADATA_ENABLE
               value: "true"
