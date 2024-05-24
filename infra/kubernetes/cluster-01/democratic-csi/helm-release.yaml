@@ -13,7 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: democratic-csi
-        namespace: flux-system
+        namespace: democratic-csi
   install:
     createNamespace: true
     remediation:
