@@ -61,13 +61,19 @@ spec:
           image: prom/prometheus:v2.52.0
           args:
             - --config.file=/etc/prometheus/prometheus.yml
+            - --storage.tsdb.path=/data
           ports:
             - name: web
               containerPort: 9090
           volumeMounts:
             - name: config-volume
               mountPath: /etc/prometheus
+            - mountPath: /data
+              name: prometheus-data-volume
       volumes:
         - name: config-volume
           configMap:
             name: prometheus-conf
+        - name: prometheus-data-volume
+          persistentVolumeClaim:
+            claimName: prometheus-data-claim
