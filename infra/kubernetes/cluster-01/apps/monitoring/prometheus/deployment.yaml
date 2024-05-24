@@ -61,7 +61,6 @@ spec:
           image: prom/prometheus:v2.52.0
           args:
             - --config.file=/etc/prometheus/prometheus.yml
-            - --storage.tsdb.path=/data
           ports:
             - name: web
               containerPort: 9090
