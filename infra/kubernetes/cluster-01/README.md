@@ -33,3 +33,11 @@ After I had kubectl setup and working it's a very easy process
 
 `brew install cilium-cli && cilium install --version 1.15.5`
 
+
+## Flux
+
+Again, following the quickstart [here](https://fluxcd.io/flux/installation/bootstrap/github/)
+
+`flux bootstrap github --token-auth --owner=AmrikSD --author-email=amrik.singh@live.co.uk --author-name=AmrikSD --repository=code --branch=main --path=infra/kubernetes/cluster-01/`
+
+
