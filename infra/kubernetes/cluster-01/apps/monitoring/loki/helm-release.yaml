@@ -45,3 +45,5 @@ spec:
       replicas: 0
     write:
       replicas: 0
+    chunksCache:
+      allocatedMemory: 512
