@@ -22,6 +22,7 @@ spec:
     remediation:
       retries: 3
   values:
+    deploymentMode: SimpleScalable
     loki:
       commonConfig:
         replication_factor: 3
@@ -32,7 +33,7 @@ spec:
           index:
             prefix: loki_index_
             period: 24h
-          object_store: filesystem
+          object_store: s3
           schema: v13
       storage:
         type: 's3'
