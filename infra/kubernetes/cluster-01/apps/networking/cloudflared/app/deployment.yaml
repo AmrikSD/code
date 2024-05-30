@@ -26,7 +26,7 @@ spec:
         - run
         env:
           - name: NO_AUTOUPDATE
-            value: true
+            value: "true"
           - name: TUNNEL_TOKEN
             value: '${SECRET_CLOUDFLARE_TUNNEL_TOKEN}'
         livenessProbe:
