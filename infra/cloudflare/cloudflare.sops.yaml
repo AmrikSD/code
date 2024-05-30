@@ -7,6 +7,8 @@ cloudflare:
         catchall_email: ENC[AES256_GCM,data:9oaQSws8Q1y+CuQarupI+CXZ,iv:6s8QtSeQfeGTNl/T3qTN9qk6m/nUe+SA5nCbj0Qv9nA=,tag:bE4Vm7emo38YOHxuTxcrWw==,type:str]
         hire_email: ENC[AES256_GCM,data:D/vzjgmVqRfINwYRvYUYmGdwDOXZ9c85QA0ePOxl,iv:NzJ2Bcd1eUcUj9SrLqkbNhaZwGdJczb/vzKoTXfjaaQ=,tag:QmAtsu6wk0VlYTjCSBLXEw==,type:str]
         ip: ENC[AES256_GCM,data:2+zAyjDzS+kJUnumug==,iv:6ntiyuZhYuZkKk08Qo60Q17KNhVH1jAPHxMSG8j+KVE=,tag:8GseWE/GXZRXKVadfAhdmg==,type:str]
+        tunnel:
+            secret: ENC[AES256_GCM,data:Lum6ZSAEGLn6pTGRBTHhCMAw1XmDJmVqZmdhDMrKqJjhIEll,iv:f3pVkLt47A4dUkfz7RVBseA5DbWpMkXpZ3W31LRCKeg=,tag:te1e7TjAUsDOXdnsnw9pKQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -22,8 +24,8 @@ sops:
             SkVJam9kQTRkSlFhS0pZZnpEK25HTlEKWIB90KHn2BvVL4mz74qERMa9HDa2lao5
             8xQjdUeivXtpyEyHoEfnQmTBprCiupxhJnFMZfOrWIaz2GM10XVyAQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-02-19T04:08:16Z"
-    mac: ENC[AES256_GCM,data:wBW09+n/8W1lGO70sSUvVg5qU0hEtQzZtmnwO0LCxY3v77Kelib9RAD2vPoRdM0WOgcIYJwtYgEoGVcfHpAziJuPhOa6WgNdZQxkdYoPcW/fPLpMPd0dfl+U65y6Xtdr3x7jpSmGq81II8AgQqpwHZO9cTJy4eRooBwz9UH7Dxc=,iv:e/io0aTjsPe8RX97BYWKzRmOdlBHGsV1YCKeJeKjgww=,tag:gIrT9ErD+RvgcgmUgbVy9w==,type:str]
+    lastmodified: "2024-05-29T21:31:44Z"
+    mac: ENC[AES256_GCM,data:Pzyp420IKbVCODxs4JyDTXV+uRIeWUpaCftToeX6VYuTzHw3lwNVnWnHjnqFWaWiZLsLXPudqOkieIfYQ3KNRVYVY0evOW9HqoW4gUBOR9212nhKmCml4yqXX3SaWeXE/TjLf+ryNgbsRKmi6EK5rosQOYmeHf0lJSeoLNIm8u8=,iv:66GJMV02FaXR7lvY1oOLLFr9Pn91QTuShLwkzHUSwZc=,tag:7ZSk3C9Rbjy3gmkcRDyM6w==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3
