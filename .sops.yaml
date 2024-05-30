@@ -1,4 +1,8 @@
 ---
 creation_rules:
   - path_regex: infra/.*.ya?ml
-    age: 'age165angy86ctnzjrmf8rsm8r7u8lcvactktcgmq0q8vadldv690f7skvxwk6'
+    input_type: yaml
+    encrypted_regex: ^(data|stringData)$
+    key_groups:
+      - age:
+          - age165angy86ctnzjrmf8rsm8r7u8lcvactktcgmq0q8vadldv690f7skvxwk6

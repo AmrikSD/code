@@ -10,14 +10,23 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: cloudflared
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   path: ./infra/kubernetes/cluster-01/apps/networking/cloudflared/app
   prune: false
   sourceRef:
     kind: GitRepository
     name: code
   wait: true
-  interval: 30m
-  retryInterval: 1m
-  timeout: 5m
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substitute: {}
+    substituteFrom:
+      - kind: Secret
+        name: cloudflare-secrets
 
 
