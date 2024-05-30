@@ -25,8 +25,10 @@ spec:
         - /etc/cloudflared/config/config.yaml
         - run
         env:
-          - NO_AUTOUPDATE: true
-          - TUNNEL_TOKEN: '${SECRET_CLOUDFLARE_TUNNEL_TOKEN}'
+          - name: NO_AUTOUPDATE
+            value: true
+          - name: TUNNEL_TOKEN
+            value: '${SECRET_CLOUDFLARE_TUNNEL_TOKEN}'
         livenessProbe:
           httpGet:
             # Cloudflared has a /ready endpoint which returns 200 if and only if
