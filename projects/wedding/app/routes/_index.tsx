@@ -108,13 +108,13 @@ export default function Index() {
                 <p>For more info, just scroll down!</p>
                 <p>To <b>RSVP</b> just scroll down, or <b>TEXT</b> us!</p>
             </div>
-            <div>
+            <div className="button-group">
                 <NavButton to="countdown" text="More Info"/>
                 <NavButton to="rsvp-1" text="RSVP"/>
             </div>
         </Page>
         <Page name="countdown">
-            <h1><a href="https://www.google.com/maps/place/Hua+Hin,+Hua+Hin+District,+Prachuap+Khiri+Khan+77110,+Thailand/@12.5913105,99.9409497,13z/data=!3m1!4b1!4m6!3m5!1s0x30fdaaf400997211:0x40223bc2c381260!8m2!3d12.5683747!4d99.9576888!16s%2Fg%2F123dmcgrf?entry=ttu">Hua Hin</a>, Thailand</h1>
+            <h1><a target="_blank" href="https://www.google.com/maps/place/Hua+Hin,+Hua+Hin+District,+Prachuap+Khiri+Khan+77110,+Thailand/@12.5913105,99.9409497,13z/data=!3m1!4b1!4m6!3m5!1s0x30fdaaf400997211:0x40223bc2c381260!8m2!3d12.5683747!4d99.9576888!16s%2Fg%2F123dmcgrf?entry=ttu">Hua Hin</a>, Thailand</h1>
             <CountDown target={new Date("2025-02-02")}/>
             <p>yes, a destination wedding :)</p>
             <p>Don&apos;t worry, there will be another celebration in the UK</p>
@@ -138,8 +138,10 @@ export default function Index() {
                             <span className="switchFilter"></span>
                           </div>
                         </div>
-                        <NavButton to="countdown" text="Back"/>
-                        <NavButton to="rsvp-2" text="Next"/>
+                        <div className="button-group">
+                            <NavButton to="countdown" text="Back"/>
+                            <NavButton to="rsvp-2" text="Next"/>
+                        </div>
                     </div>
                 </fieldset>
             </Page>
@@ -160,9 +162,11 @@ export default function Index() {
                             <span className="switchFilter"></span>
                           </div>
                         </div>
-                        <button type="button" onClick={() => scrollPageIntoView("rsvp-1")}>Back</button>
-                        <button type="button" onClick={() => scrollPageIntoView("rsvp-2")}>Next</button>
-                        <button type="submit">Submit</button>
+                        <div className="button-group">
+                            <NavButton to="rsvp-1" text="Back" />
+                            <NavButton to="rsvp-2" text="Next" />
+                            <button type="submit">Submit</button>
+                        </div>
                     </div>
                 </fieldset>
             </Page>
