@@ -343,9 +343,14 @@ h2 {
   font-size: 11pt;
 }
 
-.side-block {
-  margin-top: 0.5in;
+#sidebar > div:first-child {
+    margin-top: 3rem;
 }
+
+.side-block {
+  margin-top: 2rem;
+}
+
 
 #contact ul {
   margin-top: 0.05in;
