@@ -25,14 +25,51 @@ const faqData = [
         children:
             <>
                 <p>No Worries!</p>
-                <p>We know it&apos;s a lot to ask for people to travel all the way to Thailand</p><p>We will do something in the UK when we&apos;re back</p>
+                <p>We know it&apos;s a lot to ask for people to travel all the way to Thailand</p>
+                <p>We will do something in the UK when we&apos;re back</p>
+            </>
+    },
+    {
+        title: "I can't make it",
+        children:
+            <>
+                <p>No Worries!</p>
+                <p>We know it&apos;s a lot to ask for people to travel all the way to Thailand</p>
+                <p>We will do something in the UK when we&apos;re back</p>
+            </>
+    },
+    {
+        title: "I can't make it",
+        children:
+            <>
+                <p>No Worries!</p>
+                <p>We know it&apos;s a lot to ask for people to travel all the way to Thailand</p>
+                <p>We will do something in the UK when we&apos;re back</p>
+            </>
+    },
+    {
+        title: "I can't make it",
+        children:
+            <>
+                <p>No Worries!</p>
+                <p>We know it&apos;s a lot to ask for people to travel all the way to Thailand</p>
+                <p>We will do something in the UK when we&apos;re back</p>
+            </>
+    },
+    {
+        title: "I can't make it",
+        children:
+            <>
+                <p>No Worries!</p>
+                <p>We know it&apos;s a lot to ask for people to travel all the way to Thailand</p>
+                <p>We will do something in the UK when we&apos;re back</p>
             </>
     },
 ]
 
 export default function Faq() {
     return <>
-        <div className="TODO">
+        <div>
             {faqData.map((faq) => (
                 <Accordion title={faq.title} key={faq.title}> 
                     {faq.children}

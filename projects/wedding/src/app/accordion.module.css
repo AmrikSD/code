@@ -1,6 +1,6 @@
 .accordion {
-    min-width: 400px;
-    margin: 2rem auto;
+    width: 80vw;
+    margin: 2rem;
 }
 
 .title {
@@ -8,4 +8,8 @@
     flex-direction: row;
     justify-content: space-between;
     cursor: pointer;
+}
+
+.content {
+    padding-top: 1rem;
 }
