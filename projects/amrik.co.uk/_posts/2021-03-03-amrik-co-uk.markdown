@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "Amrik.de - a personal blog"
+title: "Amrik.co.uk - a personal blog"
 subtitle: "yep, this very website."
 date: 2021-03-03 17:37:23
 categories: [projects, meta]
 ---
 
-# What is Amrik.de?
+# What is Amrik.co.uk?
 
-Amrik.de is my space on the internet to share things I think are interesting or useful to others.
+Amrik.co.uk is my space on the internet to share things I think are interesting or useful to others.
 
-If I stumble upon or [create](https://amrik.de/categories/projects/) something useful to me, I think writing about it is a good way to share it so that others can find some usefulness out of it too.
+If I stumble upon or [create](https://amrik.co.uk/categories/projects/) something useful to me, I think writing about it is a good way to share it so that others can find some usefulness out of it too.
 It's not all selfless though, I believe that if I take the time to write about something I'll be forced develop at least a slightly deeper understanding of it too, which is always a good thing.
 
 In the rest of this post, I'll try to explain how the website works, how I make posts, and how everything is set up for me to focus most on writing and least on maintaining the website.
@@ -19,17 +19,17 @@ In the rest of this post, I'll try to explain how the website works, how I make 
 
 ## The Infrastructure
 
-![Amrik.DE](https://amrik.de/assets/posts/amrik-dot-de/Architecture.png)
+![Amrik.co.uk](https://amrik.co.uk/assets/posts/amrik-dot-de/Architecture.png)
 
-Amrik.de is a pretty simple website, there is no backend needed as all I need to do is show some text and images on the screen and have it look pretty. That being said, there are various technologies being leveraged under the hood, most of which being provided by AWS.
+Amrik.co.uk is a pretty simple website, there is no backend needed as all I need to do is show some text and images on the screen and have it look pretty. That being said, there are various technologies being leveraged under the hood, most of which being provided by AWS.
 
-The diagram above provides an overview of all the different parts that go into Amrik.de, I'll cover them each in detail below. If you're less interested in the specifics, feel free to skip to the other sections.
+The diagram above provides an overview of all the different parts that go into Amrik.co.uk, I'll cover them each in detail below. If you're less interested in the specifics, feel free to skip to the other sections.
 
 ### Route 53
 
 [Route53](https://aws.amazon.com/route53/) is a Domain Name System service.
 
-In the most high level view, all it is doing is helping to translate the domain name ["Amrik.de"](https://amrik.de/meta/2019/09/10/why-dot-de.html) into an IP addresses. Specifically for this project, when someone types "Amrik.de" into their browser Route53 will point them to a CloudFront distribution.
+In the most high level view, all it is doing is helping to translate the domain name "Amrik.co.uk" into an IP addresses. Specifically for this project, when someone types "Amrik.co.uk" into their browser Route53 will point them to a CloudFront distribution.
 
 ### CloudFront
 
@@ -41,11 +41,11 @@ CloudFront was also chosen because of some limitations with S3, specifically tha
 
 ### S3
 
-[S3](https://aws.amazon.com/s3/) is a service provided by AWS that stores objects. After the content of Amrik.de is generated into HTML etc., it is pushed to S3 and from here it can be accessed only from CloudFront.
+[S3](https://aws.amazon.com/s3/) is a service provided by AWS that stores objects. After the content of Amrik.co.uk is generated into HTML etc., it is pushed to S3 and from here it can be accessed only from CloudFront.
 
 ### GitHub
 
-GitHub isn't actually part of the website, but it does play a huge part in how the website is maintained. All of the code for the website is stored in [this repository](https://github.com/AmrikSD/Amrik.de) on GitHub. The history of all changes to the source code of the website, posts, and media are all stored on Git. To automate changes to the website, every time I push to the main branch of this repository I use [Github Actions](https://github.com/features/actions) in order to make sure that the changes are pushed to the live version of the website, without needing to do _anything_ manually.
+GitHub isn't actually part of the website, but it does play a huge part in how the website is maintained. All of the code for the website is stored in [this repository](https://github.com/AmrikSD/Amrik.co.uk) on GitHub. The history of all changes to the source code of the website, posts, and media are all stored on Git. To automate changes to the website, every time I push to the main branch of this repository I use [Github Actions](https://github.com/features/actions) in order to make sure that the changes are pushed to the live version of the website, without needing to do _anything_ manually.
 
 # How I Make Posts
 
