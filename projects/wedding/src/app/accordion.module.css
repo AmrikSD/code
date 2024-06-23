@@ -1,5 +1,6 @@
 .accordion {
-    width: 80vw;
+    min-width: 60vw;
+    max-width: 80vw;
     margin: 2rem;
 }
 
@@ -8,8 +9,15 @@
     flex-direction: row;
     justify-content: space-between;
     cursor: pointer;
+    backdrop-filter: blur(20px);
+}
+.title:hover {
 }
 
 .content {
     padding-top: 1rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
 }

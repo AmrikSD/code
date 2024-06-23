@@ -1,4 +1,12 @@
+.countdown {
+    display: flex;
+    flex-direction: column;
+    align-content: space-evenly;
+    border: 1px red solid;
+}
+.countdown > h1 {}
 .countdown > ul {
+    list-style-type: none;
 }
 .countdown > ul > li {
 }
