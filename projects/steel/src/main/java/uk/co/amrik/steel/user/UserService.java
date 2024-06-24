@@ -7,9 +7,13 @@ import jakarta.ws.rs.core.MediaType;
 
 import java.util.List;
 
-@Path("/")
-public interface UserResource {
+@Path("/user")
+public class UserService implements UserResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    List<User> user();
+    public List<User> user(){
+        return List.of(
+                new User("hi")
+        );
+    }
 }
