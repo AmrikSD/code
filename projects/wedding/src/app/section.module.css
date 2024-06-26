@@ -35,13 +35,12 @@
   font-weight: 400;
   font-style: normal;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     .start .container h1 {
       font-family: "Great Vibes", cursive;
       font-size: 3rem;
       font-weight: 400;
       font-style: normal;
-      color: orange;
     }
 }
 
@@ -50,15 +49,6 @@
   font-weight: 100;
   font-style: normal;
 }
-.start .container button {
-    width: 20vw;
-    height: 3vh;
-    background: none;
-    border: 1px solid red;
-    cursor: pointer;
-}
-
-
 
 /* RSVP Section  */
 .rsvp > .container {

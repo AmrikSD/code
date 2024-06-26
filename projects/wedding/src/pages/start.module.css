@@ -1,0 +1,29 @@
+.btnContainer {
+    min-height: 20%;
+    max-height: 20%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+.btn{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #ff590f, #ff27a4);
+    color: #fff;
+    border-radius: 8px;
+    border: 0;
+    outline: 0;
+    display: inline;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    animation: bounce 0.5s cubic-bezier(0.3,0,1,1) infinite alternate;
+    text-decoration: none;
+}
+
+@keyframes bounce {
+    100%{
+        margin-bottom: 0.5rem;
+    }
+}
