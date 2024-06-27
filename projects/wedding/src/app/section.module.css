@@ -29,7 +29,6 @@
 .start .container div {
     display: flex;
     flex-direction: column;
-    text-shadow: 0.1rem 0.1rem #C2B280;
     align-items: center;
 }
 
@@ -40,6 +39,9 @@
   font-weight: 400;
   text-shadow: 0.1rem 0.1rem #C2B280;
   font-style: normal;
+}
+.start .container h2 {
+  text-shadow: 0.1rem 0.1rem #C2B280;
 }
 @media only screen and (max-width: 800px) {
     .start .container h1 {
