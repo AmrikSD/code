@@ -18,6 +18,10 @@ export default function Document() {
                     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
                     rel="stylesheet" />
 
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+                    rel="stylesheet" />
+
             </Head>
             <body>
                 <Main />

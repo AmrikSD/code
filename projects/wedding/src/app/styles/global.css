@@ -3,8 +3,8 @@
     margin: 0;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    font-family: "Playfair";
-      text-shadow: 0.1rem 0.1rem #C2B280;
+    font-family: "Arsenal";
+    text-align: center;
 }
 
 html, body {
@@ -16,8 +16,6 @@ html, body {
     background-attachment: fixed;
     background-size: cover;
     scroll-snap-type: y mandatory;
-    width: 100%;
-    height: 100%;
     
 }
 

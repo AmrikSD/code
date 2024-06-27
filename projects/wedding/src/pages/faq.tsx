@@ -108,8 +108,8 @@ const faqData = [
         title: "I can't make it",
         children:
             <>
-                <p>No Worries!</p>
-                <p>Please still fill out the RSVP Below and select &quot;no&quot;, though!</p>
+                <p>No worries!</p>
+                <p>Please still fill out the RSVP below and select &quot;no&quot;, though!</p>
                 <p>We know it&apos;s a lot to ask for people to travel all the way to Thailand.</p>
                 <p>We will do something in the UK when we&apos;re back</p>
             </>

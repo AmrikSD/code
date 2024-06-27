@@ -21,10 +21,15 @@
     overflow: scroll;
 }
 
+.section > .container > div {
+    padding-inline: 1rem;
+}
+
 /* Start Section */
 .start .container div {
     display: flex;
     flex-direction: column;
+    text-shadow: 0.1rem 0.1rem #C2B280;
     align-items: center;
 }
 
@@ -56,5 +61,21 @@
 
 .rsvpform {
     border: none;
+}
+
+
+.kate .container h2 {
+    animation: marquee 30s linear infinite;
+}
+.kate .container img {
+    max-width: 80%;
+}
+
+@keyframes marquee {
+    0%   { transform: translate(0%, 0); }
+    25%   { transform: translate(80%, 0); }
+    50%   { transform: translate(0%, 0); }
+    75%   { transform: translate(-80%, 0); }
+    100%   { transform: translate(0%, 0); }
 }
 

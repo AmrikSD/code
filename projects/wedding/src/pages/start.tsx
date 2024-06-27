@@ -14,6 +14,7 @@ export default function Start() {
                 </div>
                 <div>
                     <a href="#location">Scroll down for more info</a>
+                    <p>We will update this website with more info as well as some fun bits closer to the date.</p>
                 </div>
                 <div className={styles.btnContainer}>
                     <a href="#rsvp" className={styles.btn}>Don&apos;t forget to RSVP.</a>
