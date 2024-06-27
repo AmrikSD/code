@@ -3,6 +3,7 @@
     margin: 0;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    font-family: "Playfair";
 }
 
 html, body {
@@ -16,5 +17,6 @@ html, body {
     scroll-snap-type: y mandatory;
     width: 100%;
     height: 100%;
+    
 }
 
