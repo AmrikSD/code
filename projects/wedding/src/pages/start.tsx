@@ -13,7 +13,7 @@ export default function Start() {
                     <Countdown target={new Date("2025-02-02")} />
                 </div>
                 <div>
-                    <a href="#info">Scroll down for more info</a>
+                    <a href="#location">Scroll down for more info</a>
                 </div>
                 <div className={styles.btnContainer}>
                     <a href="#rsvp" className={styles.btn}>Don&apos;t forget to RSVP.</a>

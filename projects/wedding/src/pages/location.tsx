@@ -13,7 +13,7 @@ export default function Location(){
             height="80%"
             >
         </iframe>
-        <a href="link">link</a>
+        <a href="https://www.kundalabeachresort.com/" target="_blank">www.kundalabeachresort.com</a>
         </>
     )
 
