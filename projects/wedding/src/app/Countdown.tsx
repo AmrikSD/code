@@ -41,10 +41,10 @@ export default function Countdown(props: CountdownProps){
         <div className={styles.countdown}>
             <h3>{props.target.toLocaleDateString()}</h3>
             <ul>
-                <li>{remaining.days} Days</li>
-                <li>{remaining.hours} Hours</li>
-                <li>{remaining.mins} Mins</li>
-                <li>{remaining.secs} Secs</li>
+                <li>{remaining.days} days</li>
+                <li>{remaining.hours} hours</li>
+                <li>{remaining.mins} mins</li>
+                <li>{remaining.secs} secs</li>
             </ul>
         </div>
     )

@@ -4,6 +4,7 @@
     scroll-behavior: smooth;
     scrollbar-width: none;
     font-family: "Playfair";
+      text-shadow: 0.1rem 0.1rem #C2B280;
 }
 
 html, body {
