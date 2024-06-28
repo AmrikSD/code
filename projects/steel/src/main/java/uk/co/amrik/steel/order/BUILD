@@ -2,9 +2,29 @@ load("@rules_java//java:defs.bzl", "java_library")
 
 package(default_visibility = ["//visibility:public"])
 
+filegroup(
+    name = "order_root",
+    srcs = glob(["*.java"]),
+)
+
+filegroup(
+    name = "order_api_v1",
+    srcs = glob(["api/v1/**/*.java"]),
+)
+
+filegroup(
+    name = "order_model",
+    srcs = glob(["model/**/*.java"]),
+)
+
+
 java_library(
     name = "order",
-    srcs = glob(["*.java"]),
+    srcs = [
+        ":order_root",
+        ":order_model",
+        ":order_api_v1"
+    ],
     deps = [
         "@maven//:com_google_inject_guice",
         "@maven//:com_google_inject_extensions_guice_servlet",

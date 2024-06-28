@@ -1,11 +1,12 @@
 package uk.co.amrik.steel.user;
 
 import org.glassfish.jersey.server.ResourceConfig;
+import uk.co.amrik.steel.user.api.v1.UserService;
 
 public class UserApplication extends ResourceConfig {
 
     public UserApplication(){
-        packages("uk.co.amrik.steel.user");
+        register(UserService.class);
     }
 
 }

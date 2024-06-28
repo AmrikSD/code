@@ -2,9 +2,29 @@ load("@rules_java//java:defs.bzl", "java_library")
 
 package(default_visibility = ["//visibility:public"])
 
+filegroup(
+    name = "user_root",
+    srcs = glob(["*.java"]),
+)
+
+filegroup(
+    name = "user_api_v1",
+    srcs = glob(["api/v1/**/*.java"]),
+)
+
+filegroup(
+    name = "user_model",
+    srcs = glob(["model/**/*.java"]),
+)
+
 java_library(
     name = "user",
-    srcs = glob(["*.java"]),
+    srcs = [
+        ":user_root",
+        ":user_model",
+        ":user_api_v1"
+    ],
+    javacopts = ["-source", "21", "-target", "21"],
     deps = [
         "@maven//:com_google_inject_guice",
         "@maven//:com_google_inject_extensions_guice_servlet",

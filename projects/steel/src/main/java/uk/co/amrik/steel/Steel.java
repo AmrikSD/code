@@ -9,13 +9,20 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 import uk.co.amrik.steel.order.OrderApplication;
+import uk.co.amrik.steel.persistence.Migrations;
 import uk.co.amrik.steel.user.UserApplication;
 
 public class Steel {
 
     public static void main(String ...args) throws Exception {
 
-        Injector injector = Guice.createInjector(new SteelModule());
+
+        Injector injector = Guice.createInjector(
+                new SteelModule()
+        );
+
+        Migrations migrations = injector.getInstance(Migrations.class);
+        migrations.runMigrations();
 
         OrderApplication orderApplication = injector.getInstance(OrderApplication.class);
         UserApplication userApplication = injector.getInstance(UserApplication.class);
@@ -23,11 +30,11 @@ public class Steel {
 
         Server server = new Server(8080);
         ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
-        servletContextHandler.setContextPath("/");
+        servletContextHandler.setDefaultContextPath("/api");
         servletContextHandler.addServlet(DefaultServlet.class, "/");
 
-        addServletForApplication(servletContextHandler, orderApplication, "/api/order/*");
-        addServletForApplication(servletContextHandler, userApplication, "/api/another/*");
+        addServletForApplication(servletContextHandler, orderApplication, "/v1/order");
+        addServletForApplication(servletContextHandler, userApplication, "/v1/user");
 
         server.setHandler(servletContextHandler);
         server.start();

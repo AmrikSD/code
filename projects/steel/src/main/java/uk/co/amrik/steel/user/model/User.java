@@ -1,9 +1,9 @@
-package uk.co.amrik.steel.order;
+package uk.co.amrik.steel.user.model;
 
-public class Order {
+public class User {
     private final String name;
 
-    public Order(String name){
+    public User(String name){
         this.name = name;
     }
 
