@@ -28,6 +28,8 @@ maven.install(
         "org.flywaydb:flyway-core:10.15.0",
         "org.flywaydb:flyway-database-postgresql:10.15.0",
 
+        "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.17.1",
+
         "org.postgresql:postgresql:42.7.3",
 
         "org.jooq:jooq:3.19.10",

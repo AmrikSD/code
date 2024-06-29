@@ -2,12 +2,14 @@ package uk.co.amrik.steel.user.api.v1;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import uk.co.amrik.steel.middleware.annotations.LogMiddleware;
 import uk.co.amrik.steel.user.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Path("/")
 @LogMiddleware
@@ -19,8 +21,8 @@ public interface UserResource {
     List<User> users();
 
     @GET
-    @Path("/more")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @LogMiddleware
-    List<User> more();
+    Optional<User> user(@PathParam("id") Integer id);
 }

@@ -3,7 +3,12 @@ package uk.co.amrik.steel.persistence;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import org.jooq.DSLContext;
+import org.jooq.Field;
+import org.jooq.Record;
+import org.jooq.SelectSelectStep;
 import org.jooq.impl.DSL;
+
+import java.nio.file.attribute.FileTime;
 
 @Singleton
 public class DatabaseService {

@@ -5,22 +5,22 @@ import uk.co.amrik.steel.permissions.Role;
 import java.util.List;
 
 public class User {
+    private final Integer id;
     private final String name;
-    private final List<Role> roles;
 
     public User(
-            String name,
-            List<Role> roles
+            Integer id,
+            String name
     ){
+        this.id = id;
         this.name = name;
-        this.roles = roles;
     }
 
+    public Integer getId() {
+        return id;
+    }
     public String getName() {
         return name;
-    }
-    public List<Role> getRoles() {
-        return roles;
     }
 
 }

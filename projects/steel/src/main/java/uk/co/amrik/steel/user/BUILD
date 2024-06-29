@@ -36,6 +36,7 @@ java_library(
         "@maven//:org_glassfish_jersey_containers_jersey_container_servlet_core",
         "@maven//:org_glassfish_jersey_inject_jersey_hk2",
         "@maven//:org_glassfish_jersey_media_jersey_media_json_jackson",
+        "@maven//:com_fasterxml_jackson_datatype_jackson_datatype_jdk8",
         "@maven//:org_jooq_jooq",
     ]
 )
