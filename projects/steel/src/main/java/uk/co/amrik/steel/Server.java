@@ -8,22 +8,26 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 import uk.co.amrik.steel.middleware.filters.LoggingMiddleware;
 import uk.co.amrik.steel.order.api.v1.OrderResource;
+import uk.co.amrik.steel.permissions.PermissionsService;
 import uk.co.amrik.steel.persistence.Migrations;
 import uk.co.amrik.steel.user.api.v1.UserResource;
 
 public class Server {
 
     private final Migrations migrations;
+    private final PermissionsService permissionsService;
     private final UserResource userResource;
     private final OrderResource orderResource;
 
     @Inject
     public Server(
             Migrations migrations,
+            PermissionsService permissionsService,
             UserResource userResource,
             OrderResource orderResource
     ){
         this.migrations = migrations;
+        this.permissionsService = permissionsService;
         this.userResource = userResource;
         this.orderResource = orderResource;
     }
@@ -31,6 +35,7 @@ public class Server {
     public void run() throws Exception {
         migrations.runMigrations();
 
+        permissionsService.bootstrapRoles();
 
         org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(8080);
         ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);

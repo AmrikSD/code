@@ -26,8 +26,9 @@ java_library(
     ],
     javacopts = ["-source", "21", "-target", "21"],
     deps = [
-        "//projects/steel/src/main/java/uk/co/amrik/steel/persistence:persistence",
-        "//projects/steel/src/main/java/uk/co/amrik/steel/middleware:middleware",
+        "//projects/steel/src/main/java/uk/co/amrik/steel/persistence",
+        "//projects/steel/src/main/java/uk/co/amrik/steel/middleware",
+        "//projects/steel/src/main/java/uk/co/amrik/steel/permissions",
         "@maven//:com_google_inject_guice",
         "@maven//:com_google_inject_extensions_guice_servlet",
         "@maven//:jakarta_platform_jakarta_jakartaee_web_api",
