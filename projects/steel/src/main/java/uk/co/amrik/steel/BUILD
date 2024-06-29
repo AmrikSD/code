@@ -1,4 +1,5 @@
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -11,6 +12,7 @@ java_binary(
         "//projects/steel/src/main/java/uk/co/amrik/steel/order",
         "//projects/steel/src/main/java/uk/co/amrik/steel/user",
         "//projects/steel/src/main/java/uk/co/amrik/steel/persistence",
+        "//projects/steel/src/main/java/uk/co/amrik/steel/middleware",
         "@maven//:com_google_inject_guice",
         "@maven//:com_google_inject_extensions_guice_servlet",
         "@maven//:org_jboss_resteasy_resteasy_client",
@@ -22,7 +24,6 @@ java_binary(
         "@maven//:org_eclipse_jetty_jetty_util",
         "@maven//:org_glassfish_jersey_core_jersey_server",
         "@maven//:org_glassfish_jersey_containers_jersey_container_servlet_core",
-        "@maven//:org_glassfish_jersey_inject_jersey_hk2",
     ]
 )
 
@@ -35,6 +36,7 @@ java_library(
         "//projects/steel/src/main/java/uk/co/amrik/steel/order",
         "//projects/steel/src/main/java/uk/co/amrik/steel/user",
         "//projects/steel/src/main/java/uk/co/amrik/steel/persistence",
+        "//projects/steel/src/main/java/uk/co/amrik/steel/middleware",
         "@maven//:com_google_inject_guice",
         "@maven//:com_google_inject_extensions_guice_servlet",
         "@maven//:org_jboss_resteasy_resteasy_client",
@@ -46,7 +48,6 @@ java_library(
         "@maven//:org_eclipse_jetty_jetty_util",
         "@maven//:org_glassfish_jersey_core_jersey_server",
         "@maven//:org_glassfish_jersey_containers_jersey_container_servlet_core",
-        "@maven//:org_glassfish_jersey_inject_jersey_hk2"
     ]
 )
 

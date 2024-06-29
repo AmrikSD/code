@@ -5,8 +5,18 @@ import java.util.List;
 
 public class UserService implements UserResource {
 
-    public List<User> user(){
+    public List<User> users(){
         return List.of(
+                new User("hi")
+        );
+    }
+
+    public List<User> more(){
+        return List.of(
+                new User("hi"),
+                new User("hi"),
+                new User("hi"),
+                new User("hi"),
                 new User("hi")
         );
     }

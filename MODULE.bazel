@@ -27,7 +27,10 @@ maven.install(
 
         "org.flywaydb:flyway-core:10.15.0",
         "org.flywaydb:flyway-database-postgresql:10.15.0",
-        "org.postgresql:postgresql:42.7.3"
+
+        "org.postgresql:postgresql:42.7.3",
+
+        "org.jooq:jooq:3.19.10",
     ],
     fetch_sources = True,
     repositories = [

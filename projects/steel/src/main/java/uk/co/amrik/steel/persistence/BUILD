@@ -9,7 +9,9 @@ filegroup(
 
 java_library(
     name = "persistence",
-    srcs = [":persistence_root"],
+    srcs = [
+        ":persistence_root",
+    ],
     resources = ["//projects/steel/src/main/resources:migration_files"],
     javacopts = ["-source", "21", "-target", "21"],
     deps = [
@@ -17,6 +19,7 @@ java_library(
         "@maven//:com_google_inject_extensions_guice_servlet",
         "@maven//:org_flywaydb_flyway_core",
         "@maven//:org_flywaydb_flyway_database_postgresql",
-        "@maven//:org_postgresql_postgresql"
+        "@maven//:org_postgresql_postgresql",
+        "@maven//:org_jooq_jooq",
     ]
 )

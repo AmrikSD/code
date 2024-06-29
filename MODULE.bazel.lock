@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 6,
-  "moduleFileHash": "f9b38894612712111d64b7846d6193685fccf08fe53270fed450128377d73397",
+  "moduleFileHash": "903c4c6b703b6dadc6f01783b0590bfd0974dcb40ed80d51d75577f988cb4568",
   "flags": {
     "cmdRegistries": [
       "https://bcr.bazel.build/"
@@ -58,7 +58,8 @@
                   "org.glassfish.jersey.media:jersey-media-json-jackson:3.1.7",
                   "org.flywaydb:flyway-core:10.15.0",
                   "org.flywaydb:flyway-database-postgresql:10.15.0",
-                  "org.postgresql:postgresql:42.7.3"
+                  "org.postgresql:postgresql:42.7.3",
+                  "org.jooq:jooq:3.19.10"
                 ],
                 "fetch_sources": true,
                 "repositories": [
@@ -4941,6 +4942,7 @@
                 "{ \"group\": \"org.flywaydb\", \"artifact\": \"flyway-core\", \"version\": \"10.15.0\" }",
                 "{ \"group\": \"org.flywaydb\", \"artifact\": \"flyway-database-postgresql\", \"version\": \"10.15.0\" }",
                 "{ \"group\": \"org.postgresql\", \"artifact\": \"postgresql\", \"version\": \"42.7.3\" }",
+                "{ \"group\": \"org.jooq\", \"artifact\": \"jooq\", \"version\": \"3.19.10\" }",
                 "{ \"group\": \"com.google.code.findbugs\", \"artifact\": \"jsr305\", \"version\": \"3.0.2\" }",
                 "{ \"group\": \"com.google.code.gson\", \"artifact\": \"gson\", \"version\": \"2.8.9\" }",
                 "{ \"group\": \"com.google.errorprone\", \"artifact\": \"error_prone_annotations\", \"version\": \"2.3.2\" }",

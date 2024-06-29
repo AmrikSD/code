@@ -1,13 +1,13 @@
 package uk.co.amrik.steel.order.model;
 
 public class Order {
-    private final String name;
+    private final Integer id;
 
-    public Order(String name){
-        this.name = name;
+    public Order(Integer id){
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getId() {
+        return id;
     }
 }

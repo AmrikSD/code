@@ -7,5 +7,6 @@ public class PersistenceModule extends AbstractModule {
     @Override
     protected void configure(){
         bind(DatabaseConfig.class);
+        bind(DatabaseService.class);
     }
 }
