@@ -29,6 +29,7 @@ java_library(
         "//projects/steel/src/main/java/uk/co/amrik/steel/persistence",
         "//projects/steel/src/main/java/uk/co/amrik/steel/middleware",
         "//projects/steel/src/main/java/uk/co/amrik/steel/permissions",
+        "//projects/steel/src/main/java/uk/co/amrik/steel/API",
         "@maven//:com_google_inject_guice",
         "@maven//:com_google_inject_extensions_guice_servlet",
         "@maven//:jakarta_platform_jakarta_jakartaee_web_api",

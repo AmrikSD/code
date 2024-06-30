@@ -7,29 +7,30 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 import uk.co.amrik.steel.middleware.filters.LoggingMiddleware;
-import uk.co.amrik.steel.order.api.v1.OrderResource;
+import uk.co.amrik.steel.middleware.filters.NotFoundFilter;
+import uk.co.amrik.steel.order.api.v1.OrderService;
 import uk.co.amrik.steel.permissions.PermissionsService;
 import uk.co.amrik.steel.persistence.Migrations;
-import uk.co.amrik.steel.user.api.v1.UserResource;
+import uk.co.amrik.steel.user.api.v1.UserService;
 
 public class Server {
 
     private final Migrations migrations;
     private final PermissionsService permissionsService;
-    private final UserResource userResource;
-    private final OrderResource orderResource;
+    private final UserService userService;
+    private final OrderService orderService;
 
     @Inject
     public Server(
             Migrations migrations,
             PermissionsService permissionsService,
-            UserResource userResource,
-            OrderResource orderResource
+            UserService userService,
+            OrderService orderService
     ){
         this.migrations = migrations;
         this.permissionsService = permissionsService;
-        this.userResource = userResource;
-        this.orderResource = orderResource;
+        this.userService = userService;
+        this.orderService = orderService;
     }
 
     public void run() throws Exception {
@@ -42,8 +43,8 @@ public class Server {
         servletContextHandler.setDefaultContextPath("/api");
         servletContextHandler.addServlet(DefaultServlet.class, "/");
 
-        addServletForApplication(servletContextHandler, orderResource, "/v1/order");
-        addServletForApplication(servletContextHandler, userResource, "/v1/user");
+        addServletForApplication(servletContextHandler, orderService, "/v1/order");
+        addServletForApplication(servletContextHandler, userService, "/v1/user");
 
         server.setHandler(servletContextHandler);
         server.start();

@@ -6,6 +6,7 @@ import jakarta.ws.rs.container.ContainerResponseFilter;
 import jakarta.ws.rs.core.NewCookie;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class LoggingMiddleware implements ContainerResponseFilter {
 

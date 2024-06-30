@@ -2,12 +2,14 @@ package uk.co.amrik.steel.order.api.v1;
 
 import com.google.inject.Inject;
 import org.jooq.impl.DSL;
+import uk.co.amrik.steel.API.Api;
 import uk.co.amrik.steel.order.model.Order;
 import uk.co.amrik.steel.persistence.DatabaseService;
 
 import java.util.List;
+import java.util.Optional;
 
-public class OrderService implements OrderResource {
+public class OrderService implements Api<Order> {
 
     private final DatabaseService databaseService;
 
@@ -17,15 +19,25 @@ public class OrderService implements OrderResource {
     }
 
     @Override
-    public List<Order> order() {
-
-        List<Order> orders = databaseService.getDsl().select()
-                .from(DSL.table("public.user"))
-                .where(
-                        DSL.field("id").le(200)
-                ).fetch()
+    public List<Order> getAll() {
+        return databaseService.getDsl().select()
+                .from(DSL.table(DSL.name("order")))
+                .fetch()
                 .map(record -> record.into(Order.class));
+    }
 
-        return orders;
+    @Override
+    public Optional<Order> get(Integer id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void delete(Integer id) {
+
+    }
+
+    @Override
+    public Order put(Order entity) {
+        return null;
     }
 }

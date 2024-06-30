@@ -26,7 +26,8 @@ java_library(
         ":order_api_v1"
     ],
     deps = [
-        "//projects/steel/src/main/java/uk/co/amrik/steel/persistence:persistence",
+        "//projects/steel/src/main/java/uk/co/amrik/steel/persistence",
+        "//projects/steel/src/main/java/uk/co/amrik/steel/API",
         "@maven//:com_google_inject_guice",
         "@maven//:com_google_inject_extensions_guice_servlet",
         "@maven//:jakarta_platform_jakarta_jakartaee_web_api",
