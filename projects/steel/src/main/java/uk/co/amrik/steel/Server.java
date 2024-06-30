@@ -58,6 +58,7 @@ public class Server {
                 new ResourceConfig()
                         .register(resource)
                         .register(LoggingMiddleware.class)
+                        .register(NotFoundFilter.class)
         ));
         context.addServlet(servletHolder, pathSpec + "/*");
     }
