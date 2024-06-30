@@ -5,17 +5,17 @@ bazel_dep(name = "rules_jvm_external", version = "6.1")
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 
 # Version variables
-# renovate: datasource=maven depName=com.google.inject:guice
+# renovate: datasource=maven depName=com.google.inject:guice-bom
 GUICE_VERSION = "7.0.0"
-# renovate: datasource=maven depName=org.jboss.resteasy:resteasy-client
+# renovate: datasource=maven depName=org.jboss.resteasy:resteasy-bom
 RESTEASY_VERSION = "6.2.9.Final"
-# renovate: datasource=maven depName=org.eclipse.jetty:jetty-server
+# renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
 JETTY_VERSION = "11.0.21"
-# renovate: datasource=maven depName=org.glassfish.jersey.core:jersey-server
+# renovate: datasource=maven depName=org.glassfish.jersey.core:jersey-bom
 JERSEY_VERSION = "3.1.7"
 # renovate: datasource=maven depName=org.flywaydb:flyway-core
 FLYWAY_VERSION = "10.15.0"
-# renovate: datasource=maven depName=com.fasterxml.jackson.datatype:jackson-datatype-jdk8
+# renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
 JACKSON_VERSION = "2.17.1"
 # renovate: datasource=maven depName=org.jooq:jooq
 JOOQ_VERSION = "3.19.10"
