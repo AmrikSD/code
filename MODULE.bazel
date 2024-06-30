@@ -22,7 +22,7 @@ JOOQ_VERSION = "3.19.10"
 # renovate: datasource=maven depName=org.postgresql:postgresql
 POSTGRES_VERSION = "42.7.3"
 # renovate: datasource=maven depName=org.assertj:assertj-core
-ASSERTJ_VERSION = "3.25.3"
+ASSERTJ_VERSION = "3.26.0"
 
 maven.install(
     artifacts = [
