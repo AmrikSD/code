@@ -58,6 +58,15 @@
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/v?(?<currentValue>.*)\n"
       ],
       "datasourceTemplate": "helm"
+    },
+    {
+      "fileMatch": ["^.*\\.bzl$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\w+) depName=(?<depName>[^\\s]+)\\s+\\S+_VERSION\\s*=\\s*\"(?<currentValue>[^\"]+)\""
+      ],
+      "datasourceTemplate": "{{datasource}}",
+      "depNameTemplate": "{{depName}}",
+      "versioningTemplate": "loose"
     }
   ],
   "packageRules": [
