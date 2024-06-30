@@ -1,5 +1,7 @@
 {
   "enabled": true,
+  "prConcurrentLimit": 12,
+  "prHourlyLimit": 12,
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
@@ -114,6 +116,6 @@
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
       "labels": ["renovate/helm", "dep/patch"]
-    }
+    },
   ]
 }
