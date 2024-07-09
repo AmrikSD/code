@@ -12,14 +12,12 @@ import uk.co.amrik.steel.persistence.DatabaseService;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(DatabaseExtension.class)
 public class OrderServiceTest {
 
     @Inject
     private OrderService underTest;
-
 
     @BeforeEach
     public void setUp() {
@@ -34,14 +32,27 @@ public class OrderServiceTest {
 
     @Test
     public void emptyDatabaseReturnsNothing(){
-        List<OrderResponse> expected = List.of();
-        List<OrderResponse> actual = underTest.getAll();
-
-        assertEquals(expected, actual);
+        List<OrderResponse> response = underTest.getAll();
+        assertThat(response).isEmpty();
     }
 
     @Test
-    public void put(){
+    public void putOne(){
+        List<OrderResponse> beforePut = underTest.getAll();
+
+        underTest.put(new OrderRequest("test"));
+
+        List<OrderResponse> afterPut = underTest.getAll();
+
+        assertThat(beforePut).isEmpty();
+
+        assertThat(afterPut).hasSize(1)
+                .extracting(OrderResponse::name)
+                .containsExactly("test");
+
+    }
+    @Test
+    public void putMany(){
         List<OrderResponse> beforePut = underTest.getAll();
 
         underTest.put(new OrderRequest("test"));
@@ -49,7 +60,23 @@ public class OrderServiceTest {
 
         List<OrderResponse> afterPut = underTest.getAll();
 
-        assertEquals(List.of(), beforePut);
+        assertThat(beforePut).isEmpty();
+
+        assertThat(afterPut).hasSize(2)
+                .extracting(OrderResponse::name)
+                .containsExactlyInAnyOrder("test", "testTwo");
+
+    }
+    @Test
+    public void putVeryMany(){
+        List<OrderResponse> beforePut = underTest.getAll();
+
+        underTest.put(new OrderRequest("test"));
+        underTest.put(new OrderRequest("testTwo"));
+
+        List<OrderResponse> afterPut = underTest.getAll();
+
+        assertThat(beforePut).isEmpty();
 
         assertThat(afterPut).hasSize(2)
                 .extracting(OrderResponse::name)
