@@ -7,23 +7,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Path("/")
-public interface Api<T> {
+public interface Api<Request, Response> {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    List<T> getAll();
+    List<Response> getAll();
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    Optional<T> get(@PathParam("id") Integer id);
+    Optional<Response> get(@PathParam("id") Integer id);
 
     @DELETE
     @Path("/{id}")
-    void delete(@PathParam("id") Integer id);
+    int delete(@PathParam("id") Integer id);
 
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
-    T put(T entity);
+    Optional<Response> put(Request entity);
 
 }

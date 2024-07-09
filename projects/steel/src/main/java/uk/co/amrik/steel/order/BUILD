@@ -1,4 +1,11 @@
 load("@rules_java//java:defs.bzl", "java_library")
+load("@bazel_tools//tools/jdk:default_java_toolchain.bzl", "default_java_toolchain")
+
+default_java_toolchain(
+    name = "my_java_toolchain",
+    source_version = "21",
+    target_version = "21",
+)
 
 package(default_visibility = ["//visibility:public"])
 
@@ -12,17 +19,10 @@ filegroup(
     srcs = glob(["api/v1/**/*.java"]),
 )
 
-filegroup(
-    name = "order_model",
-    srcs = glob(["model/**/*.java"]),
-)
-
-
 java_library(
     name = "order",
     srcs = [
         ":order_root",
-        ":order_model",
         ":order_api_v1"
     ],
     deps = [
@@ -37,4 +37,24 @@ java_library(
         "@maven//:org_glassfish_jersey_media_jersey_media_json_jackson",
         "@maven//:org_jooq_jooq"
     ]
+)
+
+filegroup(
+    name = "order_test_srcs",
+    srcs = glob(["**/*.java"]),
+)
+
+java_library(
+    name = "order_test_lib",
+    srcs = [":order_test_srcs"],
+    deps = [
+        "//projects/steel/src/main/java/uk/co/amrik/steel/order",
+        "//projects/steel/src/main/java/uk/co/amrik/steel/persistence",
+        "//projects/steel/src/main/java/uk/co/amrik/steel/API",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
+        "@maven//:org_junit_jupiter_junit_jupiter_engine",
+        "@maven//:org_assertj_assertj_core",
+        "@maven//:org_jooq_jooq",
+        "@maven//:com_google_inject_guice"
+    ],
 )

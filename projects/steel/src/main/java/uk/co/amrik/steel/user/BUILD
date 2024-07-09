@@ -12,16 +12,10 @@ filegroup(
     srcs = glob(["api/v1/**/*.java"]),
 )
 
-filegroup(
-    name = "user_model",
-    srcs = glob(["model/**/*.java"]),
-)
-
 java_library(
     name = "user",
     srcs = [
         ":user_root",
-        ":user_model",
         ":user_api_v1",
     ],
     javacopts = ["-source", "21", "-target", "21"],

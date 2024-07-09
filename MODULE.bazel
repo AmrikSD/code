@@ -1,6 +1,7 @@
 "Bazel dependencies"
 
 bazel_dep(name = "rules_jvm_external", version = "6.2")
+bazel_dep(name = "contrib_rules_jvm", version = "0.27.0")
 
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 
@@ -10,7 +11,7 @@ GUICE_VERSION = "7.0.0"
 # renovate: datasource=maven depName=org.jboss.resteasy:resteasy-bom
 RESTEASY_VERSION = "6.2.9.Final"
 # renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
-JETTY_VERSION = "12.0.11"
+JETTY_VERSION = "11.0.21"
 # renovate: datasource=maven depName=org.glassfish.jersey:jersey-bom
 JERSEY_VERSION = "3.1.7"
 # renovate: datasource=maven depName=org.flywaydb:flyway-core
@@ -24,10 +25,27 @@ POSTGRES_VERSION = "42.7.3"
 # renovate: datasource=maven depName=org.assertj:assertj-core
 ASSERTJ_VERSION = "3.26.0"
 
+JUNIT_VERSION = "5.10.3"
+JUNIT_PLATFORM_VERSION = "1.10.3"
+MOCKITO_VERSION = "5.12.0"
+TESTCONTAINERS_VERSION = "1.19.8"
+
 maven.install(
     artifacts = [
         # Testing
         "org.assertj:assertj-core:" + ASSERTJ_VERSION,
+
+        "org.junit.platform:junit-platform-launcher:" + JUNIT_PLATFORM_VERSION,
+        "org.junit.platform:junit-platform-reporting:" + JUNIT_PLATFORM_VERSION,
+
+        "org.junit.jupiter:junit-jupiter-api:" + JUNIT_VERSION,
+        "org.junit.jupiter:junit-jupiter-engine:" + JUNIT_VERSION,
+
+        "org.mockito:mockito-core:" + MOCKITO_VERSION,
+        "org.mockito:mockito-junit-jupiter:" + MOCKITO_VERSION,
+
+        "org.testcontainers:junit-jupiter:" + TESTCONTAINERS_VERSION,
+        "org.testcontainers:postgresql:" + TESTCONTAINERS_VERSION,
 
         # Dependency Injection
         "com.google.inject:guice:" + GUICE_VERSION,
