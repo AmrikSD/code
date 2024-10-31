@@ -14,7 +14,7 @@ RESTEASY_VERSION = "7.0.0.Alpha3"
 # renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
 JETTY_VERSION = "11.0.24"
 # renovate: datasource=maven depName=org.glassfish.jersey:jersey-bom
-JERSEY_VERSION = "3.1.7"
+JERSEY_VERSION = "4.0.0-M1"
 # renovate: datasource=maven depName=org.flywaydb:flyway-core
 FLYWAY_VERSION = "10.15.2"
 # renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
