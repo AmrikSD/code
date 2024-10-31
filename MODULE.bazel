@@ -10,7 +10,7 @@ maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 # renovate: datasource=maven depName=com.google.inject:guice-bom
 GUICE_VERSION = "7.0.0"
 # renovate: datasource=maven depName=org.jboss.resteasy:resteasy-bom
-RESTEASY_VERSION = "6.2.9.Final"
+RESTEASY_VERSION = "7.0.0.Alpha3"
 # renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
 JETTY_VERSION = "11.0.24"
 # renovate: datasource=maven depName=org.glassfish.jersey:jersey-bom
