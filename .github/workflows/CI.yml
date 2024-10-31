@@ -6,6 +6,7 @@ jobs:
   test-image:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Cache Bazel
         uses: actions/cache@v3
         with:
@@ -15,5 +16,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-bazel-
       - name: Check that the image builds
-        uses: actions/checkout@v4
         run: bazel test //...
