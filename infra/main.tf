@@ -6,17 +6,19 @@ terraform {
             region  = "eu-west-2"
     }
 }
-
-variable "pool_name" {
-    type = string
-}
-
 module "cloudflare" {
     source = "./cloudflare/"
 }
 
 module "truenas" {
     source = "./truenas/"
-    pool_name = var.pool_name
+    pool   = "pool_01"
+    datasets = [
+        {
+            name = "Amrik"
+            size_gb = 1000
+            description = "For amrik to put files and stuff"
+        }
+    ]
 }
 

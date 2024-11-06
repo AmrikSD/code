@@ -1,6 +1,19 @@
-resource "truenas_dataset" "test" {
-  pool = var.pool_name
-  name = "test"
-  quota_bytes = 12 * 1024 * 1024 * 1024
-  comments = "[Managed By Terraform] - a test dataset"
+variable "pool" {
+    type = string
+}
+
+variable "datasets" {
+    type = list(object({
+        name = string
+        size_gb = number
+        description = optional(string)
+    }))
+}
+
+resource "truenas_dataset" "datasets" {
+  for_each    = { for ds in var.datasets : ds.name => ds}
+  pool        = var.pool
+  name        = each.key
+  quota_bytes = each.value.size_gb * 1024 * 1024 * 1024
+  comments    = each.value.description != null ? format("[Managed By Terraform] - %s", each.value.description) : "[Managed By Terraform]"
 }
