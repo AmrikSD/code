@@ -18,7 +18,22 @@ module "truenas" {
             name = "Amrik"
             size_gb = 1000
             description = "For amrik to put files and stuff"
-        }
+        },
+        {
+            name = "AmrikSMB"
+        },
+        {
+            name = "Downloads"
+        },
+        {
+            name = "games"
+        },
+        {
+            name = "KateSMB"
+        },
+        {
+            name = "Wormhole"
+        },
     ]
 }
 
