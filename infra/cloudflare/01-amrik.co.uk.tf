@@ -63,25 +63,3 @@ resource "cloudflare_record" "kate_amrik_co_uk" {
     type = "CNAME"
     value = "kate-amrik-co-uk.pages.dev"
 }
-
-//APC/ Project steel
-resource "cloudflare_pages_project" "steel_amrik_co_uk" {
-  account_id        = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
-  name              = "steel-amrik-co-uk"
-  production_branch = "main"
-}
-
-resource "cloudflare_pages_domain" "steel_amrik_co_uk" {
-  account_id   = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
-  project_name = "steel-amrik-co-uk"
-  domain       = "steel.amrik.co.uk"
-}
-
-resource "cloudflare_record" "steel_amrik_co_uk" {
-    zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.co.uk.zone_id"]
-    name = "steel"
-    type = "CNAME"
-    value = "steel-amrik-co-uk.pages.dev"
-}
-
-
