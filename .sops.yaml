@@ -1,5 +1,11 @@
 ---
 creation_rules:
+  - path_regex: infra/(truenas|cloudflare)/.*.ya?ml
+    input_type: yaml
+    unencrypted_suffix: _unencrypted
+    key_groups:
+      - age:
+          - age165angy86ctnzjrmf8rsm8r7u8lcvactktcgmq0q8vadldv690f7skvxwk6
   - path_regex: infra/.*.ya?ml
     input_type: yaml
     encrypted_regex: ^(data|stringData)$
