@@ -2,7 +2,7 @@ load("@rules_go//go:def.bzl", "go_binary", "go_library", )
 
 go_library(
     name = "app_lib",
-    srcs = ["main.go"],
+    srcs = glob(["cmd/uttt/*.go"]),
     visibility = ["//visibility:private"],
 )
 
