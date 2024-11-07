@@ -3,8 +3,11 @@
 bazel_dep(name = "rules_jvm_external", version = "6.2")
 bazel_dep(name = "contrib_rules_jvm", version = "0.27.0")
 bazel_dep(name = "rules_go", version = "0.50.1")
+bazel_dep(name = "rules_pkg", version = "1.0.1")
+bazel_dep(name = "rules_oci", version = "2.0.1")
 
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 
 # Version variables
 # renovate: datasource=maven depName=com.google.inject:guice-bom
@@ -92,3 +95,33 @@ maven.install(
 )
 
 use_repo(maven, "maven")
+
+oci.pull(
+    name = "nginx",
+    digest = "sha256:28402db69fec7c17e179ea87882667f1e054391138f77ffaf0c3eb388efc3ffb",
+    image = "docker.io/library/nginx",
+    platforms = [
+        "linux/386",
+        "linux/amd64",
+        "linux/arm/v5",
+        "linux/arm/v7",
+        "linux/arm64/v8",
+        "linux/mips64le",
+        "linux/ppc64le",
+        "linux/s390x"
+    ]
+)
+
+use_repo(
+    oci,
+    "nginx",
+    "nginx_linux_386",
+    "nginx_linux_amd64",
+    "nginx_linux_arm_v5",
+    "nginx_linux_arm_v7",
+    "nginx_linux_arm64_v8",
+    "nginx_linux_mips64le",
+    "nginx_linux_ppc64le",
+    "nginx_linux_s390x",
+)
+
