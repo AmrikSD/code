@@ -20,9 +20,6 @@ module "truenas" {
             description = "For amrik to put files and stuff"
         },
         {
-            name = "AmrikSMB"
-        },
-        {
             name = "Downloads"
         },
         {
@@ -34,6 +31,11 @@ module "truenas" {
         {
             name = "Wormhole"
         },
+        {
+            name = "s3"
+            size_gb = 100
+            description = "Blob storage"
+        }
     ]
 }
 
