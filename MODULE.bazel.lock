@@ -714,7 +714,7 @@
     "@@rules_oci~//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "jN4U6rNDYr+4BPf/l/XG98DSMLO6QJaOTNWrZtt8Auo=",
-        "usagesDigest": "CExqYoEK+NvPRteJjHfoBu+NcjzwlIqbfAfqEDsZdKk=",
+        "usagesDigest": "PYzh+2uzWJCj34BHJz3fdYUGUH8kcX4XoZnNMsGq8uk=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -783,6 +783,19 @@
             "ruleClassName": "copy_to_directory_platform_repo",
             "attributes": {
               "platform": "freebsd_amd64"
+            }
+          },
+          "registry_linux_s390x": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/registry",
+              "identifier": "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
+              "platform": "linux/s390x",
+              "target_name": "registry_linux_s390x",
+              "bazel_tags": []
             }
           },
           "oci_crane_linux_arm64": {
@@ -922,11 +935,37 @@
               "reproducible": true
             }
           },
+          "registry_linux_arm64_v8": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/registry",
+              "identifier": "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
+              "platform": "linux/arm64/v8",
+              "target_name": "registry_linux_arm64_v8",
+              "bazel_tags": []
+            }
+          },
           "oci_regctl_windows_amd64": {
             "bzlFile": "@@rules_oci~//oci:repositories.bzl",
             "ruleClassName": "regctl_repositories",
             "attributes": {
               "platform": "windows_amd64"
+            }
+          },
+          "registry_linux_ppc64le": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/registry",
+              "identifier": "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
+              "platform": "linux/ppc64le",
+              "target_name": "registry_linux_ppc64le",
+              "bazel_tags": []
             }
           },
           "oci_crane_windows_armv6": {
@@ -1062,6 +1101,32 @@
               "crane_version": "v0.18.0"
             }
           },
+          "registry_linux_arm_v7": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/registry",
+              "identifier": "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
+              "platform": "linux/arm/v7",
+              "target_name": "registry_linux_arm_v7",
+              "bazel_tags": []
+            }
+          },
+          "registry_linux_arm_v6": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/registry",
+              "identifier": "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
+              "platform": "linux/arm/v6",
+              "target_name": "registry_linux_arm_v6",
+              "bazel_tags": []
+            }
+          },
           "bsd_tar_darwin_arm64": {
             "bzlFile": "@@aspect_bazel_lib~//lib/private:tar_toolchain.bzl",
             "ruleClassName": "bsdtar_binary_repo",
@@ -1124,6 +1189,19 @@
               "platform": "darwin_amd64"
             }
           },
+          "registry_linux_amd64": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/registry",
+              "identifier": "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
+              "platform": "linux/amd64",
+              "target_name": "registry_linux_amd64",
+              "bazel_tags": []
+            }
+          },
           "nginx_linux_386": {
             "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
             "ruleClassName": "oci_pull",
@@ -1135,6 +1213,26 @@
               "platform": "linux/386",
               "target_name": "nginx_linux_386",
               "bazel_tags": []
+            }
+          },
+          "registry": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_alias",
+            "attributes": {
+              "target_name": "registry",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "library/registry",
+              "identifier": "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
+              "platforms": {
+                "@@platforms//cpu:x86_64": "@registry_linux_amd64",
+                "@@platforms//cpu:armv7": "@registry_linux_arm_v7",
+                "@@platforms//cpu:arm64": "@registry_linux_arm64_v8",
+                "@@platforms//cpu:ppc": "@registry_linux_ppc64le",
+                "@@platforms//cpu:s390x": "@registry_linux_s390x"
+              },
+              "bzlmod_repository": "registry",
+              "reproducible": true
             }
           },
           "zstd_toolchains": {
@@ -1239,7 +1337,14 @@
             "nginx_linux_arm64_v8",
             "nginx_linux_mips64le",
             "nginx_linux_ppc64le",
-            "nginx_linux_s390x"
+            "nginx_linux_s390x",
+            "registry",
+            "registry_linux_amd64",
+            "registry_linux_arm_v6",
+            "registry_linux_arm_v7",
+            "registry_linux_arm64_v8",
+            "registry_linux_ppc64le",
+            "registry_linux_s390x"
           ],
           "explicitRootModuleDirectDevDeps": [],
           "useAllRepos": "NO",
