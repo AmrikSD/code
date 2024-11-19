@@ -1,11 +1,21 @@
-load("@rules_go//go:def.bzl", "go_binary", "go_library", "go_cross_binary" )
+load("@rules_go//go:def.bzl", "go_binary", "go_test", "go_library", "go_cross_binary" )
 load("@rules_oci//oci:defs.bzl", "oci_image", "oci_load", "oci_push", "oci_image_index")
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 
 go_library(
     name = "app_lib",
-    srcs = glob(["cmd/uttt/*.go"]),
+    srcs = glob(
+        ["cmd/uttt/*.go"],
+        exclude = ["cmd/uttt/*_test.go"]
+    ),
+
     visibility = ["//visibility:private"],
+)
+
+go_test(
+    name = "tests",
+    srcs = glob(["cmd/uttt/*_test.go"]),
+    embed = [":app_lib"]
 )
 
 go_binary(
@@ -24,6 +34,13 @@ go_binary(
     goos = "linux",
     goarch = "arm64",
     out = "uttt-linux-arm64"
+)
+
+go_binary(
+    name = "app",
+    embed = [":app_lib"],
+    visibility = ["//visibility:public"],
+    out = "uttt"
 )
 
 pkg_tar(
