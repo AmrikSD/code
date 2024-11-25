@@ -98,8 +98,8 @@ use_repo(maven, "maven")
 
 oci.pull(
     name = "nginx",
-    digest = "sha256:28402db69fec7c17e179ea87882667f1e054391138f77ffaf0c3eb388efc3ffb",
     image = "docker.io/library/nginx",
+    digest = "sha256:28402db69fec7c17e179ea87882667f1e054391138f77ffaf0c3eb388efc3ffb",
     platforms = [
         "linux/386",
         "linux/amd64",
@@ -114,8 +114,8 @@ oci.pull(
 
 oci.pull(
     name = "registry",
-    digest = "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
     image = "docker.io/library/registry",
+    digest = "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
     platforms = [
         "linux/amd64",
         "linux/arm/v6",
@@ -128,8 +128,8 @@ oci.pull(
 
 oci.pull(
     name = "distroless",
-    digest = "sha256:cc226ca14d17d01d4b278d9489da930a0dd11150df10ae95829d13e6d00fbdbf",
     image = "gcr.io/distroless/static",
+    digest = "sha256:cc226ca14d17d01d4b278d9489da930a0dd11150df10ae95829d13e6d00fbdbf",
     platforms = [
         "linux/amd64",
         "linux/arm/v7",
