@@ -10,6 +10,12 @@ module "cloudflare" {
     source = "./cloudflare/"
 }
 
+module "unifi" {
+    source = "./unifi/"
+    api_url = "https://10.0.0.1"
+    insecure = true
+}
+
 module "truenas" {
     source = "./truenas/"
     pool   = "pool_01"

@@ -1,6 +1,6 @@
 ---
 creation_rules:
-  - path_regex: infra/(truenas|cloudflare)/.*.ya?ml
+  - path_regex: infra/(truenas|cloudflare|unifi|gcp)/.*.ya?ml
     input_type: yaml
     unencrypted_suffix: _unencrypted
     key_groups:
