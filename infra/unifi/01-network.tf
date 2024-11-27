@@ -28,9 +28,11 @@ resource "unifi_network" "iot" {
   name    = "iot"
   purpose = "corporate"
 
-  subnet       = "172.16.0.0/24"
-  vlan_id      = 2
-  dhcp_start   = "172.16.0.6"
-  dhcp_stop    = "172.16.0.254"
-  dhcp_enabled = true
+  subnet                       = "172.16.0.0/24"
+  vlan_id                      = 2
+  dhcp_start                   = "172.16.0.6"
+  dhcp_stop                    = "172.16.0.254"
+  dhcp_enabled                 = true
+  internet_access_enabled      = false
+  intra_network_access_enabled = false
 }
