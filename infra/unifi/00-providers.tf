@@ -2,7 +2,7 @@ terraform {
   required_version = ">= 1.5.7"
   required_providers {
     unifi = {
-      source = "paultyng/unifi"
+      source  = "paultyng/unifi"
       version = "0.41.0"
     }
     sops = {
@@ -17,16 +17,16 @@ data "sops_file" "unifi-secret" {
 }
 
 variable "api_url" {
-    type = string
+  type = string
 }
 
 variable "insecure" {
-    type = string
+  type = string
 }
 
 provider "unifi" {
-  username = data.sops_file.unifi-secret.data["unifi.username"]
-  password = data.sops_file.unifi-secret.data["unifi.password"]
-  api_url = var.api_url
+  username       = data.sops_file.unifi-secret.data["unifi.username"]
+  password       = data.sops_file.unifi-secret.data["unifi.password"]
+  api_url        = var.api_url
   allow_insecure = var.insecure # optionally use UNIFI_INSECURE env var
 }

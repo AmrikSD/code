@@ -5,7 +5,7 @@ resource "cloudflare_pages_project" "amrik_co_uk" {
 
   build_config {
     build_command   = "bundle exec jekyll build"
-    root_dir = "projects/amrik.co.uk"
+    root_dir        = "projects/amrik.co.uk"
     destination_dir = "_site"
   }
 
@@ -38,10 +38,10 @@ resource "cloudflare_pages_domain" "amrik_co_uk" {
 }
 
 resource "cloudflare_record" "amrik_co_uk" {
-    zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.co.uk.zone_id"]
-    name = "@"
-    type = "CNAME"
-    value = "amrik-co-uk.pages.dev"
+  zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.co.uk.zone_id"]
+  name    = "@"
+  type    = "CNAME"
+  value   = "amrik-co-uk.pages.dev"
 }
 
 //Kate
@@ -58,8 +58,8 @@ resource "cloudflare_pages_domain" "kate_amrik_co_uk" {
 }
 
 resource "cloudflare_record" "kate_amrik_co_uk" {
-    zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.co.uk.zone_id"]
-    name = "kate"
-    type = "CNAME"
-    value = "kate-amrik-co-uk.pages.dev"
+  zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.co.uk.zone_id"]
+  name    = "kate"
+  type    = "CNAME"
+  value   = "kate-amrik-co-uk.pages.dev"
 }
