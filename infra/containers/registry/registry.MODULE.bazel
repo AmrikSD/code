@@ -1,9 +1,8 @@
 oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
-
 oci.pull(
     name = "registry",
-    image = "docker.io/library/registry",
     digest = "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
+    image = "docker.io/library/registry",
     platforms = [
         "linux/amd64",
         "linux/arm/v6",
@@ -11,18 +10,15 @@ oci.pull(
         "linux/arm64/v8",
         "linux/ppc64le",
         "linux/s390x",
-    ]
+    ],
 )
-
-
 use_repo(
     oci,
     "registry",
     "registry_linux_amd64",
+    "registry_linux_arm64_v8",
     "registry_linux_arm_v6",
     "registry_linux_arm_v7",
-    "registry_linux_arm64_v8",
     "registry_linux_ppc64le",
     "registry_linux_s390x",
 )
-

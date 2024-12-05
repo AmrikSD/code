@@ -1,0 +1,18 @@
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "home-assistant",
+    digest = "sha256:e79a34c6093dcd730232d264c3ffc32dc09409f415a6cb0f8580cea148dfb6bf",
+    image = "docker.io/homeassistant/home-assistant",
+    platforms = [
+        "linux/arm64/v8", "linux/amd64", "linux/arm/v6", "linux/arm/v7", "linux/386"
+    ],
+)
+use_repo(
+    oci,
+    "home-assistant",
+    "home-assistant_linux_386",
+    "home-assistant_linux_amd64",
+    "home-assistant_linux_arm_v6",
+    "home-assistant_linux_arm_v7",
+    "home-assistant_linux_arm64_v8",
+)

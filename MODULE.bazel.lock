@@ -714,7 +714,7 @@
     "@@rules_oci~//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "jN4U6rNDYr+4BPf/l/XG98DSMLO6QJaOTNWrZtt8Auo=",
-        "usagesDigest": "YSHkgWsCp5iKihGEXqJ+Gs60a/g5FqDsbraDAE07WQ0=",
+        "usagesDigest": "hHj1Sm6xcofATHJyV4W55POSNwyyBV7Nvvw9AbBhxSE=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -775,6 +775,19 @@
               "identifier": "sha256:28402db69fec7c17e179ea87882667f1e054391138f77ffaf0c3eb388efc3ffb",
               "platform": "linux/mips64le",
               "target_name": "nginx_linux_mips64le",
+              "bazel_tags": []
+            }
+          },
+          "home-assistant_linux_386": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "homeassistant/home-assistant",
+              "identifier": "sha256:e79a34c6093dcd730232d264c3ffc32dc09409f415a6cb0f8580cea148dfb6bf",
+              "platform": "linux/386",
+              "target_name": "home-assistant_linux_386",
               "bazel_tags": []
             }
           },
@@ -888,12 +901,57 @@
               "platform": "linux_arm64"
             }
           },
+          "home-assistant_linux_arm_v6": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "homeassistant/home-assistant",
+              "identifier": "sha256:e79a34c6093dcd730232d264c3ffc32dc09409f415a6cb0f8580cea148dfb6bf",
+              "platform": "linux/arm/v6",
+              "target_name": "home-assistant_linux_arm_v6",
+              "bazel_tags": []
+            }
+          },
+          "home-assistant": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_alias",
+            "attributes": {
+              "target_name": "home-assistant",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "homeassistant/home-assistant",
+              "identifier": "sha256:e79a34c6093dcd730232d264c3ffc32dc09409f415a6cb0f8580cea148dfb6bf",
+              "platforms": {
+                "@@platforms//cpu:arm64": "@home-assistant_linux_arm64_v8",
+                "@@platforms//cpu:x86_64": "@home-assistant_linux_amd64",
+                "@@platforms//cpu:armv7": "@home-assistant_linux_arm_v7",
+                "@@platforms//cpu:i386": "@home-assistant_linux_386"
+              },
+              "bzlmod_repository": "home-assistant",
+              "reproducible": true
+            }
+          },
           "oci_crane_darwin_arm64": {
             "bzlFile": "@@rules_oci~//oci:repositories.bzl",
             "ruleClassName": "crane_repositories",
             "attributes": {
               "platform": "darwin_arm64",
               "crane_version": "v0.18.0"
+            }
+          },
+          "home-assistant_linux_arm_v7": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "homeassistant/home-assistant",
+              "identifier": "sha256:e79a34c6093dcd730232d264c3ffc32dc09409f415a6cb0f8580cea148dfb6bf",
+              "platform": "linux/arm/v7",
+              "target_name": "home-assistant_linux_arm_v7",
+              "bazel_tags": []
             }
           },
           "jq_darwin_arm64": {
@@ -1044,6 +1102,24 @@
               "platform": "linux_amd64"
             }
           },
+          "grafana": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_alias",
+            "attributes": {
+              "target_name": "grafana",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "grafana/grafana-oss",
+              "identifier": "sha256:28a1c9c5ba0f27f3d46b9557eacb1d92d585e07d63945f1d829970663c5d9ae5",
+              "platforms": {
+                "@@platforms//cpu:x86_64": "@grafana_linux_amd64",
+                "@@platforms//cpu:arm64": "@grafana_linux_arm64",
+                "@@platforms//cpu:armv7": "@grafana_linux_arm_v7"
+              },
+              "bzlmod_repository": "grafana",
+              "reproducible": true
+            }
+          },
           "oci_crane_windows_amd64": {
             "bzlFile": "@@rules_oci~//oci:repositories.bzl",
             "ruleClassName": "crane_repositories",
@@ -1098,6 +1174,19 @@
             "ruleClassName": "zstd_binary_repo",
             "attributes": {
               "platform": "linux_amd64"
+            }
+          },
+          "home-assistant_linux_amd64": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "homeassistant/home-assistant",
+              "identifier": "sha256:e79a34c6093dcd730232d264c3ffc32dc09409f415a6cb0f8580cea148dfb6bf",
+              "platform": "linux/amd64",
+              "target_name": "home-assistant_linux_amd64",
+              "bazel_tags": []
             }
           },
           "nginx_linux_arm_v7": {
@@ -1193,6 +1282,19 @@
               "platform": "linux_amd64"
             }
           },
+          "grafana_linux_amd64": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "grafana/grafana-oss",
+              "identifier": "sha256:28a1c9c5ba0f27f3d46b9557eacb1d92d585e07d63945f1d829970663c5d9ae5",
+              "platform": "linux/amd64",
+              "target_name": "grafana_linux_amd64",
+              "bazel_tags": []
+            }
+          },
           "coreutils_linux_amd64": {
             "bzlFile": "@@aspect_bazel_lib~//lib/private:coreutils_toolchain.bzl",
             "ruleClassName": "coreutils_platform_repo",
@@ -1225,6 +1327,19 @@
             "ruleClassName": "copy_to_directory_platform_repo",
             "attributes": {
               "platform": "darwin_arm64"
+            }
+          },
+          "grafana_linux_arm64": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "grafana/grafana-oss",
+              "identifier": "sha256:28a1c9c5ba0f27f3d46b9557eacb1d92d585e07d63945f1d829970663c5d9ae5",
+              "platform": "linux/arm64",
+              "target_name": "grafana_linux_arm64",
+              "bazel_tags": []
             }
           },
           "coreutils_toolchains": {
@@ -1377,6 +1492,19 @@
               "bazel_tags": []
             }
           },
+          "grafana_linux_arm_v7": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "grafana/grafana-oss",
+              "identifier": "sha256:28a1c9c5ba0f27f3d46b9557eacb1d92d585e07d63945f1d829970663c5d9ae5",
+              "platform": "linux/arm/v7",
+              "target_name": "grafana_linux_arm_v7",
+              "bazel_tags": []
+            }
+          },
           "jq_toolchains": {
             "bzlFile": "@@aspect_bazel_lib~//lib/private:jq_toolchain.bzl",
             "ruleClassName": "jq_toolchains_repo",
@@ -1401,6 +1529,19 @@
                 "DefaultInfo": "0.0.1",
                 "__TestingOnly_NeverAvailable": "1000000000.0.0"
               }
+            }
+          },
+          "home-assistant_linux_arm64_v8": {
+            "bzlFile": "@@rules_oci~//oci/private:pull.bzl",
+            "ruleClassName": "oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "homeassistant/home-assistant",
+              "identifier": "sha256:e79a34c6093dcd730232d264c3ffc32dc09409f415a6cb0f8580cea148dfb6bf",
+              "platform": "linux/arm64/v8",
+              "target_name": "home-assistant_linux_arm64_v8",
+              "bazel_tags": []
             }
           },
           "coreutils_windows_amd64": {
@@ -1435,7 +1576,17 @@
             "registry_linux_arm_v7",
             "registry_linux_arm64_v8",
             "registry_linux_ppc64le",
-            "registry_linux_s390x"
+            "registry_linux_s390x",
+            "grafana",
+            "grafana_linux_amd64",
+            "grafana_linux_arm64",
+            "grafana_linux_arm_v7",
+            "home-assistant",
+            "home-assistant_linux_arm64_v8",
+            "home-assistant_linux_amd64",
+            "home-assistant_linux_arm_v6",
+            "home-assistant_linux_arm_v7",
+            "home-assistant_linux_386"
           ],
           "explicitRootModuleDirectDevDeps": [],
           "useAllRepos": "NO",

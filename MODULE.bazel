@@ -28,7 +28,6 @@ JOOQ_VERSION = "3.19.15"
 POSTGRES_VERSION = "42.7.4"
 # renovate: datasource=maven depName=org.assertj:assertj-core
 ASSERTJ_VERSION = "3.26.3"
-
 JUNIT_VERSION = "5.10.3"
 JUNIT_PLATFORM_VERSION = "1.10.3"
 MOCKITO_VERSION = "5.12.0"
@@ -38,16 +37,12 @@ maven.install(
     artifacts = [
         # Testing
         "org.assertj:assertj-core:" + ASSERTJ_VERSION,
-
         "org.junit.platform:junit-platform-launcher:" + JUNIT_PLATFORM_VERSION,
         "org.junit.platform:junit-platform-reporting:" + JUNIT_PLATFORM_VERSION,
-
         "org.junit.jupiter:junit-jupiter-api:" + JUNIT_VERSION,
         "org.junit.jupiter:junit-jupiter-engine:" + JUNIT_VERSION,
-
         "org.mockito:mockito-core:" + MOCKITO_VERSION,
         "org.mockito:mockito-junit-jupiter:" + MOCKITO_VERSION,
-
         "org.testcontainers:junit-jupiter:" + TESTCONTAINERS_VERSION,
         "org.testcontainers:postgresql:" + TESTCONTAINERS_VERSION,
 
@@ -93,6 +88,4 @@ maven.install(
         "https://jcenter.bintray.com/",
     ],
 )
-
 use_repo(maven, "maven")
-

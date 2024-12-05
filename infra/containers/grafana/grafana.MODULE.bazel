@@ -1,0 +1,18 @@
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "grafana",
+    digest = "sha256:28a1c9c5ba0f27f3d46b9557eacb1d92d585e07d63945f1d829970663c5d9ae5",
+    image = "docker.io/grafana/grafana-oss",
+    platforms = [
+        "linux/amd64",
+        "linux/arm64",
+        "linux/arm/v7",
+    ],
+)
+use_repo(
+    oci,
+    "grafana",
+    "grafana_linux_amd64",
+    "grafana_linux_arm64",
+    "grafana_linux_arm_v7",
+)

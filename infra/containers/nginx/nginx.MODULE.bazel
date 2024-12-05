@@ -1,9 +1,8 @@
 oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
-
 oci.pull(
     name = "nginx",
-    image = "docker.io/library/nginx",
     digest = "sha256:28402db69fec7c17e179ea87882667f1e054391138f77ffaf0c3eb388efc3ffb",
+    image = "docker.io/library/nginx",
     platforms = [
         "linux/386",
         "linux/amd64",
@@ -12,21 +11,18 @@ oci.pull(
         "linux/arm64/v8",
         "linux/mips64le",
         "linux/ppc64le",
-        "linux/s390x"
+        "linux/s390x",
     ]
 )
-
-
 use_repo(
     oci,
     "nginx",
     "nginx_linux_386",
     "nginx_linux_amd64",
+    "nginx_linux_arm64_v8",
     "nginx_linux_arm_v5",
     "nginx_linux_arm_v7",
-    "nginx_linux_arm64_v8",
     "nginx_linux_mips64le",
     "nginx_linux_ppc64le",
     "nginx_linux_s390x",
 )
-
