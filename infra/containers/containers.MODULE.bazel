@@ -1,0 +1,8 @@
+bazel_dep(name = "rules_oci", version = "2.0.1")
+
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+
+include("//infra/containers/distroless:distroless.MODULE.bazel")
+include("//infra/containers/nginx:nginx.MODULE.bazel")
+include("//infra/containers/registry:registry.MODULE.bazel")
+

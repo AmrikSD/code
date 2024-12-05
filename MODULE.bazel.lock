@@ -714,7 +714,7 @@
     "@@rules_oci~//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "jN4U6rNDYr+4BPf/l/XG98DSMLO6QJaOTNWrZtt8Auo=",
-        "usagesDigest": "iD7hJlCnE9lImbLpw0NscRLamrrt1v9RqnBFt+ZmKKk=",
+        "usagesDigest": "YSHkgWsCp5iKihGEXqJ+Gs60a/g5FqDsbraDAE07WQ0=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1414,6 +1414,12 @@
         },
         "moduleExtensionMetadata": {
           "explicitRootModuleDirectDeps": [
+            "distroless",
+            "distroless_linux_amd64",
+            "distroless_linux_arm_v7",
+            "distroless_linux_arm64_v8",
+            "distroless_linux_s390x",
+            "distroless_linux_ppc64le",
             "nginx",
             "nginx_linux_386",
             "nginx_linux_amd64",
@@ -1429,13 +1435,7 @@
             "registry_linux_arm_v7",
             "registry_linux_arm64_v8",
             "registry_linux_ppc64le",
-            "registry_linux_s390x",
-            "distroless",
-            "distroless_linux_amd64",
-            "distroless_linux_arm_v7",
-            "distroless_linux_arm64_v8",
-            "distroless_linux_s390x",
-            "distroless_linux_ppc64le"
+            "registry_linux_s390x"
           ],
           "explicitRootModuleDirectDevDeps": [],
           "useAllRepos": "NO",
