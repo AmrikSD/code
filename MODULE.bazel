@@ -21,7 +21,7 @@ JERSEY_VERSION = "4.0.0-M1"
 # renovate: datasource=maven depName=org.flywaydb:flyway-core
 FLYWAY_VERSION = "10.15.2"
 # renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
-JACKSON_VERSION = "2.18.1"
+JACKSON_VERSION = "2.18.2"
 # renovate: datasource=maven depName=org.jooq:jooq
 JOOQ_VERSION = "3.19.15"
 # renovate: datasource=maven depName=org.postgresql:postgresql
