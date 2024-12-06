@@ -62,7 +62,10 @@
       "datasourceTemplate": "helm"
     },
     {
-      "fileMatch": ["MODULE.bazel"],
+      "fileMatch": [
+        "infra/containers/.+/.+\\.MODULE\\.bazel$",
+        "MODULE.bazel"
+      ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>\\w+) depName=(?<depName>[^\\s]+)\\s+\\S+_VERSION\\s*=\\s*\"(?<currentValue>[^\"]+)\""
       ],
