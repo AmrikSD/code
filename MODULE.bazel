@@ -15,7 +15,7 @@ GUICE_VERSION = "7.0.0"
 # renovate: datasource=maven depName=org.jboss.resteasy:resteasy-bom
 RESTEASY_VERSION = "7.0.0.Alpha4"
 # renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
-JETTY_VERSION = "11.0.24"
+JETTY_VERSION = "12.1.0.alpha0"
 # renovate: datasource=maven depName=org.glassfish.jersey:jersey-bom
 JERSEY_VERSION = "4.0.0-M1"
 # renovate: datasource=maven depName=org.flywaydb:flyway-core
