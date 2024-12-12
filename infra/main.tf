@@ -10,6 +10,10 @@ module "cloudflare" {
   source = "./cloudflare/"
 }
 
+module "gcp" {
+    source = "./gcp/"
+}
+
 module "unifi" {
   source   = "./unifi/"
   api_url  = "https://10.0.0.1"
