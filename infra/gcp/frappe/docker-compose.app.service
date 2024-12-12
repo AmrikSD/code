@@ -1,0 +1,13 @@
+[Unit]
+Description=My Docker Compose Application
+Requires=docker.service
+After=docker.service
+
+[Service]
+WorkingDirectory=/home/asbotehg
+ExecStart=/usr/bin/docker-compose up -d
+Restart=on-failure  # Restart only on errors, not clean exits
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target

@@ -19,4 +19,5 @@ data "sops_file" "gcp-secret" {
 provider "google" {
     project = "milestone-medical"
     credentials = data.sops_file.gcp-secret.data["google.credentials"]
+    zone = "us-central1-a"
 }

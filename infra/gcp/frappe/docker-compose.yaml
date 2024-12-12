@@ -1,0 +1,9 @@
+services:
+  webserver:
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
