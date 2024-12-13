@@ -7,3 +7,14 @@ services:
     restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+      - certbot_data:/var/www/certbot/:ro
+      - letsencrypt_data:/etc/nginx/ssl/:ro
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - certbot_data:/var/www/certbot/:rw
+      - letsencrypt_data:/etc/letsencrypt/:rw
+
+volumes:
+  certbot_data:
+  letsencrypt_data:

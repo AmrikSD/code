@@ -112,3 +112,7 @@ resource "google_compute_firewall" "default-ssh" {
         "213.78.238.32/32"
     ]
 }
+
+output "frappe_ip_address" {
+  value = google_compute_address.frappe-static.address
+}

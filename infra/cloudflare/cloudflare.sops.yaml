@@ -9,6 +9,8 @@ cloudflare:
         ip: ENC[AES256_GCM,data:2+zAyjDzS+kJUnumug==,iv:6ntiyuZhYuZkKk08Qo60Q17KNhVH1jAPHxMSG8j+KVE=,tag:8GseWE/GXZRXKVadfAhdmg==,type:str]
         tunnel:
             secret: ENC[AES256_GCM,data:Lum6ZSAEGLn6pTGRBTHhCMAw1XmDJmVqZmdhDMrKqJjhIEll,iv:f3pVkLt47A4dUkfz7RVBseA5DbWpMkXpZ3W31LRCKeg=,tag:te1e7TjAUsDOXdnsnw9pKQ==,type:str]
+    amrik.xyz:
+        zone_id: ENC[AES256_GCM,data:sRxZso3w+BPp0yDW6lVT5NK1f5zvZzGErkiO1I6DXMA=,iv:8FzDWJ+egABO83AWnso2sgi99ew4auhkny/ui1yhyO4=,tag:q4WDV0mZeej7rHo8BVZVCQ==,type:str]
 github:
     client_id: ENC[AES256_GCM,data:83iy0nvSDMUz8vw+x615uvC64qQ=,iv:+y80PpsNW0bxXjWvnV7j5fzJHDBsRo34p1mJ6pOZ+68=,tag:b4f2I4xp7d+ihs7QabPj4A==,type:str]
     client_secret: ENC[AES256_GCM,data:oqdbcU5w4Sewr0LgVdauh7jVG+/8CfFaOgYgMjdZuz/qAtMdndQ/Xg==,iv:FKTvlccmw9EtqR5VeyEjSDhxgsAHXlDFdF0y1z6I/dg=,tag:02Kyh+d/+hL3jK9JMCkqkw==,type:str]
@@ -27,8 +29,8 @@ sops:
             SkVJam9kQTRkSlFhS0pZZnpEK25HTlEKWIB90KHn2BvVL4mz74qERMa9HDa2lao5
             8xQjdUeivXtpyEyHoEfnQmTBprCiupxhJnFMZfOrWIaz2GM10XVyAQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-05-30T06:23:46Z"
-    mac: ENC[AES256_GCM,data:XXePpraFA+62stSrsZIvUZeDFPk7vvIoZZzOU4eVS0DNK4Bh3xTuH+2jbwgPvOSwqWgkDNim+Aj0a6mqev3UzDF+/KYgaU8lCdGkFmVG099DTuD9j+lCgihXGTSgrSPPGjALU7GvlKVgWfSK531wzPCwKlsM57JPvvhiJeELKDQ=,iv:29QVDVTNQMy46de5BuH6sjVzVPoa/2JudkbVNho/Ta0=,tag:WkHsAzmQXoEFNHv/1A2/7Q==,type:str]
+    lastmodified: "2024-12-13T00:04:35Z"
+    mac: ENC[AES256_GCM,data:fYzXspkMjKmsITJcrfFmnD35xg8iUShbt6wat/bdjc5RJRgpKouWEPjI9W6Jur55l8uZ1LWx0HbXn1d9jZ5ER4lQ/jXuwSDLWDFfnmHqG5sG+A+rhsYFPqhzxxRGIETI6yTe0E/YhmDsABbH3hUIE2DSLU+VHfUjfPwW59NKgnk=,iv:vpnWlGq5dnHjs92S1cV267qva/qcDmoPsVFrE3rnH2o=,tag:jKUBbEuPRKbEd281LNnYqw==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.7.3
+    version: 3.9.1
