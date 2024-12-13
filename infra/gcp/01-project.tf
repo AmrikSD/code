@@ -64,8 +64,19 @@ resource "google_compute_instance" "frappe" {
     }
 
     provisioner "file" {
-      source      = "${path.module}/frappe/nginx.conf"
-      destination = "nginx.conf"
+      source      = "${path.module}/frappe/nginx-certs.conf"
+      destination = "nginx-certs.conf"
+      connection {
+          type  = "ssh"
+          host = self.network_interface[0].access_config[0].nat_ip
+          user = data.sops_file.gcp-secret.data["google.ssh.user"]
+          private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+          timeout = "4m"
+      }
+    }
+    provisioner "file" {
+      source      = "${path.module}/frappe/nginx-front.conf"
+      destination = "nginx-front.conf"
       connection {
           type  = "ssh"
           host = self.network_interface[0].access_config[0].nat_ip
