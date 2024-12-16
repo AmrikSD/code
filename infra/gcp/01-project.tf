@@ -9,7 +9,7 @@ resource "google_compute_address" "frappe-static" {
 
 resource "google_compute_instance" "frappe" {
   name         = "frappe"
-  machine_type = "e2-small"
+  machine_type = "e2-medium"
 
   tags = ["https-server", "http-server", "milestone-medical", "terraform"]
 
@@ -39,6 +39,8 @@ resource "google_compute_instance" "frappe" {
 
         systemctl enable --now /home/asbotehg/docker.service
         systemctl enable --now /home/asbotehg/docker-compose.app.service
+        systemctl enable --now /home/asbotehg/renew.service
+        systemctl enable --now /home/asbotehg/renew.timer
     EOT
   }
 
@@ -101,6 +103,29 @@ resource "google_compute_instance" "frappe" {
   provisioner "file" {
       source = "${path.module}/frappe/docker-compose.yaml"
       destination = "docker-compose.yaml"
+      connection {
+          type  = "ssh"
+          host = self.network_interface[0].access_config[0].nat_ip
+          user = data.sops_file.gcp-secret.data["google.ssh.user"]
+          private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+          timeout = "4m"
+      }
+  }
+
+  provisioner "file" {
+      source = "${path.module}/frappe/renew.timer"
+      destination = "renew.timer"
+      connection {
+          type  = "ssh"
+          host = self.network_interface[0].access_config[0].nat_ip
+          user = data.sops_file.gcp-secret.data["google.ssh.user"]
+          private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+          timeout = "4m"
+      }
+  }
+  provisioner "file" {
+      source = "${path.module}/frappe/renew.service"
+      destination = "renew.service"
       connection {
           type  = "ssh"
           host = self.network_interface[0].access_config[0].nat_ip

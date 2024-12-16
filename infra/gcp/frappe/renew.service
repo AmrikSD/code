@@ -1,0 +1,13 @@
+[Unit]
+Description=Runs the renew script
+Requires=docker-compose.app.service
+After=docker-compose.app.service
+
+[Service]
+WorkingDirectory=/home/asbotehg
+ExecStart=/usr/bin/docker-compose run certbot renew
+Restart=on-failure  # Restart only on errors, not clean exits
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target

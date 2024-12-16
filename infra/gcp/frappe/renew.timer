@@ -1,0 +1,10 @@
+[Unit]
+Description="Run renew.service every 24hours"
+
+[Timer]
+OnUnitActiveSec=24h
+OnCalendar=Mon..Sun *-*-* 10:00:*
+Unit=renew.service
+
+[Install]
+WantedBy=multi-user.target
