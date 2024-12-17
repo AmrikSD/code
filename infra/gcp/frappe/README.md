@@ -23,11 +23,22 @@ whoami
 ```
 
 Run the restore command
+> [!NOTE]
+> This command may look like it hangs, just give it some time.
+
 ```bash
 bench restore /backup/20241214_131900_20241214_131900-frontend-database.sql.gz --with-public-files /backup/20241214_131900_20241214_131900-frontend-files.tar --with-private-files
  /backup/20241214_131900_20241214_131900-frontend-private-files.tar
 ```
 
-> [!NOTE]
-> This last command may look like it hangs, give it some time.
+put the enryption key back
+```
+cd ~/frappe-bench/sites/frontend
+# copy the old file
+cp site_config.json site_config.json.old
+# look in /backup/20241217_190303_20241217_190303-frontend-site_config_backup.json
+# put the encryption_key there
+#
+```
 
+do not change the password or db name... even after the restore file the creds do not go to the old ones.
