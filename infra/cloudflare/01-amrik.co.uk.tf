@@ -41,7 +41,7 @@ resource "cloudflare_record" "amrik_co_uk" {
   zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.co.uk.zone_id"]
   name    = "@"
   type    = "CNAME"
-  content   = "amrik-co-uk.pages.dev"
+  content = "amrik-co-uk.pages.dev"
 }
 
 //Kate
@@ -61,5 +61,5 @@ resource "cloudflare_record" "kate_amrik_co_uk" {
   zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.co.uk.zone_id"]
   name    = "kate"
   type    = "CNAME"
-  content   = "kate-amrik-co-uk.pages.dev"
+  content = "kate-amrik-co-uk.pages.dev"
 }

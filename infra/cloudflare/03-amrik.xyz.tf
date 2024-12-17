@@ -7,5 +7,5 @@ resource "cloudflare_record" "amrik_xyz" {
   zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.xyz.zone_id"]
   name    = "@"
   type    = "A"
-  content   = var.ip_address
+  content = var.ip_address
 }

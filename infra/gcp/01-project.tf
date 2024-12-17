@@ -20,7 +20,7 @@ resource "google_compute_instance" "frappe" {
   }
 
   metadata = {
-    ssh-keys = format("%s:%s", data.sops_file.gcp-secret.data["google.ssh.user"], data.sops_file.gcp-secret.data["google.ssh.public_key"])
+    ssh-keys       = format("%s:%s", data.sops_file.gcp-secret.data["google.ssh.user"], data.sops_file.gcp-secret.data["google.ssh.public_key"])
     startup-script = <<-EOT
         #!/bin/bash
         apt-get update
@@ -53,100 +53,100 @@ resource "google_compute_instance" "frappe" {
     }
   }
 
-    provisioner "file" {
-      source      = "${path.module}/frappe/docker.service"
-      destination = "docker.service"
-      connection {
-          type  = "ssh"
-          host = self.network_interface[0].access_config[0].nat_ip
-          user = data.sops_file.gcp-secret.data["google.ssh.user"]
-          private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
-          timeout = "4m"
-      }
-    }
-
-    provisioner "file" {
-      source      = "${path.module}/frappe/nginx-certs.conf"
-      destination = "nginx-certs.conf"
-      connection {
-          type  = "ssh"
-          host = self.network_interface[0].access_config[0].nat_ip
-          user = data.sops_file.gcp-secret.data["google.ssh.user"]
-          private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
-          timeout = "4m"
-      }
-    }
-    provisioner "file" {
-      source      = "${path.module}/frappe/nginx-front.conf"
-      destination = "nginx-front.conf"
-      connection {
-          type  = "ssh"
-          host = self.network_interface[0].access_config[0].nat_ip
-          user = data.sops_file.gcp-secret.data["google.ssh.user"]
-          private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
-          timeout = "4m"
-      }
-    }
-
-    provisioner "file" {
-      source      = "${path.module}/frappe/docker-compose.app.service"
-      destination = "docker-compose.app.service"
-      connection {
-          type  = "ssh"
-          host = self.network_interface[0].access_config[0].nat_ip
-          user = data.sops_file.gcp-secret.data["google.ssh.user"]
-          private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
-          timeout = "4m"
-      }
-    }
-
   provisioner "file" {
-      source = "${path.module}/frappe/docker-compose.yaml"
-      destination = "docker-compose.yaml"
-      connection {
-          type  = "ssh"
-          host = self.network_interface[0].access_config[0].nat_ip
-          user = data.sops_file.gcp-secret.data["google.ssh.user"]
-          private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
-          timeout = "4m"
-      }
+    source      = "${path.module}/frappe/docker.service"
+    destination = "docker.service"
+    connection {
+      type        = "ssh"
+      host        = self.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "4m"
+    }
   }
 
   provisioner "file" {
-      source = "${path.module}/frappe/renew.timer"
-      destination = "renew.timer"
-      connection {
-          type  = "ssh"
-          host = self.network_interface[0].access_config[0].nat_ip
-          user = data.sops_file.gcp-secret.data["google.ssh.user"]
-          private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
-          timeout = "4m"
-      }
+    source      = "${path.module}/frappe/nginx-certs.conf"
+    destination = "nginx-certs.conf"
+    connection {
+      type        = "ssh"
+      host        = self.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "4m"
+    }
   }
   provisioner "file" {
-      source = "${path.module}/frappe/renew.service"
-      destination = "renew.service"
-      connection {
-          type  = "ssh"
-          host = self.network_interface[0].access_config[0].nat_ip
-          user = data.sops_file.gcp-secret.data["google.ssh.user"]
-          private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
-          timeout = "4m"
-      }
+    source      = "${path.module}/frappe/nginx-front.conf"
+    destination = "nginx-front.conf"
+    connection {
+      type        = "ssh"
+      host        = self.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "4m"
+    }
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/frappe/docker-compose.app.service"
+    destination = "docker-compose.app.service"
+    connection {
+      type        = "ssh"
+      host        = self.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "4m"
+    }
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/frappe/docker-compose.yaml"
+    destination = "docker-compose.yaml"
+    connection {
+      type        = "ssh"
+      host        = self.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "4m"
+    }
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/frappe/renew.timer"
+    destination = "renew.timer"
+    connection {
+      type        = "ssh"
+      host        = self.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "4m"
+    }
+  }
+  provisioner "file" {
+    source      = "${path.module}/frappe/renew.service"
+    destination = "renew.service"
+    connection {
+      type        = "ssh"
+      host        = self.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "4m"
+    }
   }
 
 }
 
 resource "google_compute_firewall" "default-ssh" {
-    name = "allow-ssh"
-    network = "default"
-    allow {
-        protocol = "tcp"
-        ports = ["22"]
-    }
-    source_ranges = [
-        "213.78.238.32/32"
-    ]
+  name    = "allow-ssh"
+  network = "default"
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+  source_ranges = [
+    "213.78.238.32/32"
+  ]
 }
 
 output "frappe_ip_address" {

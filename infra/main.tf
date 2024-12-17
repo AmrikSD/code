@@ -7,12 +7,12 @@ terraform {
   }
 }
 module "cloudflare" {
-  source = "./cloudflare/"
+  source     = "./cloudflare/"
   ip_address = module.gcp.frappe_ip_address
 }
 
 module "gcp" {
-    source = "./gcp/"
+  source = "./gcp/"
 }
 
 module "unifi" {
