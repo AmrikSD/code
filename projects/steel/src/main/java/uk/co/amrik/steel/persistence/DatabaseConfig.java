@@ -17,7 +17,7 @@ public class DatabaseConfig {
         this.port = System.getProperty("STEEL_DB_PORT", env.getOrDefault("STEEL_DB_PORT", "5432"));
         this.name = System.getProperty("STEEL_DB_NAME", env.getOrDefault("STEEL_DB_NAME", "steel"));
         this.user = System.getProperty("STEEL_DB_USER", env.getOrDefault("STEEL_DB_USER", "postgres"));
-        this.pass = System.getProperty("STEEL_DB_PASS", env.getOrDefault("STEEL_DB_PASS", "postgres"));
+        this.pass = System.getProperty("STEEL_DB_PASS", env.getOrDefault("STEEL_DB_PASS", "mysecretpassword"));
 
     }
 

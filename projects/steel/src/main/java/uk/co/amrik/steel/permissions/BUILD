@@ -15,6 +15,6 @@ java_library(
     deps = [
         "//projects/steel/src/main/java/uk/co/amrik/steel/persistence",
         "@maven//:com_google_inject_guice",
-        "@maven//:org_jooq_jooq"
-    ]
+        "@maven//:org_jooq_jooq",
+    ],
 )

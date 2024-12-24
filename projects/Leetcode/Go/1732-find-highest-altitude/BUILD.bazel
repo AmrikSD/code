@@ -1,0 +1,27 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "lib",
+    srcs = ["1732-find-highest-altitude.go"],
+    importpath = "",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "lib_test",
+    srcs = ["1732-find-highest-altitude_test.go"],
+    embed = [":lib"],
+)
+
+go_library(
+    name = "go_lib",
+    srcs = ["1732-find-highest-altitude.go"],
+    importpath = "github.com/amriksd/code/projects/Leetcode/go",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_test",
+    srcs = ["1732-find-highest-altitude_test.go"],
+    embed = [":go_lib"],
+)

@@ -8,13 +8,12 @@ oci_image(
 oci_load(
     name = "load",
     image = ":image",
-    repo_tags = ["registry"]
+    repo_tags = ["registry"],
 )
 
 oci_push(
     name = "push",
     image = ":image",
+    remote_tags = ["latest"],
     repository = "ghcr.io/amriksd/registry",
-    remote_tags = ["latest"]
 )
-

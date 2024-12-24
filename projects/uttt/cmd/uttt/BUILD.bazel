@@ -1,0 +1,17 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "uttt_lib",
+    srcs = [
+        "Board.go",
+        "main.go",
+    ],
+    importpath = "github.com/amriksd/code/projects/uttt/cmd/uttt",
+    visibility = ["//visibility:private"],
+)
+
+go_binary(
+    name = "uttt",
+    embed = [":uttt_lib"],
+    visibility = ["//visibility:public"],
+)

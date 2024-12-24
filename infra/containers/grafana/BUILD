@@ -8,13 +8,12 @@ oci_image(
 oci_load(
     name = "load",
     image = ":image",
-    repo_tags = ["grafana"]
+    repo_tags = ["grafana"],
 )
 
 oci_push(
     name = "push",
     image = ":image",
+    remote_tags = ["latest"],
     repository = "ghcr.io/amriksd/grafana",
-    remote_tags = ["latest"]
 )
-

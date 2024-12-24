@@ -4,6 +4,7 @@ bazel_dep(name = "rules_jvm_external", version = "6.6")
 bazel_dep(name = "contrib_rules_jvm", version = "0.27.0")
 bazel_dep(name = "rules_go", version = "0.50.1")
 bazel_dep(name = "rules_pkg", version = "1.0.1")
+bazel_dep(name = "gazelle", version = "0.37.0")
 
 include("//infra/containers:containers.MODULE.bazel")
 
@@ -12,25 +13,37 @@ maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 # Version variables
 # renovate: datasource=maven depName=com.google.inject:guice-bom
 GUICE_VERSION = "7.0.0"
+
 # renovate: datasource=maven depName=org.jboss.resteasy:resteasy-bom
 RESTEASY_VERSION = "7.0.0.Alpha4"
+
 # renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
 JETTY_VERSION = "11.0.24"
+
 # renovate: datasource=maven depName=org.glassfish.jersey:jersey-bom
 JERSEY_VERSION = "4.0.0-M1"
+
 # renovate: datasource=maven depName=org.flywaydb:flyway-core
 FLYWAY_VERSION = "10.22.0"
+
 # renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
 JACKSON_VERSION = "2.18.2"
+
 # renovate: datasource=maven depName=org.jooq:jooq
 JOOQ_VERSION = "3.19.15"
+
 # renovate: datasource=maven depName=org.postgresql:postgresql
 POSTGRES_VERSION = "42.7.4"
+
 # renovate: datasource=maven depName=org.assertj:assertj-core
 ASSERTJ_VERSION = "3.26.3"
+
 JUNIT_VERSION = "5.10.3"
+
 JUNIT_PLATFORM_VERSION = "1.10.3"
+
 MOCKITO_VERSION = "5.12.0"
+
 TESTCONTAINERS_VERSION = "1.19.8"
 
 maven.install(

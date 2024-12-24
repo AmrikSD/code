@@ -1,5 +1,5 @@
-load("@rules_go//go:def.bzl", "go_binary", "go_library", "go_cross_binary" )
-load("@rules_oci//oci:defs.bzl", "oci_image", "oci_load", "oci_push", "oci_image_index")
+load("@rules_go//go:def.bzl", "go_binary", "go_cross_binary", "go_library")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_image_index", "oci_load", "oci_push")
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 
 go_library(
@@ -10,69 +10,69 @@ go_library(
 
 go_binary(
     name = "app-linux-amd64",
+    out = "uttt-linux-amd64",
     embed = [":app_lib"],
-    visibility = ["//visibility:public"],
-    goos = "linux",
     goarch = "arm64",
-    out = "uttt-linux-amd64"
+    goos = "linux",
+    visibility = ["//visibility:public"],
 )
 
 go_binary(
     name = "app-linux-arm64",
+    out = "uttt-linux-arm64",
     embed = [":app_lib"],
-    visibility = ["//visibility:public"],
-    goos = "linux",
     goarch = "arm64",
-    out = "uttt-linux-arm64"
+    goos = "linux",
+    visibility = ["//visibility:public"],
 )
 
 pkg_tar(
     name = "tar-linux-arm64",
     srcs = [":app-linux-arm64"],
     symlinks = {
-        "uttt": "uttt-linux-arm64"
-    }
+        "uttt": "uttt-linux-arm64",
+    },
 )
 
 pkg_tar(
     name = "tar-linux-amd64",
     srcs = [":app-linux-amd64"],
     symlinks = {
-        "uttt": "uttt-linux-amd64"
-    }
+        "uttt": "uttt-linux-amd64",
+    },
 )
 
 oci_image(
     name = "image-linux-arm64",
-    tars = [
-        ":tar-linux-arm64"
-    ],
-    os = "linux",
     architecture = "arm64",
     entrypoint = ["./uttt"],
+    os = "linux",
+    tars = [
+        ":tar-linux-arm64",
+    ],
 )
 
 oci_image(
     name = "image-linux-amd64",
-    tars = [
-        ":tar-linux-amd64"
-    ],
-    os = "linux",
     architecture = "amd64",
     entrypoint = ["./uttt"],
+    os = "linux",
+    tars = [
+        ":tar-linux-amd64",
+    ],
 )
 
 oci_image_index(
     name = "index",
     images = [
-       ":image-linux-arm64",
-       ":image-linux-amd64"
-    ]
+        ":image-linux-arm64",
+        ":image-linux-amd64",
+    ],
 )
 
 oci_push(
     name = "push",
     image = ":index",
+    remote_tags = ["latest"],
     repository = "ghcr.io/amriksd/uttt",
-    remote_tags = [ "latest" ]
 )

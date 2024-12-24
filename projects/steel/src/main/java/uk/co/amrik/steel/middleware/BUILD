@@ -6,11 +6,11 @@ filegroup(
     name = "middleware_annotations",
     srcs = glob(["annotations/**/*.java"]),
 )
+
 filegroup(
     name = "middleware_filters",
     srcs = glob(["filters/**/*.java"]),
 )
-
 
 java_library(
     name = "middleware",
@@ -20,5 +20,5 @@ java_library(
     ],
     deps = [
         "@maven//:jakarta_platform_jakarta_jakartaee_web_api",
-    ]
+    ],
 )

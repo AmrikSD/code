@@ -6,6 +6,6 @@ filegroup(
     name = "srcs",
     srcs = glob(["**"]) + [
         "//projects/Leetcode/Java/src/main/java/uk/co/amrik/leetcode:srcs",
-        "//projects/Leetcode/Java/src/test/java/uk/co/amrik/leetcode:srcs"
-    ]
+        "//projects/Leetcode/Java/src/test/java/uk/co/amrik/leetcode:srcs",
+    ],
 )

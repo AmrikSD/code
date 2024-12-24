@@ -1,5 +1,5 @@
-load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -24,8 +24,8 @@ COMMON_DEPS = [
 
 java_binary(
     name = "ProjectSteel",
-    main_class = "uk.co.amrik.steel.Steel",
     srcs = [":srcs"],
+    main_class = "uk.co.amrik.steel.Steel",
     deps = [":steel_lib"] + COMMON_DEPS,
 )
 

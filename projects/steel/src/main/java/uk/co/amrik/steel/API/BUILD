@@ -7,7 +7,6 @@ filegroup(
     srcs = glob(["**/*.java"]),
 )
 
-
 java_library(
     name = "API",
     srcs = [
@@ -15,5 +14,5 @@ java_library(
     ],
     deps = [
         "@maven//:jakarta_platform_jakarta_jakartaee_web_api",
-    ]
+    ],
 )

@@ -12,7 +12,7 @@ java_library(
 java_binary(
     name = "lc-binary",
     main_class = "uk.co.amrik.leetcode.Leetcode",
-    runtime_deps = [":lc-library"]
+    runtime_deps = [":lc-library"],
 )
 
 filegroup(
