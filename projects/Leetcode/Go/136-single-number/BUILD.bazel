@@ -25,3 +25,16 @@ go_test(
     srcs = ["136-single-number_test.go"],
     embed = [":go_lib"],
 )
+
+go_library(
+    name = "136-single-number_lib",
+    srcs = ["136-single-number.go"],
+    importpath = "github.com/amriksd/code/projects/Leetcode/Go/136-single-number",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "136-single-number_test",
+    srcs = ["136-single-number_test.go"],
+    embed = [":136-single-number_lib"],
+)

@@ -25,3 +25,16 @@ go_test(
     srcs = ["1732-find-highest-altitude_test.go"],
     embed = [":go_lib"],
 )
+
+go_library(
+    name = "1732-find-highest-altitude_lib",
+    srcs = ["1732-find-highest-altitude.go"],
+    importpath = "github.com/amriksd/code/projects/Leetcode/Go/1732-find-highest-altitude",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "1732-find-highest-altitude_test",
+    srcs = ["1732-find-highest-altitude_test.go"],
+    embed = [":1732-find-highest-altitude_lib"],
+)
