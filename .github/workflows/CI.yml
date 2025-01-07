@@ -1,6 +1,9 @@
 name: Check that image builds
 on:
   pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   test-image:
