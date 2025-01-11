@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: cloudflared
-        image: cloudflare/cloudflared:latest@sha256:665dda65335e35a782ed9319aa63e8404f88b34d2644d30adf3e91253604ffa0
+        image: cloudflare/cloudflared:latest@sha256:3247f3ef49eda23244b8aa5583f82b7c3880b0d057e1172d0e818f5e678d9f27
         args:
         - tunnel
         # Points cloudflared to the config file, which configures what
