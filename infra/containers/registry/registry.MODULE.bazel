@@ -1,7 +1,7 @@
 oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 oci.pull(
     name = "registry",
-    digest = "sha256:ac0192b549007e22998eb74e8d8488dcfe70f1489520c3b144a6047ac5efbe90",
+    digest = "sha256:319881be2ee9e345d5837d15842a04268de6a139e23be42654fc7664fc6eaf52",
     image = "docker.io/library/registry",
     platforms = [
         "linux/amd64",
