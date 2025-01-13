@@ -1,6 +1,7 @@
 unifi:
     username: ENC[AES256_GCM,data:hSrbENo=,iv:36xVoQTMNdED5dmv5jF4veD2aBSh2jK1JXNdYjlbuTM=,tag:RxnmjMi5iDlgYyxvN47Q+w==,type:str]
     password: ENC[AES256_GCM,data:BfuMfnrQF6oB0P5s,iv:wZQz8fjcj7F6cA9AHfffuneMRgToIuLLsEstQO+I7WA=,tag:Jxuv0qWNVF4y7O48vPGXTw==,type:str]
+    iotpw: ENC[AES256_GCM,data:kWQ2IsZaS6picUi4xkwqN2KXJg==,iv:T8CihMXTpNxNTqaTCdJVS51qBCLvLa31+uufBPmkHUE=,tag:xnz5RKunBbWHAqpXx+xPtA==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -16,8 +17,8 @@ sops:
             elhIS2xqVU1EM0huRHVTS0p2NEcwVEUKXP94xGmRMj2ljJ88UHdTtf7oY9C/WXJN
             cc1Y/NO3v1nNZLXg86BIVMO4v901c/bq91aRbt4KGN786zz92e8NoQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-11-27T16:20:53Z"
-    mac: ENC[AES256_GCM,data:NFicbaIiFRL/I1iskKOW6CsZCqiFbKmIRhOXnqLud9kDm2w6n4fM1yAaGn98GxUManIAs5d1pSLaQcFqFs4YlyLsYJECxpiag+wUnuBxDm7YOYmavs5lqgV6Kpv9hiwPYqI1MMkv549QhZiZ/qh2OnKmKf2C1EUfZ4xG+RZWqeM=,iv:cHQ6D5yxO+A2M/aHzLUYVVzbWeZL1/6sKqqi4Cd1x/k=,tag:p7OkftKMbl5XE2VbXIzeXw==,type:str]
+    lastmodified: "2025-01-13T23:06:00Z"
+    mac: ENC[AES256_GCM,data:ReBMFamUpCUffby2SRdSm3e9KQFYmVPwY1BZjeF3JbI1O9ozQvBybmY2BVDzqYAB2SnXAaDp/Y7Mu175O4DHhyiUprnRvZQH1ha+nGaAOEwmiSw42JNdZxOb3yLaDdEFyO1g0WisZB0jYBWOFx2Qii0wCOm8yJsoXXV+x3V8kCE=,iv:OiGoPNkiyABatRnzhsoR9xWaj0k2Gy3pH3pE/ZlTwHo=,tag:2aq1CHmKZl7K2MrNtPVL0A==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.9.1
