@@ -19,6 +19,12 @@ module "unifi" {
   source   = "./unifi/"
   api_url  = "https://10.0.0.1"
   insecure = true
+  shellys  = [
+      {
+          mac  = "a0:dd:6c:4e:b2:34"
+          name = "Shelly Plus 2PM (Entrance)"
+    },
+  ]
 }
 
 module "truenas" {
