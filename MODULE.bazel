@@ -1,106 +1,13 @@
 "Bazel dependencies"
 
-bazel_dep(name = "rules_jvm_external", version = "6.6")
 bazel_dep(name = "contrib_rules_jvm", version = "0.27.0")
-bazel_dep(name = "rules_go", version = "0.52.0")
-bazel_dep(name = "rules_pkg", version = "1.0.1")
 bazel_dep(name = "gazelle", version = "0.41.0")
+bazel_dep(name = "rules_go", version = "0.52.0")
 bazel_dep(name = "rules_java", version = "8.6.3")
+bazel_dep(name = "rules_jvm_external", version = "6.6")
+bazel_dep(name = "rules_pkg", version = "1.0.1")
 
 include("//infra/containers:containers.MODULE.bazel")
 include("//:go.MODULE.bazel")
+include("//:java.MODULE.bazel")
 
-maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
-
-# Version variables
-# renovate: datasource=maven depName=com.google.inject:guice-bom
-GUICE_VERSION = "7.0.0"
-
-# renovate: datasource=maven depName=org.jboss.resteasy:resteasy-bom
-RESTEASY_VERSION = "7.0.0.Alpha4"
-
-# renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
-JETTY_VERSION = "11.0.24"
-
-# renovate: datasource=maven depName=org.glassfish.jersey:jersey-bom
-JERSEY_VERSION = "4.0.0-M1"
-
-# renovate: datasource=maven depName=org.flywaydb:flyway-core
-FLYWAY_VERSION = "11.1.1"
-
-# renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
-JACKSON_VERSION = "2.18.2"
-
-# renovate: datasource=maven depName=org.jooq:jooq
-JOOQ_VERSION = "3.19.17"
-
-# renovate: datasource=maven depName=org.postgresql:postgresql
-POSTGRES_VERSION = "42.7.4"
-
-# renovate: datasource=maven depName=org.assertj:assertj-core
-ASSERTJ_VERSION = "3.27.2"
-
-JUNIT_VERSION = "5.10.3"
-
-JUNIT_PLATFORM_VERSION = "1.10.3"
-
-MOCKITO_VERSION = "5.12.0"
-
-TESTCONTAINERS_VERSION = "1.19.8"
-
-maven.install(
-    artifacts = [
-        # Testing
-        "org.assertj:assertj-core:" + ASSERTJ_VERSION,
-        "org.junit.platform:junit-platform-launcher:" + JUNIT_PLATFORM_VERSION,
-        "org.junit.platform:junit-platform-reporting:" + JUNIT_PLATFORM_VERSION,
-        "org.junit.jupiter:junit-jupiter-api:" + JUNIT_VERSION,
-        "org.junit.jupiter:junit-jupiter-engine:" + JUNIT_VERSION,
-        "org.mockito:mockito-core:" + MOCKITO_VERSION,
-        "org.mockito:mockito-junit-jupiter:" + MOCKITO_VERSION,
-        "org.testcontainers:junit-jupiter:" + TESTCONTAINERS_VERSION,
-        "org.testcontainers:postgresql:" + TESTCONTAINERS_VERSION,
-
-        # Dependency Injection
-        "com.google.inject:guice:" + GUICE_VERSION,
-        "com.google.inject.extensions:guice-servlet:" + GUICE_VERSION,
-
-        # Resteasy
-        "org.jboss.resteasy:resteasy-servlet-initializer:" + RESTEASY_VERSION,
-        "org.jboss.resteasy:resteasy-client:" + RESTEASY_VERSION,
-        "org.jboss.resteasy:resteasy-jaxb-provider:" + RESTEASY_VERSION,
-
-        # Jakarta EE
-        "jakarta.platform:jakarta.jakartaee-web-api:10.0.0",
-
-        # Jetty
-        "org.eclipse.jetty:jetty-server:" + JETTY_VERSION,
-        "org.eclipse.jetty:jetty-servlet:" + JETTY_VERSION,
-        "org.eclipse.jetty:jetty-util:" + JETTY_VERSION,
-
-        # Jersey
-        "org.glassfish.jersey.core:jersey-server:" + JERSEY_VERSION,
-        "org.glassfish.jersey.containers:jersey-container-servlet-core:" + JERSEY_VERSION,
-        "org.glassfish.jersey.inject:jersey-hk2:" + JERSEY_VERSION,
-        "org.glassfish.jersey.media:jersey-media-json-jackson:" + JERSEY_VERSION,
-
-        # Flyway
-        "org.flywaydb:flyway-core:" + FLYWAY_VERSION,
-        "org.flywaydb:flyway-database-postgresql:" + FLYWAY_VERSION,
-
-        # Jackson
-        "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:" + JACKSON_VERSION,
-
-        # PostgreSQL
-        "org.postgresql:postgresql:" + POSTGRES_VERSION,
-
-        # jOOQ
-        "org.jooq:jooq:" + JOOQ_VERSION,
-    ],
-    fetch_sources = True,
-    repositories = [
-        "http://uk.maven.org/maven2",
-        "https://jcenter.bintray.com/",
-    ],
-)
-use_repo(maven, "maven")

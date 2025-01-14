@@ -1,6 +1,5 @@
 go_sdk = use_extension("@rules_go//go:extensions.bzl", "go_sdk")
 
-
 go_sdk.download(version = "1.23.1")
 go_sdk.download(
     version = "1.23.1",
