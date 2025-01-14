@@ -57,10 +57,6 @@ module "unifi" {
       name = "Shelly Plus 2PM (Hallway)"
     },
     {
-      mac  = "78:ee:4c:c3:c0:48"
-      name = "Shelly Plus 1PM (Downstairs Room)"
-    },
-    {
       mac  = "a0:dd:6c:4f:94:10"
       name = "Shelly Plus 2PM (Bifold)"
     },
@@ -91,10 +87,6 @@ module "unifi" {
     {
       mac  = "78:ee:4c:c3:e9:84"
       name = "Shelly Plus 1PM (Under Stairs)"
-    },
-    {
-      mac  = "a0:dd:6c:4e:b2:34"
-      name = "Shelly Plus 2PM (Entrance)"
     },
     {
       mac  = "78:ee:4c:d0:78:28"

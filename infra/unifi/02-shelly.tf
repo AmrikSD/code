@@ -8,14 +8,14 @@ variable "shellys" {
 }
 
 resource "unifi_user" "shellys" {
-  for_each = zipmap(range(length(var.shellys)), var.shellys)
+  for_each = { for idx, shelly in var.shellys : idx => shelly}
 
   name = each.value.name
   mac  = each.value.mac
   note = "Managed By Terraform"
 
-  fixed_ip = format("172.16.0.%d", each.key + 10) # Start incrementing from 172.16.0.10
-  local_dns_record = format("shelly-%d.int.amrik.co.uk", each.key + 10)
+  fixed_ip = format("172.16.0.%d", each.key + 110) # Start incrementing from 172.16.0.10
+  local_dns_record = format("shelly-%d.int.amrik.co.uk", each.key + 110)
 
   network_id = unifi_network.iot.id
 }
@@ -23,5 +23,5 @@ resource "unifi_user" "shellys" {
 resource "unifi_firewall_group" "shellys" {
     name = "shellys"
     type = "address-group"
-    members =  [ for k, shelly in unifi_user.shellys : shelly.fixed_ip]
+    members = [ for k, shelly in unifi_user.shellys : shelly.fixed_ip]
 }
