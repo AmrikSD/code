@@ -15,6 +15,7 @@ resource "unifi_user" "shellys" {
   note = "Managed By Terraform"
 
   fixed_ip = format("172.16.0.%d", each.key + 10) # Start incrementing from 172.16.0.10
+  local_dns_record = format("shelly-%d.int.amrik.co.uk", each.key + 10)
 
   network_id = unifi_network.iot.id
 }
