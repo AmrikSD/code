@@ -20,7 +20,7 @@ FLYWAY_VERSION = "11.1.1"
 JACKSON_VERSION = "2.18.2"
 
 # renovate: datasource=maven depName=org.jooq:jooq
-JOOQ_VERSION = "3.19.17"
+JOOQ_VERSION = "3.19.18"
 
 # renovate: datasource=maven depName=org.postgresql:postgresql
 POSTGRES_VERSION = "42.7.5"
