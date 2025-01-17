@@ -12,5 +12,5 @@ spec:
   ports:
     - name: prometheus-web
       protocol: TCP
-      port: 443
+      port: 80
       targetPort: web
