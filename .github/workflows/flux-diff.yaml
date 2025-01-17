@@ -1,0 +1,56 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: "Flux Diff"
+
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - infra/kubernetes/cluster-01/apps/**
+      - infra/kubernetes/cluster-01/flux-system/**
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  diffs:
+    name: Compute diffs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cluster_path:
+          - cluster-01
+        resource:
+          - helmrelease
+          - kustomization
+    steps:
+      - name: Generate Token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: "${{ secrets.BOT_APP_ID }}"
+          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+
+      - name: Checkout Pull Request Branch
+        uses: actions/checkout@v4
+        with:
+          token: "${{ steps.app-token.outputs.token }}"
+      - name: Setup Flux CLI
+        uses: fluxcd/flux2/action@v2.2.3
+      - uses: allenporter/flux-local/action/diff@4.3.1
+        id: diff
+        with:
+          live-branch: main
+          path: infra/kubernetes/${{ matrix.cluster_path }}/flux-system
+          resource: ${{ matrix.resource }}
+      - name: PR Comments
+        uses: mshick/add-pr-comment@v2
+        if: ${{ steps.diff.outputs.diff != '' }}
+        with:
+          repo-token: ${{ steps.app-token.outputs.token }}
+          message-id: ${{ github.event.pull_request.number }}/${{ matrix.cluster_path }}/${{ matrix.resource }}
+          message-failure: Unable to post kustomization diff
+          message: |
+            `````diff
+            ${{ steps.diff.outputs.diff }}
+            `````
