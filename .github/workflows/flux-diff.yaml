@@ -35,11 +35,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: "${{ steps.app-token.outputs.token }}"
-      - uses: docker://ghcr.io/allenporter/flux-local:v7.0.0@sha256:abf237e31d20de26f8a4b08e588cc927cb0a9f0ecf90d04bada00f393b919354
+      - name: Setup Flux CLI
+        uses: fluxcd/flux2/action@v2.2.3
+      - uses: allenporter/flux-local/action/diff@4.3.1
         id: diff
         with:
           live-branch: main
-          path: infra/kubernetes/${{ matrix.cluster_path }}
+          path: infra/kubernetes/${{ matrix.cluster_path }}/flux-system
           resource: ${{ matrix.resource }}
       - name: PR Comments
         uses: mshick/add-pr-comment@v2
