@@ -71,6 +71,11 @@ resource "cloudflare_pages_project" "kate_amrik_co_uk" {
   }
 
   deployment_configs {
+    preview {
+        environment_variables = {
+            NODE_VERSION = "23.6.0"
+        }
+    }
     production {
         environment_variables = {
             NODE_VERSION = "23.6.0"
