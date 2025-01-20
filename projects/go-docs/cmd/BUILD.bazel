@@ -5,7 +5,10 @@ go_library(
     srcs = ["main.go"],
     importpath = "github.com/amriksd/code/projects/go-docs/cmd",
     visibility = ["//visibility:private"],
-    deps = ["@com_github_labstack_echo_v4//:go_default_library"],
+    deps = [
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_otiai10_gosseract_v2//:gosseract",
+    ],
 )
 
 go_binary(
