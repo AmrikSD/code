@@ -5,6 +5,7 @@
             <th>Name</th>
             <th>Size</th>
             <th>Date</th>
+            <th>Text</th>
         </thead>
         <tbody>
             {{ range . }}
@@ -12,6 +13,7 @@
                 <td><a href="original/{{.Path}}" target="_blank" rel="noopener noreferrer">{{ .Name }}</a></td>
                 <td hx-get="/modal/{{.Path}}" hx-vals='{"path":"{{.Path}}"}'>{{ .Size }}</td>
                 <td>{{ .Edited }}</td>
+                <td>{{ .Text }}</td>
             </tr>
             {{ end }}
         </tbody>

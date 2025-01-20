@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io"
 	"log"
@@ -11,6 +12,7 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
+	"github.com/otiai10/gosseract/v2"
 )
 
 
@@ -22,14 +24,37 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
-
 type File struct {
     Name string
     Size int64
     Edited time.Time
     Path string
+    Text string
 }
+
+// image formats and magic numbers
+var magicTable = map[string]string{
+    "\xff\xd8\xff":      "image/jpeg",
+    "\x89PNG\r\n\x1a\n": "image/png",
+    "GIF87a":            "image/gif",
+    "GIF89a":            "image/gif",
+}
+
+func isImage(data []byte) bool {
+    dataStr := string(data)
+    for magic := range magicTable {
+        if strings.HasPrefix(dataStr, magic) {
+            return true
+        }
+    }
+    return false
+}
+
+
 func main(){
+    client := gosseract.NewClient()
+    defer client.Close()
+
 
     e := echo.New()
     e.Static("/static", "public/static")
@@ -47,11 +72,27 @@ func main(){
         }
 
         if info.Mode().IsRegular() {
+            text := ""
+
+            file, err := os.ReadFile(path)
+            if err != nil {
+                panic(err)
+            }
+
+            if isImage(file){
+                client.SetImage(path)
+                text, _ = client.Text()
+            } else {
+                fmt.Printf("skipping doing OCR for %s\n", path)
+            }
+
+
             filesList = append(filesList, File{
                 info.Name(),
                 info.Size(),
                 info.ModTime(),
                 strings.TrimPrefix(path, "input/"),
+                text,
             })
 
         }
