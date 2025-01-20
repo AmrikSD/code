@@ -1,0 +1,14 @@
+{{ define "files" }}
+<div id="files">
+    <table>
+        <tr>Name</tr>
+        <tr>Size</tr>
+        <tr>Date</tr>
+    </table>
+    {{ range . }}
+        <div>
+            {{ . }}
+        </div>
+    {{ end }}
+</div>
+{{ end }}

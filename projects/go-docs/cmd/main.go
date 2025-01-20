@@ -21,6 +21,7 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 func main(){
 
     e := echo.New()
+    e.Static("/static", "public/static")
     e.Renderer = &Template{
         templates: template.Must(template.ParseGlob("public/views/*.html")),
     }
@@ -28,6 +29,13 @@ func main(){
     e.GET("/", func(c echo.Context) error {
         return c.Render(http.StatusOK, "index", nil)
     })
+
+    filesList := []string{"hil", "ho"}
+
+    e.GET("/files", func(c echo.Context) error {
+        return c.Render(http.StatusOK, "files", filesList)
+    })
+
 
     log.Fatal(e.Start(":8080"))
 }
