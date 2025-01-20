@@ -1,14 +1,20 @@
 {{ define "files" }}
 <div id="files">
     <table>
-        <tr>Name</tr>
-        <tr>Size</tr>
-        <tr>Date</tr>
+        <thead>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Date</th>
+        </thead>
+        <tbody>
+            {{ range . }}
+            <tr>
+                <td><a href="original/{{.Path}}" target="_blank" rel="noopener noreferrer">{{ .Name }}</a></td>
+                <td hx-get="/modal/{{.Path}}" hx-vals='{"path":"{{.Path}}"}'>{{ .Size }}</td>
+                <td>{{ .Edited }}</td>
+            </tr>
+            {{ end }}
+        </tbody>
     </table>
-    {{ range . }}
-        <div>
-            {{ . }}
-        </div>
-    {{ end }}
 </div>
 {{ end }}
