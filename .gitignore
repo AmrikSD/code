@@ -24,3 +24,6 @@ terraform.tfstate*
 /.ijwb/
 /.aswb/
 /.clwb/
+
+# obviously
+node_modules

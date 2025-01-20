@@ -10,7 +10,6 @@
 html, body {
     padding: 0;
     margin: 0;
-    background-image: url('../../../public/image.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;

@@ -1,11 +1,12 @@
-import Section from "@/app/section"
 import React from "react"
-import Start from "./start"
-import Location from "./location"
-import Faq from "./faq"
-import Rsvp from "./rsvp"
 
-import img from "../../public/image (1).jpg"
+import Section from "@app/section"
+import Start from "@pages/start"
+import Location from "@pages/location"
+import Faq from "@pages/faq"
+import Rsvp from "@pages/rsvp"
+
+import img from "@public/image (1).jpg"
 
 export default function Index() {
     return <>

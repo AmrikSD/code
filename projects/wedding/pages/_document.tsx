@@ -1,5 +1,7 @@
 import { Html, Head, Main, NextScript} from "next/document";
 
+import img from '@public/image.jpg'
+
 export default function Document() {
     return (
         <Html>
@@ -25,6 +27,7 @@ export default function Document() {
             </Head>
             <body>
                 <Main />
+                <img />
                 <NextScript />
             </body>
         </Html>

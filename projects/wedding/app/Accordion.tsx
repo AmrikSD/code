@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useState } from "react"
-import styles from "./accordion.module.css"
+import styles from "@app/accordion.module.css"
 
 
 const Accordion = ({title, children} : PropsWithChildren<{title: string}>) => {

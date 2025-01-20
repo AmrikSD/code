@@ -1,4 +1,4 @@
-import Accordion from "@/app/Accordion"
+import Accordion from "@app/Accordion"
 import React from "react"
 
 const faqData = [
