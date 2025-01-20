@@ -1,4 +1,4 @@
-import Countdown from "@/app/Countdown"
+import Countdown from "@app/Countdown"
 import React from "react"
 import styles from "./start.module.css"
 

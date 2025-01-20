@@ -27,8 +27,5 @@ ts_project(
         "//projects/wedding:node_modules/@types/react",
         "//projects/wedding:node_modules/@types/react-dom",
         "//projects/wedding:node_modules/next",
-        "//projects/wedding/app:accordion.module.css",
-        "//projects/wedding/app:countdown.module.css",
-        "//projects/wedding/app:section.module.css",
     ],
 )
