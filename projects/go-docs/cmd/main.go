@@ -50,17 +50,19 @@ func isImage(data []byte) bool {
     return false
 }
 
-func processImages(in chan string, c *gosseract.Client){
-    for path := range in {
-        c.SetImage(path)
-        _, err := c.Text()
+func processImages(in chan File, out chan File, c *gosseract.Client){
+    for f := range in {
+        c.SetImage(f.Path)
+        text, err := c.Text()
         if err != nil {
             continue //TODO DLQ or something?
         }
+        f.Text = text
+        out <- f
     }
 }
 
-func processDirectory(startingDir string, fileChan chan File, imageChan chan string){
+func processDirectory(startingDir string, fileChan chan File, imageChan chan File){
     filepath.Walk(startingDir, func(path string, info os.FileInfo, err error) error {
         if err != nil {
             return err
@@ -75,7 +77,13 @@ func processDirectory(startingDir string, fileChan chan File, imageChan chan str
             }
 
             if isImage(file){
-                imageChan <- path
+                imageChan <- File{
+                    info.Name(),
+                    info.Size(),
+                    info.ModTime(),
+                    path,
+                    text,
+                }
             }
 
             f := File{
@@ -96,11 +104,11 @@ func main(){
     client := gosseract.NewClient()
     defer client.Close()
 
-    imageChan := make(chan string)
-    go processImages(imageChan, client)
+    imageChan := make(chan File)
     defer close(imageChan)
 
     fileChan := make(chan File)
+    go processImages(imageChan, fileChan, client)
     filesList := make([]File, 0)
     go func(){
         for file := range fileChan {
