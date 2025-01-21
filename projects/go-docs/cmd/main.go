@@ -50,23 +50,18 @@ func isImage(data []byte) bool {
     return false
 }
 
-
-func main(){
-    client := gosseract.NewClient()
-    defer client.Close()
-
-
-    e := echo.New()
-    e.Static("/static", "public/static")
-
-    e.Static("/original", "input") //TODO Make this configurable
-
-    e.Renderer = &Template{
-        templates: template.Must(template.ParseGlob("public/views/*.html")),
+func processImages(in chan string, c *gosseract.Client){
+    for path := range in {
+        c.SetImage(path)
+        _, err := c.Text()
+        if err != nil {
+            continue //TODO DLQ or something?
+        }
     }
+}
 
-    filesList := make([]File, 0)
-    err := filepath.Walk("./input", func(path string, info os.FileInfo, err error) error {
+func processDirectory(startingDir string, fileChan chan File, imageChan chan string){
+    filepath.Walk(startingDir, func(path string, info os.FileInfo, err error) error {
         if err != nil {
             return err
         }
@@ -80,33 +75,56 @@ func main(){
             }
 
             if isImage(file){
-                client.SetImage(path)
-                text, _ = client.Text()
-            } else {
-                fmt.Printf("skipping doing OCR for %s\n", path)
+                imageChan <- path
             }
 
-
-            filesList = append(filesList, File{
+            f := File{
                 info.Name(),
                 info.Size(),
                 info.ModTime(),
-                strings.TrimPrefix(path, "input/"),
+                strings.TrimPrefix(path, fmt.Sprintf("%s/",startingDir)),
                 text,
-            })
+            }
+            fileChan <- f
 
         }
         return nil
     })
+}
 
-    if err != nil {
-        panic(err)
+func main(){
+    client := gosseract.NewClient()
+    defer client.Close()
+
+    imageChan := make(chan string)
+    go processImages(imageChan, client)
+    defer close(imageChan)
+
+    fileChan := make(chan File)
+    filesList := make([]File, 0)
+    go func(){
+        for file := range fileChan {
+            filesList = append(filesList, file)
+        }
+    }()
+    defer close(fileChan)
+
+    pathToStuff := os.Args[1]
+
+    go processDirectory(pathToStuff, fileChan, imageChan)
+
+    e := echo.New()
+    e.Static("/static", "public/static")
+
+    e.Static("/original", pathToStuff) //TODO Make this configurable
+
+    e.Renderer = &Template{
+        templates: template.Must(template.ParseGlob("public/views/*.html")),
     }
 
     e.GET("/", func(c echo.Context) error {
         return c.Render(http.StatusOK, "index", nil)
     })
-
 
     e.GET("/files", func(c echo.Context) error {
         return c.Render(http.StatusOK, "files", filesList)
