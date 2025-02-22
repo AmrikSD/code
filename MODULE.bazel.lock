@@ -677,7 +677,7 @@
     "@@rules_oci+//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "ngDBihmD/NAY2LuXon+F0Fglj6R9aUrJOPeyeoDayFc=",
-        "usagesDigest": "YGk8VqPYjw7tn0PVg+8LJu5yc1ktBjG/5yW2C7HRf+0=",
+        "usagesDigest": "QgoGSTSkCda6b/bvk3JvH4uTiKgcjOT2qfruWhZaRF0=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1028,7 +1028,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:871f84a00db8d05856a70ee3761b138a8e91eb108d61f2fa176e7eeadb5eda03",
+              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
               "platform": "linux/arm64/v8",
               "target_name": "home-assistant_linux_arm64_v8",
               "bazel_tags": []
@@ -1040,7 +1040,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:871f84a00db8d05856a70ee3761b138a8e91eb108d61f2fa176e7eeadb5eda03",
+              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
               "platform": "linux/amd64",
               "target_name": "home-assistant_linux_amd64",
               "bazel_tags": []
@@ -1052,7 +1052,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:871f84a00db8d05856a70ee3761b138a8e91eb108d61f2fa176e7eeadb5eda03",
+              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
               "platform": "linux/arm/v6",
               "target_name": "home-assistant_linux_arm_v6",
               "bazel_tags": []
@@ -1064,7 +1064,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:871f84a00db8d05856a70ee3761b138a8e91eb108d61f2fa176e7eeadb5eda03",
+              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
               "platform": "linux/arm/v7",
               "target_name": "home-assistant_linux_arm_v7",
               "bazel_tags": []
@@ -1076,7 +1076,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:871f84a00db8d05856a70ee3761b138a8e91eb108d61f2fa176e7eeadb5eda03",
+              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
               "platform": "linux/386",
               "target_name": "home-assistant_linux_386",
               "bazel_tags": []
@@ -1089,7 +1089,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:871f84a00db8d05856a70ee3761b138a8e91eb108d61f2fa176e7eeadb5eda03",
+              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
               "platforms": {
                 "@@platforms//cpu:arm64": "@home-assistant_linux_arm64_v8",
                 "@@platforms//cpu:x86_64": "@home-assistant_linux_amd64",
