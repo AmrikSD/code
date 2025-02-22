@@ -101,7 +101,7 @@ services:
       - -d
       - amrik.xyz
   nginx-certs:
-    image: nginx:1.27.3
+    image: nginx:1.27.4
     ports:
       - 80:80
     restart: always
@@ -110,7 +110,7 @@ services:
       - certbot_data:/var/www/certbot/:ro
 
   nginx-frontend:
-    image: nginx:1.27.3
+    image: nginx:1.27.4
     depends_on:
       - certbot
       - frontend
