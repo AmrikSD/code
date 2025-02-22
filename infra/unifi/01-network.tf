@@ -39,7 +39,7 @@ resource "unifi_network" "iot" {
   dhcp_start                   = "172.16.0.6"
   dhcp_stop                    = "172.16.0.254"
   dhcp_enabled                 = true
-  internet_access_enabled      = false
+  internet_access_enabled      = true
   intra_network_access_enabled = false
 }
 
