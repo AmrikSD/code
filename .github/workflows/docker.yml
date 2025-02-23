@@ -28,8 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.get-matrix.outputs.matrix != '[]' # Only run if images have changed
     strategy:
-      matrix:
-        target: ${{ fromJson(needs.get-matrix.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.get-matrix.outputs.matrix) }}
 
     steps:
       - name: Checkout Code
