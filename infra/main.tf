@@ -132,6 +132,10 @@ module "truenas" {
       name        = "s3"
       size_gb     = 100
       description = "Blob storage"
-    }
+    },
+    {
+        name = "media-server-config"
+        description = "For the *arr apps to store config"
+    },
   ]
 }
