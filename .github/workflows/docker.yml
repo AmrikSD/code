@@ -25,7 +25,6 @@ jobs:
       - name: Generate Matrix
         id: generate-matrix
         run: |
-          bazel query 'kind("oci_push", //infra/containers/...)' | jq -R -s -c '{"include": [split("\n")[] | select(. != "")] | map({target: .})}'
           MATRIX=$(bazel query 'kind("oci_push", //infra/containers/...)' | jq -R -s -c '{"include": [split("\n")[] | select(. != "")] | map({target: .})}')
           echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
   push-images:
