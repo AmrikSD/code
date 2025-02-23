@@ -677,7 +677,7 @@
     "@@rules_oci+//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "ngDBihmD/NAY2LuXon+F0Fglj6R9aUrJOPeyeoDayFc=",
-        "usagesDigest": "QgoGSTSkCda6b/bvk3JvH4uTiKgcjOT2qfruWhZaRF0=",
+        "usagesDigest": "6SeMEWEpGpG2NixuIDUH3QQpQuSlMZCMSc81Yj/KABg=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -767,7 +767,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:0a399eb16751829e1af26fea27b20c3ec28d7ab1fb72182879dcae1cca21206a",
+              "identifier": "sha256:91734281c0ebfc6f1aea979cffeed5079cfe786228a71cc6f1f46a228cde6e34",
               "platform": "linux/386",
               "target_name": "nginx_linux_386",
               "bazel_tags": []
@@ -779,7 +779,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:0a399eb16751829e1af26fea27b20c3ec28d7ab1fb72182879dcae1cca21206a",
+              "identifier": "sha256:91734281c0ebfc6f1aea979cffeed5079cfe786228a71cc6f1f46a228cde6e34",
               "platform": "linux/amd64",
               "target_name": "nginx_linux_amd64",
               "bazel_tags": []
@@ -791,7 +791,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:0a399eb16751829e1af26fea27b20c3ec28d7ab1fb72182879dcae1cca21206a",
+              "identifier": "sha256:91734281c0ebfc6f1aea979cffeed5079cfe786228a71cc6f1f46a228cde6e34",
               "platform": "linux/arm/v5",
               "target_name": "nginx_linux_arm_v5",
               "bazel_tags": []
@@ -803,7 +803,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:0a399eb16751829e1af26fea27b20c3ec28d7ab1fb72182879dcae1cca21206a",
+              "identifier": "sha256:91734281c0ebfc6f1aea979cffeed5079cfe786228a71cc6f1f46a228cde6e34",
               "platform": "linux/arm/v7",
               "target_name": "nginx_linux_arm_v7",
               "bazel_tags": []
@@ -815,7 +815,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:0a399eb16751829e1af26fea27b20c3ec28d7ab1fb72182879dcae1cca21206a",
+              "identifier": "sha256:91734281c0ebfc6f1aea979cffeed5079cfe786228a71cc6f1f46a228cde6e34",
               "platform": "linux/arm64/v8",
               "target_name": "nginx_linux_arm64_v8",
               "bazel_tags": []
@@ -827,7 +827,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:0a399eb16751829e1af26fea27b20c3ec28d7ab1fb72182879dcae1cca21206a",
+              "identifier": "sha256:91734281c0ebfc6f1aea979cffeed5079cfe786228a71cc6f1f46a228cde6e34",
               "platform": "linux/mips64le",
               "target_name": "nginx_linux_mips64le",
               "bazel_tags": []
@@ -839,7 +839,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:0a399eb16751829e1af26fea27b20c3ec28d7ab1fb72182879dcae1cca21206a",
+              "identifier": "sha256:91734281c0ebfc6f1aea979cffeed5079cfe786228a71cc6f1f46a228cde6e34",
               "platform": "linux/ppc64le",
               "target_name": "nginx_linux_ppc64le",
               "bazel_tags": []
@@ -851,7 +851,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:0a399eb16751829e1af26fea27b20c3ec28d7ab1fb72182879dcae1cca21206a",
+              "identifier": "sha256:91734281c0ebfc6f1aea979cffeed5079cfe786228a71cc6f1f46a228cde6e34",
               "platform": "linux/s390x",
               "target_name": "nginx_linux_s390x",
               "bazel_tags": []
@@ -864,7 +864,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:0a399eb16751829e1af26fea27b20c3ec28d7ab1fb72182879dcae1cca21206a",
+              "identifier": "sha256:91734281c0ebfc6f1aea979cffeed5079cfe786228a71cc6f1f46a228cde6e34",
               "platforms": {
                 "@@platforms//cpu:i386": "@nginx_linux_386",
                 "@@platforms//cpu:x86_64": "@nginx_linux_amd64",
@@ -884,7 +884,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/registry",
-              "identifier": "sha256:319881be2ee9e345d5837d15842a04268de6a139e23be42654fc7664fc6eaf52",
+              "identifier": "sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373",
               "platform": "linux/amd64",
               "target_name": "registry_linux_amd64",
               "bazel_tags": []
@@ -896,7 +896,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/registry",
-              "identifier": "sha256:319881be2ee9e345d5837d15842a04268de6a139e23be42654fc7664fc6eaf52",
+              "identifier": "sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373",
               "platform": "linux/arm/v6",
               "target_name": "registry_linux_arm_v6",
               "bazel_tags": []
@@ -908,7 +908,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/registry",
-              "identifier": "sha256:319881be2ee9e345d5837d15842a04268de6a139e23be42654fc7664fc6eaf52",
+              "identifier": "sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373",
               "platform": "linux/arm/v7",
               "target_name": "registry_linux_arm_v7",
               "bazel_tags": []
@@ -920,7 +920,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/registry",
-              "identifier": "sha256:319881be2ee9e345d5837d15842a04268de6a139e23be42654fc7664fc6eaf52",
+              "identifier": "sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373",
               "platform": "linux/arm64/v8",
               "target_name": "registry_linux_arm64_v8",
               "bazel_tags": []
@@ -932,7 +932,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/registry",
-              "identifier": "sha256:319881be2ee9e345d5837d15842a04268de6a139e23be42654fc7664fc6eaf52",
+              "identifier": "sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373",
               "platform": "linux/ppc64le",
               "target_name": "registry_linux_ppc64le",
               "bazel_tags": []
@@ -944,7 +944,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/registry",
-              "identifier": "sha256:319881be2ee9e345d5837d15842a04268de6a139e23be42654fc7664fc6eaf52",
+              "identifier": "sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373",
               "platform": "linux/s390x",
               "target_name": "registry_linux_s390x",
               "bazel_tags": []
@@ -957,7 +957,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/registry",
-              "identifier": "sha256:319881be2ee9e345d5837d15842a04268de6a139e23be42654fc7664fc6eaf52",
+              "identifier": "sha256:a3d8aaa63ed8681a604f1dea0aa03f100d5895b6a58ace528858a7b332415373",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@registry_linux_amd64",
                 "@@platforms//cpu:armv7": "@registry_linux_arm_v7",
@@ -975,7 +975,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:d8ea37798ccc41061a62ab080f2676dda6bf7815558499f901bdb0f533a456fb",
+              "identifier": "sha256:163be84f32fdf9d204c6b8b2f2cccb04628baa365cf973eb1c32d1faaa8fbfc3",
               "platform": "linux/amd64",
               "target_name": "grafana_linux_amd64",
               "bazel_tags": []
@@ -987,7 +987,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:d8ea37798ccc41061a62ab080f2676dda6bf7815558499f901bdb0f533a456fb",
+              "identifier": "sha256:163be84f32fdf9d204c6b8b2f2cccb04628baa365cf973eb1c32d1faaa8fbfc3",
               "platform": "linux/arm64",
               "target_name": "grafana_linux_arm64",
               "bazel_tags": []
@@ -999,7 +999,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:d8ea37798ccc41061a62ab080f2676dda6bf7815558499f901bdb0f533a456fb",
+              "identifier": "sha256:163be84f32fdf9d204c6b8b2f2cccb04628baa365cf973eb1c32d1faaa8fbfc3",
               "platform": "linux/arm/v7",
               "target_name": "grafana_linux_arm_v7",
               "bazel_tags": []
@@ -1012,7 +1012,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:d8ea37798ccc41061a62ab080f2676dda6bf7815558499f901bdb0f533a456fb",
+              "identifier": "sha256:163be84f32fdf9d204c6b8b2f2cccb04628baa365cf973eb1c32d1faaa8fbfc3",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@grafana_linux_amd64",
                 "@@platforms//cpu:arm64": "@grafana_linux_arm64",
@@ -1028,7 +1028,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
+              "identifier": "sha256:a81e875974c909957da5407a85d42409581a1f3c1ae202642519430389baf1ad",
               "platform": "linux/arm64/v8",
               "target_name": "home-assistant_linux_arm64_v8",
               "bazel_tags": []
@@ -1040,7 +1040,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
+              "identifier": "sha256:a81e875974c909957da5407a85d42409581a1f3c1ae202642519430389baf1ad",
               "platform": "linux/amd64",
               "target_name": "home-assistant_linux_amd64",
               "bazel_tags": []
@@ -1052,7 +1052,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
+              "identifier": "sha256:a81e875974c909957da5407a85d42409581a1f3c1ae202642519430389baf1ad",
               "platform": "linux/arm/v6",
               "target_name": "home-assistant_linux_arm_v6",
               "bazel_tags": []
@@ -1064,7 +1064,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
+              "identifier": "sha256:a81e875974c909957da5407a85d42409581a1f3c1ae202642519430389baf1ad",
               "platform": "linux/arm/v7",
               "target_name": "home-assistant_linux_arm_v7",
               "bazel_tags": []
@@ -1076,7 +1076,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
+              "identifier": "sha256:a81e875974c909957da5407a85d42409581a1f3c1ae202642519430389baf1ad",
               "platform": "linux/386",
               "target_name": "home-assistant_linux_386",
               "bazel_tags": []
@@ -1089,7 +1089,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:dae013e0bd935bf8dc500adef771604a3fd03dc5f2ca13b9566f51a094e3f8bf",
+              "identifier": "sha256:a81e875974c909957da5407a85d42409581a1f3c1ae202642519430389baf1ad",
               "platforms": {
                 "@@platforms//cpu:arm64": "@home-assistant_linux_arm64_v8",
                 "@@platforms//cpu:x86_64": "@home-assistant_linux_amd64",
