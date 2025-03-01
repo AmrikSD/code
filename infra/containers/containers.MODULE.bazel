@@ -11,3 +11,5 @@ include("//infra/containers/registry:registry.MODULE.bazel")
 include("//infra/containers/grafana:grafana.MODULE.bazel")
 
 include("//infra/containers/home-assistant:home-assistant.MODULE.bazel")
+
+include("//infra/containers/radarr:radarr.MODULE.bazel")

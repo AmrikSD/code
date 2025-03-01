@@ -1,0 +1,18 @@
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+
+# renovate: datasource=docker depName=docker.io/radarr/radarr-oss
+oci.pull(
+    name = "radarr",
+    digest = "sha256:75ff697c02b03287244008531cbade0e5e85713a9afc6f28d4d6a314dfbd862b",
+    image = "docker.io/linuxserver/radarr",
+    platforms = [
+        "linux/amd64",
+        "linux/arm64",
+    ],
+)
+use_repo(
+    oci,
+    "radarr",
+    "radarr_linux_amd64",
+    "radarr_linux_arm64",
+)
