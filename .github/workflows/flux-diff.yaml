@@ -19,6 +19,7 @@ jobs:
       matrix:
         cluster_path:
           - cluster-01
+          - cluster-02
         resource:
           - helmrelease
           - kustomization
