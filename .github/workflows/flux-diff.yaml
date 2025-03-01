@@ -6,8 +6,7 @@ on:
   pull_request:
     branches: ["main"]
     paths:
-      - infra/kubernetes/cluster-01/apps/**
-      - infra/kubernetes/cluster-01/flux-system/**
+      - infra/kubernetes/**/**
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
