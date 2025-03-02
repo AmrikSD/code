@@ -62,4 +62,4 @@ spec:
   ports:
     - protocol: TCP
       port: 7878
-      nodePort: 7878
+      nodePort: 17878
