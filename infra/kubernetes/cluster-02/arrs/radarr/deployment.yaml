@@ -56,6 +56,7 @@ metadata:
   name: radarr
   namespace: arrs
 spec:
+  type: NodePort
   selector:
     app: radarr
   ports:
