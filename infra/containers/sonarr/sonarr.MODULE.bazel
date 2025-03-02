@@ -1,0 +1,18 @@
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+
+# renovate: datasource=docker depName=docker.io/linuxserver/sonarr
+oci.pull(
+    name = "sonarr",
+    digest = "sha256:74b31a2e2bc25a886b51648a779f1d3b147256723ab8f4d52ba342c95cfa3561",
+    image = "docker.io/linuxserver/sonarr",
+    platforms = [
+        "linux/amd64",
+        "linux/arm64",
+    ],
+)
+use_repo(
+    oci,
+    "sonarr",
+    "sonarr_linux_amd64",
+    "sonarr_linux_arm64",
+)
