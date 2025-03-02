@@ -14,7 +14,7 @@ JETTY_VERSION = "11.0.24"
 JERSEY_VERSION = "4.0.0-M2"
 
 # renovate: datasource=maven depName=org.flywaydb:flyway-core
-FLYWAY_VERSION = "11.2.0"
+FLYWAY_VERSION = "11.3.4"
 
 # renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
 JACKSON_VERSION = "2.18.3"
