@@ -51,19 +51,12 @@ jobs:
         run: |
           terraform -chdir=infra init
           terraform -chdir=infra validate
-          set +e  # Allow capturing the exit code without failing immediately
-          terraform -chdir=infra plan -no-color -detailed-exitcode 2>&1 | tee ${{ github.workspace }}/plan_output.txt
-          echo "TF_EXIT_CODE=$?" >> $GITHUB_OUTPUT
-          set -e  # Re-enable immediate failure for subsequent commands
+          terraform -chdir=infra plan -no-color -out .planfile
 
-      - name: PR Comments
-        uses: mshick/add-pr-comment@v2
-        if: ${{ steps.plan.outputs.TF_EXIT_CODE == '2' }}
+      - name: Post PR comment
+        uses: borchero/terraform-plan-comment@v2
         with:
-          repo-token: ${{ steps.app-token.outputs.token }}
-          message-id: ${{ github.event.pull_request.number }}/tf-plan
-          message-failure: Unable to post terraform plan
-          message: |
-            `````diff
-            ${{ steps.plan.outputs.comment }}
-            `````
+          token: ${{ steps.app-token.outputs.token }}
+          skip-empty: true
+          header: 📝 Terraform Plan
+          planfile: .planfile
