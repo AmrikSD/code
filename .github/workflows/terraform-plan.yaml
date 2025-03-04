@@ -50,7 +50,6 @@ jobs:
 
       - name: Comment Terraform Plan on PR
         uses: blinqas/tf-plan-pr-comment@v1
-        if: steps.plan.outputs.TF_EXIT_CODE == '2'
         with:
           output_file: ${{ github.workspace }}/plan_output.txt
         env:
