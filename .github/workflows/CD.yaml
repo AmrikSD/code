@@ -16,4 +16,4 @@ jobs:
           tags: tag:ci
       - name: quick check
         run: |
-            echo 10.3.164.159 >> test.md
+            curl 10.3.164.158:17878
