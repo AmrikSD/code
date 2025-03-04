@@ -23,6 +23,7 @@ jobs:
       - name: Install self-signed CA
         run: |
           echo "${{ secrets.SELF_SIGNED_CA }}" | sudo tee /usr/local/share/ca-certificates/my-ca.crt > /dev/null
+          echo "${{ secrets.KUBE_HOST }} truenas.local" | sudo tee -a /etc/hosts > /dev/null
           sudo update-ca-certificates
 
       - name: Connect Tailscale
