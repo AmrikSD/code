@@ -28,6 +28,12 @@ jobs:
       - name: quick check before ts
         run: |
             curl 10.3.164.158:17878
+      - name: Run Terraform plan
+        run: |
+          terraform plan
+        env:
+          SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
+
 
       - name: Connect Tailscale
         uses: tailscale/github-action@v3
