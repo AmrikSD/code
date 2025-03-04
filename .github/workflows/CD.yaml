@@ -25,9 +25,6 @@ jobs:
         run: sops -v
       - name: Run Terraform
         run: terraform -v
-      - name: quick check before ts
-        run: |
-            curl 10.3.164.158:17878
       - name: Run Terraform plan
         run: |
           terraform -chdir=infra plan
