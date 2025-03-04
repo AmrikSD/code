@@ -30,7 +30,7 @@ jobs:
             curl 10.3.164.158:17878
       - name: Run Terraform plan
         run: |
-          terraform plan
+          terraform -chdir=infra plan
         env:
           SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
 
