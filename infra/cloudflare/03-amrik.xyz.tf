@@ -12,7 +12,7 @@ resource "cloudflare_record" "amrik_xyz" {
 
 resource "cloudflare_record" "test_amrik_xyz" {
   zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.xyz.zone_id"]
-  name    = "test"
+  name    = "testtwo"
   type    = "A"
   content = var.ip_address
 }
