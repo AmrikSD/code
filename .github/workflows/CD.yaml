@@ -14,3 +14,9 @@ jobs:
           oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
           tags: tag:ci
+      - name: quick check
+        run: |
+          ssh -o "StrictHostKeyChecking no" root@truenas-scale "
+            cd /
+            echo "HI" >> test.md
+          "
