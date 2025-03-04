@@ -17,6 +17,6 @@ jobs:
       - name: quick check
         run: |
           ssh -o "StrictHostKeyChecking no" root@truenas-scale "
-            cd /
+            cd ~
             echo "HI" >> test.md
           "
