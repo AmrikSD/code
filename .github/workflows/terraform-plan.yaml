@@ -1,8 +1,7 @@
-name: CD
+name: "Terraform Plan"
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    branches: ["main"]
 
 jobs:
   deploy-via-tailscale:
@@ -20,9 +19,6 @@ jobs:
         uses: nhedger/setup-sops@v2
         with:
           version: "3.9.1"
-
-      - name: Run SOPS
-        run: sops -v
 
       - name: Install self-signed CA
         run: |
@@ -44,8 +40,16 @@ jobs:
         run: |
           terraform -chdir=infra init
           terraform -chdir=infra validate
-          terraform -chdir=infra plan
+          set +e  # Allow capturing the exit code without failing immediately
+          terraform -chdir=infra plan -no-color -detailed-exitcode 2>&1 | tee ${{ github.workspace }}/plan_output.txt
+          echo "TF_EXIT_CODE=$?" >> $GITHUB_ENV
+          set -e  # Re-enable immediate failure for subsequent commands
 
-      - name: quick check
-        run: |
-            curl 10.3.164.158:17878
+
+      - name: Comment Terraform Plan on PR
+        uses: blinqas/tf-plan-pr-comment@v1
+        if: env.TF_EXIT_CODE == '2'
+        with:
+          output_file: ${{ github.workspace }}/plan_output.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
