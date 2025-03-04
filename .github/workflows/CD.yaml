@@ -24,6 +24,11 @@ jobs:
       - name: Run SOPS
         run: sops -v
 
+      - name: Install self-signed CA
+        run: |
+          echo "${{ secrets.SELF_SIGNED_CA }}" | sudo tee /usr/local/share/ca-certificates/my-ca.crt > /dev/null
+          sudo update-ca-certificates
+
       - name: Connect Tailscale
         uses: tailscale/github-action@v3
         with:
