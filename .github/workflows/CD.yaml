@@ -1,0 +1,16 @@
+name: CD
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-via-tailscale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect Tailscale
+        uses: tailscale/github-actions@v3
+        with:
+          oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
+          tags: tag:ci
