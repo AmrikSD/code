@@ -42,7 +42,7 @@ jobs:
           terraform -chdir=infra init
           terraform -chdir=infra validate
           set +e  # Allow capturing the exit code without failing immediately
-          terraform -chdir=infra plan -no-color -detailed-exitcode 2>&1 | tee ${{ github.workspace }}/plan_output.txt
+          terraform -chdir=infra plan -no-color -detailed-exitcode -out ${{ github.workspace }}/plan_output.txt
           echo "TF_EXIT_CODE=$?" >> $GITHUB_ENV
           set -e  # Re-enable immediate failure for subsequent commands
 
