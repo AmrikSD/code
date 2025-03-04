@@ -24,6 +24,13 @@ jobs:
       - name: Run SOPS
         run: sops -v
 
+      - name: Connect Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
+          tags: tag:ci
+
       - name: Terraform Init & Plan
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -34,12 +41,6 @@ jobs:
           terraform -chdir=infra validate
           terraform -chdir=infra plan
 
-      - name: Connect Tailscale
-        uses: tailscale/github-action@v3
-        with:
-          oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
-          tags: tag:ci
       - name: quick check
         run: |
             curl 10.3.164.158:17878
