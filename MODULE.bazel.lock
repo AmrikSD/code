@@ -1142,7 +1142,7 @@
     "@@rules_oci+//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "yPa1n/Tzr3Hf0K2yVlIKa+eg+PBYIHOdpeQIxgCn36E=",
-        "usagesDigest": "9dUPaY4EydBE3hJS5wIonDysAqLJG+mV8ja7CwjWFZo=",
+        "usagesDigest": "yw5yAmNJkCmtmHcTEtePKUvECzXD6ORHfFFYdUgbO7w=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1571,7 +1571,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/radarr",
-              "identifier": "sha256:75ff697c02b03287244008531cbade0e5e85713a9afc6f28d4d6a314dfbd862b",
+              "identifier": "sha256:0a8020afc5e3dcad1413ba125a980729a2b16ff0d88d108b3e1779111ef1c896",
               "platform": "linux/amd64",
               "target_name": "radarr_linux_amd64",
               "bazel_tags": []
@@ -1583,7 +1583,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/radarr",
-              "identifier": "sha256:75ff697c02b03287244008531cbade0e5e85713a9afc6f28d4d6a314dfbd862b",
+              "identifier": "sha256:0a8020afc5e3dcad1413ba125a980729a2b16ff0d88d108b3e1779111ef1c896",
               "platform": "linux/arm64",
               "target_name": "radarr_linux_arm64",
               "bazel_tags": []
@@ -1596,12 +1596,92 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/radarr",
-              "identifier": "sha256:75ff697c02b03287244008531cbade0e5e85713a9afc6f28d4d6a314dfbd862b",
+              "identifier": "sha256:0a8020afc5e3dcad1413ba125a980729a2b16ff0d88d108b3e1779111ef1c896",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@radarr_linux_amd64",
                 "@@platforms//cpu:arm64": "@radarr_linux_arm64"
               },
               "bzlmod_repository": "radarr",
+              "reproducible": true
+            }
+          },
+          "sonarr_linux_amd64": {
+            "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "linuxserver/sonarr",
+              "identifier": "sha256:4dfedb2598dc6bd51c40f4ecea2631dbe367840678ab109cd968f821d81a5327",
+              "platform": "linux/amd64",
+              "target_name": "sonarr_linux_amd64",
+              "bazel_tags": []
+            }
+          },
+          "sonarr_linux_arm64": {
+            "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "linuxserver/sonarr",
+              "identifier": "sha256:4dfedb2598dc6bd51c40f4ecea2631dbe367840678ab109cd968f821d81a5327",
+              "platform": "linux/arm64",
+              "target_name": "sonarr_linux_arm64",
+              "bazel_tags": []
+            }
+          },
+          "sonarr": {
+            "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_alias",
+            "attributes": {
+              "target_name": "sonarr",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "linuxserver/sonarr",
+              "identifier": "sha256:4dfedb2598dc6bd51c40f4ecea2631dbe367840678ab109cd968f821d81a5327",
+              "platforms": {
+                "@@platforms//cpu:x86_64": "@sonarr_linux_amd64",
+                "@@platforms//cpu:arm64": "@sonarr_linux_arm64"
+              },
+              "bzlmod_repository": "sonarr",
+              "reproducible": true
+            }
+          },
+          "qbittorrent_linux_amd64": {
+            "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "linuxserver/qbittorrent",
+              "identifier": "sha256:81a71641d2ee65fbecfabf3388f0d6b7b053e7266658b1fb7efee8900d06f010",
+              "platform": "linux/amd64",
+              "target_name": "qbittorrent_linux_amd64",
+              "bazel_tags": []
+            }
+          },
+          "qbittorrent_linux_arm64": {
+            "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_pull",
+            "attributes": {
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "linuxserver/qbittorrent",
+              "identifier": "sha256:81a71641d2ee65fbecfabf3388f0d6b7b053e7266658b1fb7efee8900d06f010",
+              "platform": "linux/arm64",
+              "target_name": "qbittorrent_linux_arm64",
+              "bazel_tags": []
+            }
+          },
+          "qbittorrent": {
+            "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_alias",
+            "attributes": {
+              "target_name": "qbittorrent",
+              "scheme": "https",
+              "registry": "index.docker.io",
+              "repository": "linuxserver/qbittorrent",
+              "identifier": "sha256:81a71641d2ee65fbecfabf3388f0d6b7b053e7266658b1fb7efee8900d06f010",
+              "platforms": {
+                "@@platforms//cpu:x86_64": "@qbittorrent_linux_amd64",
+                "@@platforms//cpu:arm64": "@qbittorrent_linux_arm64"
+              },
+              "bzlmod_repository": "qbittorrent",
               "reproducible": true
             }
           },
@@ -1984,7 +2064,13 @@
             "home-assistant_linux_386",
             "radarr",
             "radarr_linux_amd64",
-            "radarr_linux_arm64"
+            "radarr_linux_arm64",
+            "sonarr",
+            "sonarr_linux_amd64",
+            "sonarr_linux_arm64",
+            "qbittorrent",
+            "qbittorrent_linux_amd64",
+            "qbittorrent_linux_arm64"
           ],
           "explicitRootModuleDirectDevDeps": [],
           "useAllRepos": "NO",
