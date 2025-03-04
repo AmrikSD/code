@@ -16,7 +16,4 @@ jobs:
           tags: tag:ci
       - name: quick check
         run: |
-          ssh -o "StrictHostKeyChecking no" root@truenas-scale "
-            cd ~
-            echo "HI" >> test.md
-          "
+            echo 10.3.164.159 >> test.md
