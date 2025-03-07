@@ -38,8 +38,6 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: qbittorrent-config-storage
-            - mountPath: /movies
-              name: movies-nfs
             - mountPath: /downloads
               name: downloads-nfs
       volumes:
