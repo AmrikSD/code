@@ -63,11 +63,14 @@ spec:
     app: qbittorrent
   ports:
     - protocol: TCP
+      name: web
       port: 8080
       nodePort: 18080
     - protocol: TCP
+      name: torrent
       port: 6881
       nodePort: 6881
     - protocol: UDP
+      name: torrentUDP
       port: 6881
       nodePort: 6881
