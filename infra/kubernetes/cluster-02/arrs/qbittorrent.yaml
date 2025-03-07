@@ -35,7 +35,7 @@ spec:
               containerPort: 6881
             - name: torrent
               containerPort: 6881
-            - name: torrentUDP
+            - name: torrent-udp
               containerPort: 6881
           volumeMounts:
             - mountPath: /config
@@ -71,6 +71,6 @@ spec:
       port: 6881
       nodePort: 6881
     - protocol: UDP
-      name: torrentUDP
+      name: torrent-udp
       port: 6881
       nodePort: 6881
