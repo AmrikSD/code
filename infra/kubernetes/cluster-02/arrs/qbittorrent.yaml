@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: qbittorrent
-          image: ghcr.io/amriksd/qbittorrent@sha256:dbd95f9f81be435543b72bc02e1195139fab2ed4657f26460a2df489ca608825
+          image: ghcr.io/amriksd/qbittorrent@sha256:f0a923216f4353f29a489c516a6e15572e48ccee2174625e2181da10e19f1745
           env:
             - name: TZ
               value: Europe/London
