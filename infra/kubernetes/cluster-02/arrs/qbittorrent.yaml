@@ -26,9 +26,17 @@ spec:
               value: "1001"
             - name: PGID
               value: "1001"
+            - name: WEBUI_PORT
+              value: "8080"
+            - name: TORRENTING_PORT
+              value: "6881"
           ports:
             - name: web
-              containerPort: 7878
+              containerPort: 6881
+            - name: torrent
+              containerPort: 6881
+            - name: torrentUDP
+              containerPort: 6881
           volumeMounts:
             - mountPath: /config
               name: qbittorrent-config-storage
