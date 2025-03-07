@@ -4,3 +4,4 @@ resources:
   - namespace.yaml
   - radarr.yaml
   - sonarr.yaml
+  - qbittorrent.yaml

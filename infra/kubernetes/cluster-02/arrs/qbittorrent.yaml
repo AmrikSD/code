@@ -2,23 +2,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: radarr
+  name: qbittorrent
   namespace: arrs
   labels:
-    app: radarr
+    app: qbittorrent
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: radarr
+      app: qbittorrent
   template:
     metadata:
       labels:
-        app: radarr
+        app: qbittorrent
     spec:
       containers:
-        - name: radarr
-          image: ghcr.io/amriksd/radarr@sha256:dbd95f9f81be435543b72bc02e1195139fab2ed4657f26460a2df489ca608825
+        - name: qbittorrent
+          image: ghcr.io/amriksd/qbittorrent@sha256:dbd95f9f81be435543b72bc02e1195139fab2ed4657f26460a2df489ca608825
           env:
             - name: TZ
               value: Europe/London
@@ -31,18 +31,15 @@ spec:
               containerPort: 7878
           volumeMounts:
             - mountPath: /config
-              name: radarr-config-storage
+              name: qbittorrent-config-storage
             - mountPath: /movies
               name: movies-nfs
             - mountPath: /downloads
               name: downloads-nfs
       volumes:
-        - name: radarr-config-storage
+        - name: qbittorrent-config-storage
           hostPath:
-            path: /mnt/pool_01/media-server-config/radarr
-        - name: movies-nfs
-          hostPath:
-            path: /mnt/pool_01/Plex
+            path: /mnt/pool_01/media-server-config/qbittorrent
         - name: downloads-nfs
           hostPath:
             path: /mnt/pool_01/Downloads
@@ -50,13 +47,19 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: radarr
+  name: qbittorrent
   namespace: arrs
 spec:
   type: NodePort
   selector:
-    app: radarr
+    app: qbittorrent
   ports:
     - protocol: TCP
-      port: 7878
-      nodePort: 17878
+      port: 8080
+      nodePort: 18080
+    - protocol: TCP
+      port: 6881
+      nodePort: 6881
+    - protocol: UDP
+      port: 6881
+      nodePort: 6881
