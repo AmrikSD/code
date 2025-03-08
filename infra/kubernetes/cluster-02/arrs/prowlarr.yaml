@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+  namespace: arrs
+  labels:
+    app: prowlarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prowlarr
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+    spec:
+      containers:
+        - name: prowlarr
+          image: ghcr.io/amriksd/prowlarr@sha256:92171e337c9fb70dd9b2dc6f0a61df4fef0f5f349cc7c1562bf457f36bd1b6fe
+          env:
+            - name: TZ
+              value: Europe/London
+            - name: PUID
+              value: "1001"
+            - name: PGID
+              value: "1001"
+          ports:
+            - name: web
+              containerPort: 9696
+          volumeMounts:
+            - mountPath: /config
+              name: prowlarr-config-storage
+      volumes:
+        - name: prowlarr-config-storage
+          hostPath:
+            path: /mnt/pool_01/media-server-config/prowlarr
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prowlarr
+  namespace: arrs
+spec:
+  type: NodePort
+  selector:
+    app: prowlarr
+  ports:
+    - protocol: TCP
+      port: 9696
+      nodePort: 19696
