@@ -14,5 +14,6 @@ include("//infra/containers/home-assistant:home-assistant.MODULE.bazel")
 
 ### arrs  ###
 include("//infra/containers/radarr:radarr.MODULE.bazel")
+include("//infra/containers/prowlarr:prowlarr.MODULE.bazel")
 include("//infra/containers/sonarr:sonarr.MODULE.bazel")
 include("//infra/containers/qbittorrent:qbittorrent.MODULE.bazel")

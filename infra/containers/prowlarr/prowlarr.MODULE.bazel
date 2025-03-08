@@ -1,0 +1,18 @@
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+
+# renovate: datasource=docker depName=docker.io/linuxserver/prowlarr
+oci.pull(
+    name = "prowlarr",
+    digest = "sha256:83fd20b751042baa23c4c1de9599507a3677b9db153fc6ad1d477c575c08ac89",
+    image = "docker.io/linuxserver/prowlarr",
+    platforms = [
+        "linux/amd64",
+        "linux/arm64",
+    ],
+)
+use_repo(
+    oci,
+    "prowlarr",
+    "prowlarr_linux_amd64",
+    "prowlarr_linux_arm64",
+)
