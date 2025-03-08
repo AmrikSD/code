@@ -45,7 +45,7 @@ spec:
           - name: TS_DEBUG_FIREWALL_MODE
             value: auto
           - name: TS_EXTRA_ARGS
-            value: --exit-node-allow-lan-access --exit-node=100.111.198.95 --advertise-tags=prowlarr
+            value: "--exit-node-allow-lan-access --exit-node=100.111.198.95 --advertise-tags=tag:prowlarr"
           - name: TS_AUTHKEY
             valueFrom:
               secretKeyRef:
