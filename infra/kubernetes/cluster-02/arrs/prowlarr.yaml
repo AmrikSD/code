@@ -16,6 +16,7 @@ spec:
       labels:
         app: prowlarr
     spec:
+      serviceAccountName: "tailscale"
       containers:
         - name: prowlarr
           image: ghcr.io/amriksd/prowlarr@sha256:92171e337c9fb70dd9b2dc6f0a61df4fef0f5f349cc7c1562bf457f36bd1b6fe
@@ -32,6 +33,36 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: prowlarr-config-storage
+        - name: ts-sidecar
+          imagePullPolicy: always
+          image: "ghcr.io/tailscale/tailscale:latest"
+          env:
+            # Store the state in a k8s secret
+          - name: TS_KUBE_SECRET
+            value: "tailscale-auth"
+          - name: TS_USERSPACE
+            value: "false"
+          - name: TS_DEBUG_FIREWALL_MODE
+            value: auto
+          - name: TS_EXTRA_ARGS
+            value: "--exit-node=exit-node-aws"
+          - name: TS_AUTHKEY
+            valueFrom:
+              secretKeyRef:
+                name: tailscale-auth
+                key: TS_AUTHKEY
+                optional: true
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: POD_UID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.uid
+          securityContext:
+            privileged: true
+
       volumes:
         - name: prowlarr-config-storage
           hostPath:
