@@ -12,6 +12,8 @@ include("//infra/containers/grafana:grafana.MODULE.bazel")
 
 include("//infra/containers/home-assistant:home-assistant.MODULE.bazel")
 
+include("//infra/containers/wireguard:wireguard.MODULE.bazel")
+
 ### arrs  ###
 include("//infra/containers/radarr:radarr.MODULE.bazel")
 include("//infra/containers/prowlarr:prowlarr.MODULE.bazel")
