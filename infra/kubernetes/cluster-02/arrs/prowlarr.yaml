@@ -34,7 +34,7 @@ spec:
             - mountPath: /config
               name: prowlarr-config-storage
         - name: ts-sidecar
-          imagePullPolicy: always
+          imagePullPolicy: Always
           image: "ghcr.io/tailscale/tailscale:latest"
           env:
             # Store the state in a k8s secret
