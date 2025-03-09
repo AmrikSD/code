@@ -6,4 +6,4 @@ resources:
   - radarr.yaml
   - sonarr.yaml
   - qbittorrent.yaml
-  - jackett.yaml
+  - prowlarr.yaml
