@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prowlarr
+  name: jackett
   namespace: arrs
   labels:
-    app: prowlarr
+    app: jackett
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prowlarr
+      app: jackett
   template:
     metadata:
       labels:
-        app: prowlarr
+        app: jackett
     spec:
       serviceAccountName: "tailscale"
       containers:
-        - name: prowlarr
-          image: ghcr.io/amriksd/prowlarr@sha256:92171e337c9fb70dd9b2dc6f0a61df4fef0f5f349cc7c1562bf457f36bd1b6fe
+        - name: jackett
+          image: lscr.io/linuxserver/jackett:latest
           env:
             - name: TZ
               value: Europe/London
@@ -29,10 +29,12 @@ spec:
               value: "1001"
           ports:
             - name: web
-              containerPort: 9696
+              containerPort: 9117
           volumeMounts:
             - mountPath: /config
-              name: prowlarr-config-storage
+              name: jackett-config-storage
+            - mountPath: /downloads
+              name: downloads
         - name: ts-sidecar
           imagePullPolicy: Always
           image: "ghcr.io/tailscale/tailscale:latest"
@@ -45,7 +47,7 @@ spec:
           - name: TS_DEBUG_FIREWALL_MODE
             value: auto
           - name: TS_EXTRA_ARGS
-            value: "--exit-node-allow-lan-access --exit-node=100.111.198.95 --advertise-tags=tag:prowlarr"
+            value: "--exit-node-allow-lan-access --exit-node=100.111.198.95 --advertise-tags=tag:jackett"
           - name: TS_AUTHKEY
             valueFrom:
               secretKeyRef:
@@ -62,20 +64,23 @@ spec:
                 fieldPath: metadata.uid
 
       volumes:
-        - name: prowlarr-config-storage
+        - name: jackett-config-storage
           hostPath:
-            path: /mnt/pool_01/media-server-config/prowlarr
+            path: /mnt/pool_01/media-server-config/jackett
+        - name: downloads
+          hostPath:
+            path: /mnt/pool_01/Downloads
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: prowlarr
+  name: jackett
   namespace: arrs
 spec:
   type: NodePort
   selector:
-    app: prowlarr
+    app: jackett
   ports:
     - protocol: TCP
-      port: 9696
-      nodePort: 19696
+      port: 9117
+      nodePort: 19117
