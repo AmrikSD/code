@@ -41,11 +41,11 @@ spec:
           - name: TS_KUBE_SECRET
             value: "tailscale-auth"
           - name: TS_USERSPACE
-            value: "false"
+            value: "true"
           - name: TS_DEBUG_FIREWALL_MODE
             value: auto
           - name: TS_EXTRA_ARGS
-            value: "--exit-node-allow-lan-access --exit-node=100.111.198.95 --advertise-tags=tag:prowlarr"
+            value: "--exit-node-allow-lan-access --exit-node=aws-exit-node --advertise-tags=tag:prowlarr"
           - name: TS_AUTHKEY
             valueFrom:
               secretKeyRef:
@@ -60,8 +60,6 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.uid
-          securityContext:
-            privileged: true
 
       volumes:
         - name: prowlarr-config-storage
