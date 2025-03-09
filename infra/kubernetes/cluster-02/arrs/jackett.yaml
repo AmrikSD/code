@@ -43,7 +43,7 @@ spec:
           - name: TS_KUBE_SECRET
             value: "tailscale-auth"
           - name: TS_USERSPACE
-            value: "true"
+            value: "false"
           - name: TS_DEBUG_FIREWALL_MODE
             value: auto
           - name: TS_EXTRA_ARGS
@@ -62,6 +62,8 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.uid
+          securityContext:
+            privileged: true
 
       volumes:
         - name: jackett-config-storage
