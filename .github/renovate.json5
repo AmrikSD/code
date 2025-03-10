@@ -61,13 +61,14 @@
       ],
       "datasourceTemplate": "helm"
     },
+    // Read and process versions in bazel files
     {
       "fileMatch": [
         "infra/containers/.+/.+\\.MODULE\\.bazel$",
         "MODULE.bazel"
       ],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>\\w+) depName=(?<depName>[^\\s]+)\\s+\\S+_VERSION\\s*=\\s*\"(?<currentValue>[^\"]+)\""
+        "# renovate: datasource\\s*\\=\\s*(?<datasource>(\\w)+) depName=(?<depName>[^\\s]+)\\s+\\S+_VERSION\\s*=\\s*\"(?<currentValue>[^\"]+)\""
       ],
       "datasourceTemplate": "{{datasource}}",
       "depNameTemplate": "{{depName}}",
