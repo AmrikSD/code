@@ -1,9 +1,10 @@
 terraform {
   backend "s3" {
-    profile = "terraform"
-    bucket  = "berries-terraform"
-    key     = "terraform.tfstate"
-    region  = "eu-west-2"
+    profile      = "terraform"
+    bucket       = "berries-terraform"
+    key          = "terraform.tfstate"
+    region       = "eu-west-2"
+    use_lockfile = true
   }
 }
 module "cloudflare" {
@@ -16,9 +17,9 @@ module "gcp" {
 }
 
 module "kubernetes" {
-    source = "./kubernetes/"
-    github_repository = "code"
-    github_org = "AmrikSD"
+  source            = "./kubernetes/"
+  github_repository = "code"
+  github_org        = "AmrikSD"
 }
 
 module "unifi" {
@@ -39,11 +40,11 @@ module "unifi" {
       name = "Shelly Plus 2PM (Living Room)"
     },
     {
-      mac = "a0:dd:6c:4e:cc:88"
+      mac  = "a0:dd:6c:4e:cc:88"
       name = "Shelly Plus 2PM (Kate Office)"
     },
     {
-      mac = "a0:dd:6c:2e:63:90"
+      mac  = "a0:dd:6c:2e:63:90"
       name = "Shelly Plus 2PM (Master Bedroom)"
     },
     {
@@ -140,8 +141,8 @@ module "truenas" {
       description = "Blob storage"
     },
     {
-        name = "media-server-config"
-        description = "For the *arr apps to store config"
+      name        = "media-server-config"
+      description = "For the *arr apps to store config"
     },
   ]
 }
