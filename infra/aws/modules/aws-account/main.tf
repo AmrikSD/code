@@ -12,7 +12,7 @@ locals {
     ManagedBy = "terraform"
     CodeRepo  = "AmrikSD/Code"
     Module    = "aws-account"
-  },var.tags)
+  }, var.tags)
 }
 
 resource "aws_organizations_account" "account" {
@@ -31,8 +31,8 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 provider "aws" {
-  alias  = "new_account"
-  region = var.region
+  alias      = "new_account"
+  region     = var.region
   secret_key = var.secret_key
   access_key = var.access_key
   assume_role {
@@ -41,35 +41,35 @@ provider "aws" {
 }
 
 resource "aws_iam_user" "child_account" {
-    provider = aws.new_account
-    name = format("%s-terraform", var.name)
-    path = format("/%s/", var.name)
-    tags = local.tags
+  provider = aws.new_account
+  name     = format("%s-terraform", var.name)
+  path     = format("/%s/", var.name)
+  tags     = local.tags
 }
 
 data "aws_iam_policy_document" "child_iam_policy_document" {
-    provider = aws.new_account
-    statement {
-        sid = "1"
-        actions = [
-          "s3:*"
-        ]
-        resources = [
-          "arn:aws:s3:::${var.name}-terraform",
-          "arn:aws:s3:::${var.name}-terraform/*"
-        ]
-    }
+  provider = aws.new_account
+  statement {
+    sid = "1"
+    actions = [
+      "s3:*"
+    ]
+    resources = [
+      "arn:aws:s3:::${var.name}-terraform",
+      "arn:aws:s3:::${var.name}-terraform/*"
+    ]
+  }
 }
 
 resource "aws_iam_policy" "child_iam_policy" {
   provider = aws.new_account
-  name   = format("%s-terraform-policy", var.name)
-  path   = format("/%s/", var.name)
-  policy = data.aws_iam_policy_document.child_iam_policy_document.json
+  name     = format("%s-terraform-policy", var.name)
+  path     = format("/%s/", var.name)
+  policy   = data.aws_iam_policy_document.child_iam_policy_document.json
 }
 
 resource "aws_iam_user_policy_attachment" "child_policy_attach" {
-  provider = aws.new_account
+  provider   = aws.new_account
   user       = aws_iam_user.child_account.name
   policy_arn = aws_iam_policy.child_iam_policy.arn
 }

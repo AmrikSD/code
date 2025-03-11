@@ -1,13 +1,13 @@
-variable name {
-    type = string
+variable "name" {
+  type = string
 }
 
-variable email {
-    type = string
+variable "email" {
+  type = string
 }
 
-variable region {
-    type = string
+variable "region" {
+  type = string
 }
 
 variable "tags" {
@@ -17,11 +17,11 @@ variable "tags" {
 }
 
 variable "access_key" {
-    type = string
-    sensitive = true
+  type      = string
+  sensitive = true
 }
 
 variable "secret_key" {
-    type = string
-    sensitive = true
+  type      = string
+  sensitive = true
 }

@@ -6,41 +6,41 @@ terraform {
       version = "1.5.1"
     }
     github = {
-        source = "integrations/github"
-        version = "6.6"
+      source  = "integrations/github"
+      version = "6.6"
     }
     tls = {
-        source = "hashicorp/tls"
-        version = "4.0"
+      source  = "hashicorp/tls"
+      version = "4.0"
     }
     sops = {
-        source = "carlpett/sops"
-        version = "~> 1.1.0"
+      source  = "carlpett/sops"
+      version = "~> 1.1.0"
     }
   }
 }
 
 data "sops_file" "kubernetes-secret" {
-    source_file = "${path.module}/k8s.sops.yaml"
+  source_file = "${path.module}/k8s.sops.yaml"
 }
 
 provider "github" {
-    owner = data.sops_file.kubernetes-secret.data["github.owner"]
-    token = data.sops_file.kubernetes-secret.data["github.token"]
+  owner = data.sops_file.kubernetes-secret.data["github.owner"]
+  token = data.sops_file.kubernetes-secret.data["github.token"]
 }
 
 provider "flux" {
-    kubernetes = {
-        host = data.sops_file.kubernetes-secret.data["kubernetes.host"]
-        client_certificate = base64decode(data.sops_file.kubernetes-secret.data["kubernetes.client-certificate-data"])
-        client_key = base64decode(data.sops_file.kubernetes-secret.data["kubernetes.client-key-data"])
-        cluster_ca_certificate = base64decode(data.sops_file.kubernetes-secret.data["kubernetes.certificate-authority-data"])
+  kubernetes = {
+    host                   = data.sops_file.kubernetes-secret.data["kubernetes.host"]
+    client_certificate     = base64decode(data.sops_file.kubernetes-secret.data["kubernetes.client-certificate-data"])
+    client_key             = base64decode(data.sops_file.kubernetes-secret.data["kubernetes.client-key-data"])
+    cluster_ca_certificate = base64decode(data.sops_file.kubernetes-secret.data["kubernetes.certificate-authority-data"])
+  }
+  git = {
+    url = ("ssh://git@github.com/${var.github_org}/${var.github_repository}.git")
+    ssh = {
+      username    = "git"
+      private_key = tls_private_key.flux.private_key_pem
     }
-    git = {
-        url = ("ssh://git@github.com/${var.github_org}/${var.github_repository}.git")
-        ssh = {
-          username    = "git"
-          private_key = tls_private_key.flux.private_key_pem
-        }
-    }
+  }
 }
