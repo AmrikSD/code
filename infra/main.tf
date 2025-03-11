@@ -6,6 +6,7 @@ terraform {
     region       = "eu-west-2"
     use_lockfile = true
   }
+  required_version = "~> 1.11.1"
 }
 module "cloudflare" {
   source     = "./cloudflare/"

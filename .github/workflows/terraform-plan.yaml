@@ -22,7 +22,7 @@ jobs:
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.5.7"
+          terraform_version: "1.11.1"
 
       - name: Setup SOPS
         uses: nhedger/setup-sops@v2
