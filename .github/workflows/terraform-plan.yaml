@@ -3,6 +3,10 @@ on:
   pull_request:
     branches: ["main"]
 
+concurrency:
+  group: terraform-${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   deploy-via-tailscale:
     runs-on: ubuntu-latest
