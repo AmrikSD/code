@@ -147,3 +147,7 @@ module "truenas" {
     },
   ]
 }
+
+module "aws" {
+    source = "./aws"
+}
