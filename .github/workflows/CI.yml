@@ -22,5 +22,8 @@ jobs:
           key: ${{ runner.os }}-bazel-${{ hashFiles('.bazelversion', '.bazelrc', 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel') }}
           restore-keys: |
             ${{ runner.os }}-bazel-
+      - name: Clear Bazel cache
+        run: |
+          bazel clean --expunge
       - name: Check that the image builds
         run: bazel test //...
