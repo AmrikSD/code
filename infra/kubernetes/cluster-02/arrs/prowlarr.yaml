@@ -45,7 +45,7 @@ spec:
           - name: TS_DEBUG_FIREWALL_MODE
             value: auto
           - name: TS_EXTRA_ARGS
-            value: "--accept-routes"
+            value: "--reset"
           - name: TS_AUTHKEY
             valueFrom:
               secretKeyRef:
