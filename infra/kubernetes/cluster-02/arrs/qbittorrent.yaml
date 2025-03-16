@@ -65,8 +65,8 @@ spec:
     - protocol: TCP
       name: torrent
       port: 6881
-      nodePort: 16881
+      nodePort: 6881
     - protocol: UDP
       name: torrent-udp
       port: 6881
-      nodePort: 16881
+      nodePort: 6881
