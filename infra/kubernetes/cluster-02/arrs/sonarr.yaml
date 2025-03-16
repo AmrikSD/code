@@ -47,7 +47,7 @@ spec:
             type: ""
         - name: downloads-nfs
           hostPath:
-            path: /mnt/pool_01/Downloads
+            path: /mnt/pool_01/ix-applications/releases/qbittorrent/volumes/ix_volumes/config/Downloads
             type: ""
 ---
 apiVersion: v1
