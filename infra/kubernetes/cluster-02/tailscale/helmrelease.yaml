@@ -13,6 +13,9 @@ spec:
         name: tailscale
         namespace: tailscale
       interval: 1m
+  values:
+    apiServerProxyConfig:
+      mode: "true"
   valuesFrom:
     - kind: Secret
       name: tailscale-oauth-credentials
