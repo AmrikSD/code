@@ -59,7 +59,7 @@ maven.install(
         "org.jboss.resteasy:resteasy-jaxb-provider:" + RESTEASY_VERSION,
 
         # Jakarta EE
-        "jakarta.platform:jakarta.jakartaee-web-api:10.0.0",
+        "jakarta.platform:jakarta.jakartaee-web-api:11.0.0",
 
         # Jetty
         "org.eclipse.jetty:jetty-server:" + JETTY_VERSION,
