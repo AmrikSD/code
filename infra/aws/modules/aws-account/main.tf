@@ -49,14 +49,26 @@ resource "aws_iam_user" "child_account" {
 
 data "aws_iam_policy_document" "child_iam_policy_document" {
   provider = aws.new_account
+  # Terraform state needs to live inside the account
   statement {
     sid = "1"
     actions = [
       "s3:*"
     ]
     resources = [
-      "arn:aws:s3:::${var.name}-terraform",
-      "arn:aws:s3:::${var.name}-terraform/*"
+      "arn:aws:s3:::${var.name}-${aws_organizations_account.account.id}-terraform-state",
+      "arn:aws:s3:::${var.name}-${aws_organizations_account.account.id}-terraform-state/*"
+    ]
+  }
+  # The accounts should be allowed to make other s3 buckets. 
+  statement {
+    sid = "2"
+    actions = [
+      "s3:*"
+    ]
+    resources = [
+      "arn:aws:s3:::${var.name}-${aws_organizations_account.account.id}-*",
+      "arn:aws:s3:::${var.name}-${aws_organizations_account.account.id}-*/*"
     ]
   }
 }
@@ -76,7 +88,7 @@ resource "aws_iam_user_policy_attachment" "child_policy_attach" {
 
 resource "aws_s3_bucket" "account_bucket" {
   provider = aws.new_account
-  bucket   = "${var.name}-terraform-state"
+  bucket   = "${var.name}-${aws_organizations_account.account.id}-terraform-state"
   tags     = local.tags
 
   depends_on = [aws_organizations_account.account]
@@ -103,6 +115,14 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "state_encryption"
 resource "aws_iam_access_key" "terraform_user" {
   provider = aws.new_account
   user     = aws_iam_user.child_account.name
+}
+
+output "account_id" {
+    value = aws_organizations_account.account.id
+}
+
+output "account_name" {
+    value = aws_organizations_account.account.name
 }
 
 output "terraform_access_key" {

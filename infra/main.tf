@@ -150,13 +150,3 @@ module "truenas" {
 module "aws" {
   source = "./aws"
 }
-
-output "mm-access-key" {
-  value     = module.aws.mm-access-key
-  sensitive = true
-}
-
-output "mm-secret-key" {
-  value     = module.aws.mm-secret-key
-  sensitive = true
-}
