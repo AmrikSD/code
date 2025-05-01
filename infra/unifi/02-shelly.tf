@@ -17,7 +17,7 @@ resource "unifi_user" "shellys" {
   fixed_ip         = format("10.0.220.%d", each.key + 110) # Start incrementing from 10.0.220.110
   local_dns_record = format("shelly-%d.int.amrik.co.uk", each.key + 110)
 
-  network_id = unifi_network.iot.id
+  network_id = unifi_network.default.id
 }
 
 resource "unifi_firewall_group" "shellys" {
