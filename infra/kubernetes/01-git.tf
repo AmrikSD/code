@@ -27,6 +27,7 @@ resource "github_repository_deploy_key" "this" {
 
 resource "flux_bootstrap_git" "this" {
   depends_on = [github_repository_deploy_key.this]
+  count = 0
 
   embedded_manifests = true
   path               = "infra/kubernetes/cluster-02/"
