@@ -1,6 +1,6 @@
 unifi:
-    username: ENC[AES256_GCM,data:hSrbENo=,iv:36xVoQTMNdED5dmv5jF4veD2aBSh2jK1JXNdYjlbuTM=,tag:RxnmjMi5iDlgYyxvN47Q+w==,type:str]
-    password: ENC[AES256_GCM,data:BfuMfnrQF6oB0P5s,iv:wZQz8fjcj7F6cA9AHfffuneMRgToIuLLsEstQO+I7WA=,tag:Jxuv0qWNVF4y7O48vPGXTw==,type:str]
+    username: ENC[AES256_GCM,data:26kYSSc=,iv:7lKLVA2hyHp+g5ngwgc34OllPfTD0539agQOOb5jjdg=,tag:4Mc87vAEmSERcjTTtO/4Aw==,type:str]
+    password: ENC[AES256_GCM,data:R4YG68JtXlTEoQsfRhFCXQBDv6EncDih+pRds1wBE2JbN1kMOpoP,iv:C0BVzDYNaEcJtDDyLVV+WeAwLrSmZvUujW76zDtn3n0=,tag:LEU8X09+4HIrAMLA0l2pIw==,type:str]
     iotpw: ENC[AES256_GCM,data:kWQ2IsZaS6picUi4xkwqN2KXJg==,iv:T8CihMXTpNxNTqaTCdJVS51qBCLvLa31+uufBPmkHUE=,tag:xnz5RKunBbWHAqpXx+xPtA==,type:str]
 sops:
     kms: []
@@ -17,8 +17,8 @@ sops:
             elhIS2xqVU1EM0huRHVTS0p2NEcwVEUKXP94xGmRMj2ljJ88UHdTtf7oY9C/WXJN
             cc1Y/NO3v1nNZLXg86BIVMO4v901c/bq91aRbt4KGN786zz92e8NoQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-01-13T23:06:00Z"
-    mac: ENC[AES256_GCM,data:ReBMFamUpCUffby2SRdSm3e9KQFYmVPwY1BZjeF3JbI1O9ozQvBybmY2BVDzqYAB2SnXAaDp/Y7Mu175O4DHhyiUprnRvZQH1ha+nGaAOEwmiSw42JNdZxOb3yLaDdEFyO1g0WisZB0jYBWOFx2Qii0wCOm8yJsoXXV+x3V8kCE=,iv:OiGoPNkiyABatRnzhsoR9xWaj0k2Gy3pH3pE/ZlTwHo=,tag:2aq1CHmKZl7K2MrNtPVL0A==,type:str]
+    lastmodified: "2025-05-04T20:55:14Z"
+    mac: ENC[AES256_GCM,data:hihZotKjFAEcQrL5PrviTM0sagbeQQgBEgYcTDVbWzfXKZHTzvCsz2VMYYFV9kcWzhp10NqAGepGAxE4DMS5nPVuhiSGUBrYR83zS47uB0LiFuWUuQkDuir9h+9mxcB513TpWE3rLniSTeNafvXb5OFgiq9DfGFBDceTKwY6VSE=,iv:91KCXjxfy8cmwtOVmZAoEWAZNDqDUIesGmsIJBR4r5o=,tag:aQdzsWW/aUsAI1gv5Y/Nzg==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.9.1
