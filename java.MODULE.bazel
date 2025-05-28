@@ -23,7 +23,7 @@ JACKSON_VERSION = "2.19.0"
 JOOQ_VERSION = "3.20.4"
 
 # renovate: datasource=maven depName=org.postgresql:postgresql
-POSTGRES_VERSION = "42.7.5"
+POSTGRES_VERSION = "42.7.6"
 
 # renovate: datasource=maven depName=org.assertj:assertj-core
 ASSERTJ_VERSION = "3.27.3"
