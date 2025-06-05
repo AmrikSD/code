@@ -17,3 +17,35 @@ resource "cloudflare_record" "test_amrik_xyz" {
   content = var.ip_address
 }
 
+resource "random_bytes" "tunnel_secret" {
+  length = 32
+}
+
+resource "cloudflare_zero_trust_tunnel_cloudflared" "gcp_tunnel" {
+  account_id = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
+  name       = "Frappe tunnel - terraform"
+  secret     = random_bytes.tunnel_secret.base64
+}
+
+resource "cloudflare_record" "frappe_app" {
+  zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.xyz.zone_id"]
+  name    = "frappe_app"
+  content = cloudflare_zero_trust_tunnel_cloudflared.gcp_tunnel.cname
+  type    = "CNAME"
+  proxied = true
+}
+
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "gcp_tunnel_config" {
+  account_id = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
+  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.gcp_tunnel.id
+  config {
+    ingress_rule {
+      hostname = cloudflare_record.frappe_app.hostname
+      service  = "http://localhost:8080"
+    }
+    ingress_rule {
+      service = "http_status:404"
+    }
+  }
+}
+
