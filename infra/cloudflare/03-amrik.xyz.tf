@@ -15,13 +15,6 @@ resource "cloudflare_record" "amrik_xyz" {
   content = var.ip_address
 }
 
-resource "cloudflare_record" "test_amrik_xyz" {
-  zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.xyz.zone_id"]
-  name    = "test"
-  type    = "A"
-  content = var.ip_address
-}
-
 resource "cloudflare_zero_trust_tunnel_cloudflared" "gcp_tunnel" {
   account_id = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
   name       = "Frappe tunnel - terraform"
