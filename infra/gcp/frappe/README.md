@@ -42,3 +42,9 @@ cp site_config.json site_config.json.old
 ```
 
 do not change the password or db name... even after the restore file the creds do not go to the old ones.
+
+If you have migrated to a newer version of frappe, you may need to run migrations before the website works again.
+```
+bench migrate
+```
+

@@ -3,6 +3,11 @@ variable "ip_address" {
   type        = string
 }
 
+variable "tunnel_secret" {
+  description = "The secret used to seed the cloudflare tunnel"
+  type        = string
+}
+
 resource "cloudflare_record" "amrik_xyz" {
   zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.xyz.zone_id"]
   name    = "@"
@@ -17,14 +22,10 @@ resource "cloudflare_record" "test_amrik_xyz" {
   content = var.ip_address
 }
 
-resource "random_bytes" "tunnel_secret" {
-  length = 32
-}
-
 resource "cloudflare_zero_trust_tunnel_cloudflared" "gcp_tunnel" {
   account_id = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
   name       = "Frappe tunnel - terraform"
-  secret     = random_bytes.tunnel_secret.base64
+  secret     = var.tunnel_secret
 }
 
 resource "cloudflare_record" "frappe_app" {
@@ -41,7 +42,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "gcp_tunnel_config" {
   config {
     ingress_rule {
       hostname = cloudflare_record.frappe_app.hostname
-      service  = "http://localhost:8080"
+      service  = "http://frontend:8080"
     }
     ingress_rule {
       service = "http_status:404"
@@ -49,3 +50,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "gcp_tunnel_config" {
   }
 }
 
+
+output "tunnel_id" {
+  value = cloudflare_zero_trust_tunnel_cloudflared.gcp_tunnel.id
+}

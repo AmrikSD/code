@@ -88,10 +88,11 @@ services:
       - frontend
     deploy:
       restart_policy:
-        condition: always
-    command: tunnel --no-autoupdate run --token ${CF_TOKEN}
-    environment:
-      CF_TOKEN: ${CF_TOKEN}
+        condition: on-failure
+    command: tunnel --no-autoupdate --config /etc/cloudflared/cloudflared-config.yaml run --credentials-file /etc/cloudflared/cloudflared-creds.json
+    volumes:
+      - ./cloudflared-creds.json:/etc/cloudflared/cloudflared-creds.json:ro
+      - ./cloudflared-config.yaml:/etc/cloudflared/cloudflared-config.yaml:ro
 
   frontend:
     image: frappe/erpnext:v15.55.2

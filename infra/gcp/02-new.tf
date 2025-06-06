@@ -1,3 +1,30 @@
+variable "cf_tunnel_id" { type = string }
+variable "cf_account_id" { type = string }
+variable "cf_tunnel_secret" { type = string }
+
+locals {
+  cloudflared_credentials_json = jsonencode({
+    AccountTag   = var.cf_account_id
+    TunnelID     = var.cf_tunnel_id
+    TunnelSecret = var.cf_tunnel_secret
+  })
+  cloudflared_config_yaml = yamlencode({
+    url      = "frontend:8080"
+    tunnel   = var.cf_tunnel_id
+    protocol = "http2"
+
+    # when this is finally referenced, it's from the perspective of the cloudflared container.
+    # if you change this, you need to edit the docker compose under the frappe directory
+    credentials_file = "/etc/cloudflared/cloudflared-creds.json"
+  })
+
+  cloudflared_config_hash      = md5(local.cloudflared_config_yaml)
+  cloudflared_credentials_hash = md5(local.cloudflared_credentials_json)
+  docker_service_hash          = filemd5("${path.module}/frappe/docker.service")
+  docker_compose_app_hash      = filemd5("${path.module}/frappe/docker-compose.app.service")
+  next_compose_yaml_hash       = filemd5("${path.module}/frappe/next-compose.yaml")
+}
+
 resource "google_compute_address" "frappe-static-next" {
   name = "frappe-static-next"
 }
@@ -31,9 +58,6 @@ resource "google_compute_instance" "frappe-next" {
 
         apt-get update
         apt-get install -y docker-ce docker-compose
-
-        systemctl enable --now /home/asbotehg/docker.service
-        systemctl enable --now /home/asbotehg/docker-compose.app.service
     EOT
   }
 
@@ -44,29 +68,54 @@ resource "google_compute_instance" "frappe-next" {
       nat_ip = google_compute_address.frappe-static-next.address
     }
   }
+}
 
-  provisioner "file" {
-    source      = "${path.module}/frappe/docker.service"
-    destination = "docker.service"
-    connection {
-      type        = "ssh"
-      host        = self.network_interface[0].access_config[0].nat_ip
-      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
-      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
-      timeout     = "4m"
-    }
+# This is done as a null resource so that diffs are calculated properly in the case of the local files here changing.
+# Terraform does not track provisioners only resources so without this you need to manually taint the resource.
+
+resource "null_resource" "upload_cloudflared_config" {
+  triggers = {
+    creds_hash = local.cloudflared_config_hash
   }
 
   provisioner "file" {
-    source      = "${path.module}/frappe/docker-compose.app.service"
-    destination = "docker-compose.app.service"
+    content     = local.cloudflared_config_yaml
+    destination = "/home/${data.sops_file.gcp-secret.data["google.ssh.user"]}/cloudflared-config.yaml"
+
     connection {
       type        = "ssh"
-      host        = self.network_interface[0].access_config[0].nat_ip
+      host        = google_compute_instance.frappe-next.network_interface[0].access_config[0].nat_ip
       user        = data.sops_file.gcp-secret.data["google.ssh.user"]
       private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
-      timeout     = "4m"
+      timeout     = "3m"
     }
+  }
+  depends_on = [google_compute_instance.frappe-next]
+}
+
+resource "null_resource" "upload_cloudflared_creds" {
+  triggers = {
+    creds_hash = local.cloudflared_credentials_hash
+  }
+
+  provisioner "file" {
+    content     = local.cloudflared_credentials_json
+    destination = "/home/${data.sops_file.gcp-secret.data["google.ssh.user"]}/cloudflared-creds.json"
+
+    connection {
+      type        = "ssh"
+      host        = google_compute_instance.frappe-next.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "3m"
+    }
+  }
+  depends_on = [google_compute_instance.frappe-next]
+}
+
+resource "null_resource" "upload_next_compose" {
+  triggers = {
+    docker_compose_hash = local.next_compose_yaml_hash
   }
 
   provisioner "file" {
@@ -74,10 +123,86 @@ resource "google_compute_instance" "frappe-next" {
     destination = "docker-compose.yaml"
     connection {
       type        = "ssh"
-      host        = self.network_interface[0].access_config[0].nat_ip
+      host        = google_compute_instance.frappe-next.network_interface[0].access_config[0].nat_ip
       user        = data.sops_file.gcp-secret.data["google.ssh.user"]
       private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
       timeout     = "4m"
     }
   }
+  depends_on = [google_compute_instance.frappe-next]
 }
+
+resource "null_resource" "upload_systemd_docker_compose_service" {
+  triggers = {
+    systemd_docker_compose_service_hash = local.docker_compose_app_hash
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/frappe/docker-compose.app.service"
+    destination = "docker-compose.app.service"
+    connection {
+      type        = "ssh"
+      host        = google_compute_instance.frappe-next.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "4m"
+    }
+  }
+
+  depends_on = [google_compute_instance.frappe-next]
+}
+
+resource "null_resource" "upload_systemd_docker_service" {
+  triggers = {
+    systemd_docker_service_hash = local.docker_service_hash
+  }
+
+  provisioner "file" {
+    source      = "${path.module}/frappe/docker.service"
+    destination = "docker.service"
+    connection {
+      type        = "ssh"
+      host        = google_compute_instance.frappe-next.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "4m"
+    }
+  }
+  depends_on = [google_compute_instance.frappe-next]
+}
+
+resource "null_resource" "start_services" {
+  triggers = {
+    creds_hash                          = local.cloudflared_credentials_hash
+    config_hash                         = local.cloudflared_config_hash
+    docker_compose_hash                 = local.next_compose_yaml_hash
+    systemd_docker_compose_service_hash = local.docker_compose_app_hash
+    systemd_docker_service_hash         = local.docker_service_hash
+  }
+
+  depends_on = [
+    google_compute_instance.frappe-next,
+    null_resource.upload_cloudflared_config,
+    null_resource.upload_cloudflared_creds,
+    null_resource.upload_next_compose,
+    null_resource.upload_systemd_docker_service,
+    null_resource.upload_systemd_docker_compose_service,
+  ]
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo systemctl daemon-reload",
+      "sudo systemctl enable --now /home/${data.sops_file.gcp-secret.data["google.ssh.user"]}/docker.service",
+      "sudo systemctl enable --now /home/${data.sops_file.gcp-secret.data["google.ssh.user"]}/docker-compose.app.service",
+    ]
+
+    connection {
+      type        = "ssh"
+      host        = google_compute_instance.frappe-next.network_interface[0].access_config[0].nat_ip
+      user        = data.sops_file.gcp-secret.data["google.ssh.user"]
+      private_key = data.sops_file.gcp-secret.data["google.ssh.private_key"]
+      timeout     = "3m"
+    }
+  }
+}
+

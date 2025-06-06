@@ -6,14 +6,33 @@ terraform {
     use_lockfile = true
   }
   required_version = "~> 1.12.0"
+  required_providers {
+    sops = {
+      source  = "carlpett/sops"
+      version = "~> 1.2.0"
+    }
+  }
 }
+
+data "sops_file" "cloudflare-secret" {
+  source_file = "${path.module}/cloudflare/cloudflare.sops.yaml"
+}
+
+resource "random_bytes" "tunnel_secret" {
+  length = 32
+}
+
 module "cloudflare" {
-  source     = "./cloudflare/"
-  ip_address = module.gcp.frappe_ip_address
+  source        = "./cloudflare/"
+  ip_address    = module.gcp.frappe_ip_address
+  tunnel_secret = random_bytes.tunnel_secret.base64
 }
 
 module "gcp" {
-  source = "./gcp/"
+  source           = "./gcp/"
+  cf_account_id    = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
+  cf_tunnel_id     = module.cloudflare.tunnel_id
+  cf_tunnel_secret = random_bytes.tunnel_secret.base64
 }
 
 module "kubernetes" {
