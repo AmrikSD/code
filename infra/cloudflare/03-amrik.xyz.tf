@@ -30,7 +30,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared" "gcp_tunnel" {
 
 resource "cloudflare_record" "frappe_app" {
   zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.xyz.zone_id"]
-  name    = "frappe_app"
+  name    = "new"
   content = cloudflare_zero_trust_tunnel_cloudflared.gcp_tunnel.cname
   type    = "CNAME"
   proxied = true
