@@ -3,7 +3,7 @@ oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 # renovate: datasource=docker depName=docker.io/linuxserver/prowlarr
 oci.pull(
     name = "prowlarr",
-    digest = "sha256:1a6cdd0cc2350f8527dab39bc8467c9a2553bbbcf75a2c66f882fc53d73d5deb",
+    digest = "sha256:b058be8a4e083e0cba238f03759994617a559abe0c89e5ed66454b44395da6a9",
     image = "docker.io/linuxserver/prowlarr",
     platforms = [
         "linux/amd64",
