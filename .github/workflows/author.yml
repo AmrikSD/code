@@ -6,6 +6,8 @@ on:
 
 jobs:
   test-image:
+    permissions: 
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: PR Comment warning
