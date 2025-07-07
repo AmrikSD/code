@@ -16,5 +16,8 @@ jobs:
         with:
           message-id: ${{ github.event.pull_request.number }}
           message: |
-            # ⚠️This PR will be overwritten by changes in the `my/repo` repository
-            Please go blah blah
+            ### ⚠️This PR will be overwritten by changes in the `my/repo` repository
+            You probably want to make changes in the `my/repo`.
+            No changes to this, or any cluster repository will persist, all code is managed through the `templates/platform-managed-clusters` repositories.
+            
+            If you're still confused, please reach out in #slack
