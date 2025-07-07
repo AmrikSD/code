@@ -1,0 +1,15 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print PR Author
+        run: |
+          echo "Pull Request Author: ${{ github.event.pull_request.user.login }}"
+          echo "Author Display Name: ${{ github.event.pull_request.user.name }}"
+          echo "Author Email: ${{ github.event.pull_request.user.email }}"
