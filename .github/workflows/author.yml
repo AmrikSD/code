@@ -1,4 +1,4 @@
-name: CI
+name: Only PRs allowed by specific authors
 on:
   pull_request:
     branches:
@@ -13,3 +13,10 @@ jobs:
           echo "Pull Request Author: ${{ github.event.pull_request.user.login }}"
           echo "Author Display Name: ${{ github.event.pull_request.user.name }}"
           echo "Author Email: ${{ github.event.pull_request.user.email }}"
+      - name: PR Comment warning
+        if: github.event.pull_request.user.login != 'AmrikSD'
+        uses: mshick/add-pr-comment@v2
+        message-id: ${{ github.event.pull_request.number }}
+        message: |
+          # ⚠️This PR will be overwritten by changes in the `my/repo` repository
+          Please go blah blah
