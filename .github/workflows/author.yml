@@ -8,15 +8,11 @@ jobs:
   test-image:
     runs-on: ubuntu-latest
     steps:
-      - name: Print PR Author
-        run: |
-          echo "Pull Request Author: ${{ github.event.pull_request.user.login }}"
-          echo "Author Display Name: ${{ github.event.pull_request.user.name }}"
-          echo "Author Email: ${{ github.event.pull_request.user.email }}"
       - name: PR Comment warning
-        if: github.event.pull_request.user.login != 'AmrikSD'
-        uses: mshick/add-pr-comment@v2
-        message-id: ${{ github.event.pull_request.number }}
-        message: |
-          # ⚠️This PR will be overwritten by changes in the `my/repo` repository
-          Please go blah blah
+        if: github.event.pull_request.user.login == 'AmrikSD'
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message-id: ${{ github.event.pull_request.number }}
+          message: |
+            # ⚠️This PR will be overwritten by changes in the `my/repo` repository
+            Please go blah blah
