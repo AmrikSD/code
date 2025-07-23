@@ -8,6 +8,8 @@ public class RolodexServletConfig extends GuiceServletContextListener {
 
     @Override
     protected Injector getInjector() {
-        return Guice.createInjector(new RolodexServletModule());
+        return Guice.createInjector(
+                new RolodexServletModule()
+        );
     }
 }

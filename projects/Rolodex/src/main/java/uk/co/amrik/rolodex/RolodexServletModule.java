@@ -2,7 +2,7 @@ package uk.co.amrik.rolodex;
 
 import com.google.inject.Scopes;
 import com.google.inject.servlet.ServletModule;
-import uk.co.amrik.rolodex.health.HealthCheckServlet;
+import uk.co.amrik.rolodex.services.health.HealthCheckServlet;
 
 public class RolodexServletModule extends ServletModule {
     @Override

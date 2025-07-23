@@ -1,4 +1,4 @@
-package uk.co.amrik.rolodex.health;
+package uk.co.amrik.rolodex.services.health;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
