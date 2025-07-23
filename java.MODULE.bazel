@@ -8,7 +8,7 @@ GUICE_VERSION = "7.0.0"
 RESTEASY_VERSION = "7.0.0.Beta1"
 
 # renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
-JETTY_VERSION = "11.0.25"
+JETTY_VERSION = "12.0.23"
 
 # renovate: datasource=maven depName=org.glassfish.jersey:jersey-bom
 JERSEY_VERSION = "4.0.0-M2"
@@ -40,55 +40,25 @@ maven.install(
     artifacts = [
         # Testing
         "org.assertj:assertj-core:" + ASSERTJ_VERSION,
-        "org.junit.platform:junit-platform-launcher:" + JUNIT_PLATFORM_VERSION,
-        "org.junit.platform:junit-platform-reporting:" + JUNIT_PLATFORM_VERSION,
-        "org.junit.jupiter:junit-jupiter-api:" + JUNIT_VERSION,
-        "org.junit.jupiter:junit-jupiter-engine:" + JUNIT_VERSION,
-        "org.mockito:mockito-core:" + MOCKITO_VERSION,
-        "org.mockito:mockito-junit-jupiter:" + MOCKITO_VERSION,
-        "org.testcontainers:junit-jupiter:" + TESTCONTAINERS_VERSION,
-        "org.testcontainers:postgresql:" + TESTCONTAINERS_VERSION,
 
         # Dependency Injection
         "com.google.inject:guice:" + GUICE_VERSION,
         "com.google.inject.extensions:guice-servlet:" + GUICE_VERSION,
 
-        # Resteasy
-        "org.jboss.resteasy:resteasy-servlet-initializer:" + RESTEASY_VERSION,
-        "org.jboss.resteasy:resteasy-client:" + RESTEASY_VERSION,
-        "org.jboss.resteasy:resteasy-jaxb-provider:" + RESTEASY_VERSION,
-
-        # Jakarta EE
-        "jakarta.platform:jakarta.jakartaee-web-api:11.0.0",
-
         # Jetty
         "org.eclipse.jetty:jetty-server:" + JETTY_VERSION,
-        "org.eclipse.jetty:jetty-servlet:" + JETTY_VERSION,
-        "org.eclipse.jetty:jetty-util:" + JETTY_VERSION,
+        "org.eclipse.jetty:jetty-slf4j-impl:" + JETTY_VERSION,
+        "org.eclipse.jetty.ee10:jetty-ee10-servlet:" + JETTY_VERSION,
 
-        # Jersey
-        "org.glassfish.jersey.core:jersey-server:" + JERSEY_VERSION,
-        "org.glassfish.jersey.containers:jersey-container-servlet-core:" + JERSEY_VERSION,
-        "org.glassfish.jersey.inject:jersey-hk2:" + JERSEY_VERSION,
-        "org.glassfish.jersey.media:jersey-media-json-jackson:" + JERSEY_VERSION,
+        # Jakarta Servlet API (for EE10)
+        "jakarta.servlet:jakarta.servlet-api:6.0.0",
 
-        # Flyway
-        "org.flywaydb:flyway-core:" + FLYWAY_VERSION,
-        "org.flywaydb:flyway-database-postgresql:" + FLYWAY_VERSION,
-
-        # Jackson
-        "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:" + JACKSON_VERSION,
-
-        # PostgreSQL
-        "org.postgresql:postgresql:" + POSTGRES_VERSION,
-
-        # jOOQ
-        "org.jooq:jooq:" + JOOQ_VERSION,
+        "org.slf4j:slf4j-api:2.0.17",
     ],
     fetch_sources = True,
     repositories = [
-        "http://uk.maven.org/maven2",
-        "https://jcenter.bintray.com/",
+        "https://repo1.maven.org/maven2",
+        "https://maven.google.com"
     ],
 )
 use_repo(maven, "maven")

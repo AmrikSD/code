@@ -9,26 +9,14 @@ COMMON_DEPS = [
     "@maven//:org_eclipse_jetty_jetty_server",
     "@maven//:org_eclipse_jetty_ee10_jetty_ee10_servlet",
     "@maven//:jakarta_servlet_jakarta_servlet_api",
-    "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/health",
 ]
 
 RUNTIME_DEPS = [
     "@maven//:org_eclipse_jetty_jetty_slf4j_impl",
 ]
 
-TEST_DEPS = []
-
-java_binary(
-    name = "Rolodex",
-    srcs = [":srcs"],
-    main_class = "uk.co.amrik.rolodex.Rolodex",
-    deps = [
-        ":rolodex",
-    ] + RUNTIME_DEPS + COMMON_DEPS,
-)
-
 java_library(
-    name = "rolodex",
+    name = "health",
     srcs = glob(
         ["*.java"],
     ),

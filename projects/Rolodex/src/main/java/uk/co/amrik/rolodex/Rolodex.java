@@ -1,44 +1,29 @@
 package uk.co.amrik.rolodex;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import com.google.inject.servlet.GuiceFilter;
+import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.DefaultServlet;
-import org.eclipse.jetty.servlet.ServletContextHandler;
-import org.eclipse.jetty.servlet.ServletHolder;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.servlet.ServletContainer;
-import uk.co.amrik.rolodex.order.OrderApplication;
-import uk.co.amrik.rolodex.user.UserApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Rolodex {
 
+    private static final Logger logger = LoggerFactory.getLogger(Rolodex.class);
+    private static final int PORT = 8080;
+
     public static void main(String ...args) throws Exception {
+        Server server = new Server(PORT);
 
-        Injector injector = Guice.createInjector(new RolodexModule());
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+        context.setContextPath("/");
+        server.setHandler(context);
 
-        OrderApplication orderApplication = injector.getInstance(OrderApplication.class);
-        UserApplication userApplication = injector.getInstance(UserApplication.class);
+        context.addFilter(GuiceFilter.class, "/*", null);
+        context.addEventListener(new RolodexServletConfig());
 
-
-        Server server = new Server(8080);
-        ServletContextHandler servletContextHandler = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
-        servletContextHandler.setContextPath("/");
-        servletContextHandler.addServlet(DefaultServlet.class, "/");
-
-        addServletForApplication(servletContextHandler, orderApplication, "/api/order/*");
-        addServletForApplication(servletContextHandler, userApplication, "/api/another/*");
-
-        server.setHandler(servletContextHandler);
+        logger.info("Starting Rolodex server on port {}", PORT);
         server.start();
         server.join();
-
-        System.out.println("Hello");
-    }
-
-    private static void addServletForApplication(ServletContextHandler context, ResourceConfig app, String pathSpec) {
-        ServletHolder sh = context.addServlet(ServletContainer.class, pathSpec);
-        sh.setInitParameter("jakarta.ws.rs.Application", app.getClass().getName());
     }
 
 }
