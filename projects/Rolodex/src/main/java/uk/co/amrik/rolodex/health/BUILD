@@ -3,12 +3,12 @@ load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 package(default_visibility = ["//visibility:public"])
 
 COMMON_DEPS = [
-    "@maven//:com_google_inject_guice",
     "@maven//:com_google_inject_extensions_guice_servlet",
-    "@maven//:org_slf4j_slf4j_api",
-    "@maven//:org_eclipse_jetty_jetty_server",
-    "@maven//:org_eclipse_jetty_ee10_jetty_ee10_servlet",
+    "@maven//:com_google_inject_guice",
     "@maven//:jakarta_servlet_jakarta_servlet_api",
+    "@maven//:org_eclipse_jetty_ee10_jetty_ee10_servlet",
+    "@maven//:org_eclipse_jetty_jetty_server",
+    "@maven//:org_slf4j_slf4j_api",
 ]
 
 RUNTIME_DEPS = [

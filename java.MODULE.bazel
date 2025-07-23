@@ -42,13 +42,13 @@ maven.install(
         "org.assertj:assertj-core:" + ASSERTJ_VERSION,
 
         # Dependency Injection
-        "com.google.inject:guice:" + GUICE_VERSION,
         "com.google.inject.extensions:guice-servlet:" + GUICE_VERSION,
+        "com.google.inject:guice:" + GUICE_VERSION,
 
         # Jetty
+        "org.eclipse.jetty.ee10:jetty-ee10-servlet:" + JETTY_VERSION,
         "org.eclipse.jetty:jetty-server:" + JETTY_VERSION,
         "org.eclipse.jetty:jetty-slf4j-impl:" + JETTY_VERSION,
-        "org.eclipse.jetty.ee10:jetty-ee10-servlet:" + JETTY_VERSION,
 
         # Jakarta Servlet API (for EE10)
         "jakarta.servlet:jakarta.servlet-api:6.0.0",
@@ -57,8 +57,8 @@ maven.install(
     ],
     fetch_sources = True,
     repositories = [
+        "https://maven.google.com",
         "https://repo1.maven.org/maven2",
-        "https://maven.google.com"
     ],
 )
 use_repo(maven, "maven")
