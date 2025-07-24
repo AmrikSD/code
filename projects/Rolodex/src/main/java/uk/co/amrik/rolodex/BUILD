@@ -3,9 +3,11 @@ load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 package(default_visibility = ["//visibility:public"])
 
 COMMON_DEPS = [
+    "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/config",
+    "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/database",
     "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/services",
-    "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/services:watch",
     "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/services:health",
+    "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/services:watch",
     "@maven//:com_google_inject_extensions_guice_servlet",
     "@maven//:com_google_inject_guice",
     "@maven//:jakarta_servlet_jakarta_servlet_api",
@@ -16,6 +18,7 @@ COMMON_DEPS = [
 
 RUNTIME_DEPS = [
     "@maven//:org_eclipse_jetty_jetty_slf4j_impl",
+    "@maven//:org_postgresql_postgresql",
 ]
 
 TEST_DEPS = []
@@ -28,6 +31,7 @@ java_binary(
     main_class = "uk.co.amrik.rolodex.Rolodex",
     deps = [
         ":rolodex",
+        "@maven//:org_flywaydb_flyway_database_postgresql",
     ] + RUNTIME_DEPS + COMMON_DEPS,
 )
 

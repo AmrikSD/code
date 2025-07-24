@@ -7,8 +7,8 @@ import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
 import org.eclipse.jetty.server.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uk.co.amrik.rolodex.database.MigrationService;
 import uk.co.amrik.rolodex.services.BackgroundServiceManager;
-import uk.co.amrik.rolodex.services.watch.DirectoryWatcherService;
 
 public class Rolodex {
 
@@ -20,6 +20,9 @@ public class Rolodex {
         Injector workerInjector = Guice.createInjector(
                 new WorkerModule()
         );
+
+        MigrationService migrationService = workerInjector.getInstance(MigrationService.class);
+        migrationService.runMigrations();
 
         BackgroundServiceManager manager = workerInjector.getInstance(BackgroundServiceManager.class);
         manager.startAll();
