@@ -24,3 +24,5 @@ terraform.tfstate*
 /.ijwb/
 /.aswb/
 /.clwb/
+
+/test-files/
