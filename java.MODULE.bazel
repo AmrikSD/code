@@ -56,6 +56,11 @@ maven.install(
         "org.slf4j:slf4j-api:2.0.17",
 
         "com.typesafe:config:1.4.2",
+
+        "org.flywaydb:flyway-core:11.10.3",
+        "org.flywaydb:flyway-database-postgresql:11.10.3",
+        "org.postgresql:postgresql:42.7.7",
+        "com.zaxxer:HikariCP:6.3.0",
     ],
     fetch_sources = True,
     repositories = [
