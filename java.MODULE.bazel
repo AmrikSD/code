@@ -54,6 +54,8 @@ maven.install(
         "jakarta.servlet:jakarta.servlet-api:6.0.0",
 
         "org.slf4j:slf4j-api:2.0.17",
+
+        "com.typesafe:config:1.4.2",
     ],
     fetch_sources = True,
     repositories = [

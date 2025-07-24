@@ -34,6 +34,9 @@ java_library(
         ],
     ),
     deps = [
+        "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/config",
+        "@maven//:com_google_inject_guice",
+        "@maven//:com_typesafe_config",
         "@maven//:org_slf4j_slf4j_api",
     ],
 )
