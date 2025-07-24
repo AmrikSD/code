@@ -19,7 +19,7 @@ public class DatabaseConfig {
         this.username = dbConfig.getString("username");
         this.password = dbConfig.getString("password");
 
-        Config poolConfig = dbConfig.getConfig("pool"); //note dbConfig not just config
+        Config poolConfig = dbConfig.getConfig("pool");
         this.maximumPoolSize = poolConfig.getInt("maxSize");
         this.connectionTimeoutMs = poolConfig.getInt("connectionTimeout");
 
