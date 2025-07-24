@@ -22,7 +22,9 @@ TEST_DEPS = []
 
 java_binary(
     name = "Rolodex",
-    srcs = [":srcs"],
+    srcs = [
+        ":srcs",
+    ],
     main_class = "uk.co.amrik.rolodex.Rolodex",
     deps = [
         ":rolodex",
@@ -34,6 +36,7 @@ java_library(
     srcs = glob(
         ["*.java"],
     ),
+    resources = ["//projects/Rolodex/src/main/resources"],
     deps = [
     ] + COMMON_DEPS,
 )

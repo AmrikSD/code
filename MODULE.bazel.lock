@@ -1141,7 +1141,7 @@
     "@@rules_oci+//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "cxV4X2zNlwdVp+Fypb29N+SXzWs4M4ZSqFlvUuoT7Mg=",
-        "usagesDigest": "yQr7kJf1ZL6bjGK7U6G+0KP1aZfBtvzTT3dCpA/wdeE=",
+        "usagesDigest": "p2GzKH/QbeyzA3hzRSSTL3Ro4T4mwd+eoS2Ra0REwGE=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1689,7 +1689,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/prowlarr",
-              "identifier": "sha256:89eac63d2099477094df8c2329a6a750b8b5e382f8975dd18e7861678b55cca4",
+              "identifier": "sha256:d2462d470891c70073e31d158657a9b247b317c90238c40534d8be8f98671057",
               "platform": "linux/amd64",
               "target_name": "prowlarr_linux_amd64",
               "bazel_tags": []
@@ -1702,7 +1702,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/prowlarr",
-              "identifier": "sha256:89eac63d2099477094df8c2329a6a750b8b5e382f8975dd18e7861678b55cca4",
+              "identifier": "sha256:d2462d470891c70073e31d158657a9b247b317c90238c40534d8be8f98671057",
               "platform": "linux/arm64",
               "target_name": "prowlarr_linux_arm64",
               "bazel_tags": []
@@ -1716,7 +1716,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/prowlarr",
-              "identifier": "sha256:89eac63d2099477094df8c2329a6a750b8b5e382f8975dd18e7861678b55cca4",
+              "identifier": "sha256:d2462d470891c70073e31d158657a9b247b317c90238c40534d8be8f98671057",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@prowlarr_linux_amd64",
                 "@@platforms//cpu:arm64": "@prowlarr_linux_arm64"
