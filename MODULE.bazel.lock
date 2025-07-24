@@ -1141,7 +1141,7 @@
     "@@rules_oci+//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "cxV4X2zNlwdVp+Fypb29N+SXzWs4M4ZSqFlvUuoT7Mg=",
-        "usagesDigest": "p2GzKH/QbeyzA3hzRSSTL3Ro4T4mwd+eoS2Ra0REwGE=",
+        "usagesDigest": "eDTOqndK9gH2yMoaXJaRvtYk1u7krAiX7LionjrF8K4=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1462,7 +1462,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:b5b59bfc7561634c2d7b136c4543d702ebcc94a3da477f21ff26f89ffd4214fa",
+              "identifier": "sha256:6ac590e7cabc2fbe8d7b8fc1ce9c9f0582177b334e0df9c927ebd9670469440f",
               "platform": "linux/amd64",
               "target_name": "grafana_linux_amd64",
               "bazel_tags": []
@@ -1475,7 +1475,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:b5b59bfc7561634c2d7b136c4543d702ebcc94a3da477f21ff26f89ffd4214fa",
+              "identifier": "sha256:6ac590e7cabc2fbe8d7b8fc1ce9c9f0582177b334e0df9c927ebd9670469440f",
               "platform": "linux/arm64",
               "target_name": "grafana_linux_arm64",
               "bazel_tags": []
@@ -1488,7 +1488,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:b5b59bfc7561634c2d7b136c4543d702ebcc94a3da477f21ff26f89ffd4214fa",
+              "identifier": "sha256:6ac590e7cabc2fbe8d7b8fc1ce9c9f0582177b334e0df9c927ebd9670469440f",
               "platform": "linux/arm/v7",
               "target_name": "grafana_linux_arm_v7",
               "bazel_tags": []
@@ -1502,7 +1502,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:b5b59bfc7561634c2d7b136c4543d702ebcc94a3da477f21ff26f89ffd4214fa",
+              "identifier": "sha256:6ac590e7cabc2fbe8d7b8fc1ce9c9f0582177b334e0df9c927ebd9670469440f",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@grafana_linux_amd64",
                 "@@platforms//cpu:arm64": "@grafana_linux_arm64",
