@@ -51,7 +51,7 @@ maven.install(
         "org.eclipse.jetty:jetty-slf4j-impl:" + JETTY_VERSION,
 
         # Jakarta Servlet API (for EE10)
-        "jakarta.servlet:jakarta.servlet-api:6.0.0",
+        "jakarta.servlet:jakarta.servlet-api:6.1.0",
 
         "org.slf4j:slf4j-api:2.0.17",
 
