@@ -8,6 +8,7 @@ COMMON_DEPS = [
     "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/services",
     "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/services:health",
     "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/services:watch",
+    "//projects/Rolodex/src/main/java/uk/co/amrik/rolodex/services:ocr",
     "@maven//:com_google_inject_extensions_guice_servlet",
     "@maven//:com_google_inject_guice",
     "@maven//:jakarta_servlet_jakarta_servlet_api",

@@ -5,6 +5,7 @@ import com.google.inject.multibindings.Multibinder;
 import uk.co.amrik.rolodex.config.ConfigModule;
 import uk.co.amrik.rolodex.database.DatabaseModule;
 import uk.co.amrik.rolodex.services.BackgroundService;
+import uk.co.amrik.rolodex.services.ocr.OcrService;
 import uk.co.amrik.rolodex.services.watch.DirectoryWatcherModule;
 import uk.co.amrik.rolodex.services.watch.DirectoryWatcherService;
 
@@ -19,5 +20,6 @@ public class WorkerModule extends AbstractModule {
 
         Multibinder<BackgroundService> serviceBinder = Multibinder.newSetBinder(binder(), BackgroundService.class);
         serviceBinder.addBinding().to(DirectoryWatcherService.class).asEagerSingleton();
+        serviceBinder.addBinding().to(OcrService.class).asEagerSingleton();
     }
 }
