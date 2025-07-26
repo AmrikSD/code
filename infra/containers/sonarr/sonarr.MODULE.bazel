@@ -3,7 +3,7 @@ oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 # renovate: datasource=docker depName=docker.io/linuxserver/sonarr
 oci.pull(
     name = "sonarr",
-    digest = "sha256:b0ac15772c04f329964ed79cb446ab23fd1ee28f33b58b10f0264feac17d33cd",
+    digest = "sha256:c0836f49c20000e603170dc95d74c2527e690d50309977d94fc171eaa49351a4",
     image = "docker.io/linuxserver/sonarr",
     platforms = [
         "linux/amd64",
