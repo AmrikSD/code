@@ -1141,7 +1141,7 @@
     "@@rules_oci+//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "cxV4X2zNlwdVp+Fypb29N+SXzWs4M4ZSqFlvUuoT7Mg=",
-        "usagesDigest": "eDTOqndK9gH2yMoaXJaRvtYk1u7krAiX7LionjrF8K4=",
+        "usagesDigest": "3TO2Vp8RrwTJenGJ/hPYjTHSntjKuARNyuBJzpJUca8=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1603,7 +1603,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/wireguard",
-              "identifier": "sha256:89af564a0e04c2b936edec9cf45c832e5fb0b497e011076865e1c2666cb05b7e",
+              "identifier": "sha256:ee2db24277b43ec4e7529e93967dc3cea00a02bf81b749c680b2b102a6e4aa5b",
               "platform": "linux/amd64",
               "target_name": "wireguard_linux_amd64",
               "bazel_tags": []
@@ -1616,7 +1616,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/wireguard",
-              "identifier": "sha256:89af564a0e04c2b936edec9cf45c832e5fb0b497e011076865e1c2666cb05b7e",
+              "identifier": "sha256:ee2db24277b43ec4e7529e93967dc3cea00a02bf81b749c680b2b102a6e4aa5b",
               "platform": "linux/arm64",
               "target_name": "wireguard_linux_arm64",
               "bazel_tags": []
@@ -1630,7 +1630,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/wireguard",
-              "identifier": "sha256:89af564a0e04c2b936edec9cf45c832e5fb0b497e011076865e1c2666cb05b7e",
+              "identifier": "sha256:ee2db24277b43ec4e7529e93967dc3cea00a02bf81b749c680b2b102a6e4aa5b",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@wireguard_linux_amd64",
                 "@@platforms//cpu:arm64": "@wireguard_linux_arm64"
