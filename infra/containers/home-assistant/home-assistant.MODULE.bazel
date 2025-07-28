@@ -3,7 +3,7 @@ oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 # renovate: datasource=docker depName=docker.io/homeassistant/home-assistant
 oci.pull(
     name = "home-assistant",
-    digest = "sha256:9682a29fdfde74dd67c78d724105a9c11cb2affaf350192b0a89447f958547df",
+    digest = "sha256:e5bf3905955081dc4aae3b3980870c43ce6d8ffb880b5447addb3b3ba00f7bc0",
     image = "docker.io/homeassistant/home-assistant",
     platforms = [
         "linux/arm64/v8",
