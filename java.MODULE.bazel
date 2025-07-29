@@ -61,7 +61,7 @@ maven.install(
         "org.flywaydb:flyway-database-postgresql:11.10.4",
 
         "org.postgresql:postgresql:42.7.7",
-        "com.zaxxer:HikariCP:6.3.2",
+        "com.zaxxer:HikariCP:7.0.0",
     ],
     fetch_sources = True,
     repositories = [
