@@ -41,6 +41,11 @@ resource "google_compute_instance" "frappe-next" {
     }
   }
 
+  attached_disk {
+    source      = google_compute_disk.docker-disk.id
+    device_name = "docker-data"
+  }
+
   metadata = {
     ssh-keys       = format("%s:%s", data.sops_file.gcp-secret.data["google.ssh.user"], data.sops_file.gcp-secret.data["google.ssh.public_key"])
     startup-script = <<-EOT
@@ -206,3 +211,9 @@ resource "null_resource" "start_services" {
   }
 }
 
+
+resource "google_compute_disk" "docker-disk" {
+  name = "frappe-docker-data-new"
+  type = "pd-standard"
+  size = 50
+}

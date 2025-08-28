@@ -19,6 +19,11 @@ resource "google_compute_instance" "frappe" {
     }
   }
 
+  attached_disk {
+    source      = google_compute_disk.old-disk-attached.id
+    device_name = "docker-data"
+  }
+
   metadata = {
     ssh-keys       = format("%s:%s", data.sops_file.gcp-secret.data["google.ssh.user"], data.sops_file.gcp-secret.data["google.ssh.public_key"])
     startup-script = <<-EOT
@@ -135,6 +140,12 @@ resource "google_compute_instance" "frappe" {
     }
   }
 
+}
+
+resource "google_compute_disk" "old-disk-attached" {
+  name = "frappe-docker-data"
+  type = "pd-standard"
+  size = 50
 }
 
 resource "google_compute_firewall" "default-ssh" {
