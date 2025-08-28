@@ -47,8 +47,9 @@ resource "google_compute_instance" "frappe-next" {
   }
 
   metadata = {
-    ssh-keys       = format("%s:%s", data.sops_file.gcp-secret.data["google.ssh.user"], data.sops_file.gcp-secret.data["google.ssh.public_key"])
-    startup-script = <<-EOT
+    enable-osconfig = "TRUE"
+    ssh-keys        = format("%s:%s", data.sops_file.gcp-secret.data["google.ssh.user"], data.sops_file.gcp-secret.data["google.ssh.public_key"])
+    startup-script  = <<-EOT
         #!/bin/bash
         apt-get update
         apt-get install -y \

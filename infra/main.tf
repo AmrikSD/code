@@ -24,7 +24,6 @@ resource "random_bytes" "tunnel_secret" {
 
 module "cloudflare" {
   source        = "./cloudflare/"
-  ip_address    = module.gcp.frappe_ip_address
   tunnel_secret = random_bytes.tunnel_secret.base64
 }
 

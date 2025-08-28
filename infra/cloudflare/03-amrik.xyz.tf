@@ -1,8 +1,3 @@
-variable "ip_address" {
-  description = "The IP address to use for the Cloudflare DNS record"
-  type        = string
-}
-
 variable "tunnel_secret" {
   description = "The secret used to seed the cloudflare tunnel"
   type        = string
