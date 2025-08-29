@@ -29,9 +29,19 @@ resource "google_compute_address" "frappe-static-next" {
   name = "frappe-static-next"
 }
 
+resource "google_service_account" "frappe-sa" {
+  account_id   = "frappe"
+  display_name = "frappe-sa"
+}
+
 resource "google_compute_instance" "frappe-next" {
   name         = "frappe-next"
   machine_type = "e2-medium"
+
+  service_account {
+    email  = google_service_account.frappe-sa.email
+    scopes = ["cloud-platform"]
+  }
 
   tags = ["https-server", "http-server", "milestone-medical", "terraform"]
 
