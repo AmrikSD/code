@@ -1,0 +1,21 @@
+
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: jitscan-validator
+webhooks:
+- name: jitscan.image-security.svc
+  clientConfig:
+    service:
+      name: jitscan
+      namespace: image-security
+      path: /validate
+    caBundle: <key>
+  rules:
+  - operations: ["CREATE", "UPDATE"]
+    apiGroups: [""]
+    apiVersions: ["v1"]
+    resources: ["pods"]
+  admissionReviewVersions: ["v1", "v1beta1"]
+  sideEffects: None
+  failurePolicy: Fail

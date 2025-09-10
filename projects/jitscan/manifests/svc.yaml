@@ -1,0 +1,14 @@
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: jitscan
+  namespace: image-security
+spec:
+  selector:
+    app: jitscan
+  ports:
+  - port: 443
+    targetPort: 8443
+    protocol: TCP
+  type: ClusterIP
