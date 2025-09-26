@@ -3,7 +3,7 @@ oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 # renovate: datasource=docker depName=docker.io/linuxserver/wireguard
 oci.pull(
     name = "wireguard",
-    digest = "sha256:208ee01a5e0ed7405bff04689ccf4c574cbe705aa1a4d910eea3367ea4334889",
+    digest = "sha256:668cccefed1f9bc830b5bdc0fc6db2f161f1ac75963f61c7217173608111550b",
     image = "docker.io/linuxserver/wireguard",
     platforms = [
         "linux/amd64",
