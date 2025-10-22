@@ -26,7 +26,7 @@ JOOQ_VERSION = "3.20.8"
 POSTGRES_VERSION = "42.7.7"
 
 # renovate: datasource=maven depName=org.assertj:assertj-core
-ASSERTJ_VERSION = "3.27.4"
+ASSERTJ_VERSION = "3.27.6"
 
 JUNIT_VERSION = "5.10.3"
 
