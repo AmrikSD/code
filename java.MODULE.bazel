@@ -23,7 +23,7 @@ JACKSON_VERSION = "2.20.0"
 JOOQ_VERSION = "3.20.8"
 
 # renovate: datasource=maven depName=org.postgresql:postgresql
-POSTGRES_VERSION = "42.7.7"
+POSTGRES_VERSION = "42.7.8"
 
 # renovate: datasource=maven depName=org.assertj:assertj-core
 ASSERTJ_VERSION = "3.27.4"
@@ -60,7 +60,7 @@ maven.install(
         "org.flywaydb:flyway-core:11.12.0",
         "org.flywaydb:flyway-database-postgresql:11.12.0",
 
-        "org.postgresql:postgresql:42.7.7",
+        "org.postgresql:postgresql:42.7.8",
         "com.zaxxer:HikariCP:7.0.2",
     ],
     fetch_sources = True,
