@@ -8,7 +8,7 @@ GUICE_VERSION = "7.0.0"
 RESTEASY_VERSION = "7.0.0.Beta1"
 
 # renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
-JETTY_VERSION = "12.1.1"
+JETTY_VERSION = "12.1.5"
 
 # renovate: datasource=maven depName=org.glassfish.jersey:jersey-bom
 JERSEY_VERSION = "4.0.0-M4"
