@@ -94,7 +94,18 @@
         },
         {
             "matchFileNames": ["infra/containers/**"],
+            "matchDatasources": ["docker"],
             "groupName": "infra containers"
+        },
+        {
+            "matchDatasources": ["maven"],
+            "matchUpdateTypes": ["minor", "patch"],
+            "groupName": "java dependencies"
+        },
+        {
+            "matchFileNames": ["projects/wedding/**"],
+            "matchUpdateTypes": ["minor", "patch"],
+            "groupName": "wedding project dependencies"
         },
         {
             "matchDatasources": ["helm"],
