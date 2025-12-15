@@ -6,19 +6,13 @@ oci.pull(
     digest = "sha256:c9da2a0a5738ceb26e1b4f672825c09371e51ae5e285beffa3072757b7817f3e",
     image = "docker.io/homeassistant/home-assistant",
     platforms = [
-        "linux/arm64/v8",
+        "linux/arm64",
         "linux/amd64",
-        "linux/arm/v6",
-        "linux/arm/v7",
-        "linux/386",
     ],
 )
 use_repo(
     oci,
     "home-assistant",
-    "home-assistant_linux_386",
     "home-assistant_linux_amd64",
-    "home-assistant_linux_arm64_v8",
-    "home-assistant_linux_arm_v6",
-    "home-assistant_linux_arm_v7",
+    "home-assistant_linux_arm64",
 )

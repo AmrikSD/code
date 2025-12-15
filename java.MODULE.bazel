@@ -28,6 +28,7 @@ POSTGRES_VERSION = "42.7.8"
 # renovate: datasource=maven depName=org.assertj:assertj-core
 ASSERTJ_VERSION = "3.27.6"
 
+# renovate: datasource=maven depName=org.junit.jupiter:junit-jupiter-api
 JUNIT_VERSION = "5.10.3"
 
 JUNIT_PLATFORM_VERSION = "1.10.3"
@@ -40,6 +41,12 @@ maven.install(
     artifacts = [
         # Testing
         "org.assertj:assertj-core:" + ASSERTJ_VERSION,
+        "org.junit.jupiter:junit-jupiter-api:" + JUNIT_VERSION,
+        "org.junit.jupiter:junit-jupiter-engine:" + JUNIT_VERSION,
+        "org.junit.platform:junit-platform-console:" + JUNIT_PLATFORM_VERSION,
+        "org.junit.platform:junit-platform-launcher:" + JUNIT_PLATFORM_VERSION,
+        "org.junit.platform:junit-platform-reporting:" + JUNIT_PLATFORM_VERSION,
+        "org.junit.platform:junit-platform-runner:" + JUNIT_PLATFORM_VERSION,
 
         # Dependency Injection
         "com.google.inject.extensions:guice-servlet:" + GUICE_VERSION,
