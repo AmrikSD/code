@@ -123,22 +123,26 @@
             "labels": ["renovate/helm", "dep/patch"]
         },
         {
-            "matchManagers": ["bazel"],
+            "matchManagers": ["bazel-module"],
+            "matchDatasources": ["bazel"],
             "matchUpdateTypes": ["major"],
             "labels": ["renovate/bazel_dep", "dep/major"]
         },
         {
-            "matchManagers": ["bazel"],
+            "matchManagers": ["bazel-module"],
+            "matchDatasources": ["bazel"],
             "matchUpdateTypes": ["minor"],
             "labels": ["renovate/bazel_dep", "dep/minor"]
         },
         {
-            "matchManagers": ["bazel"],
+            "matchManagers": ["bazel-module"],
+            "matchDatasources": ["bazel"],
             "matchUpdateTypes": ["patch"],
             "labels": ["renovate/bazel_dep", "dep/patch"]
         },
         {
-            "matchManagers": ["bazel"],
+            "matchManagers": ["bazel-module"],
+            "matchDatasources": ["bazel"],
             "matchUpdateTypes": ["minor", "patch"],
             "groupName": "bazel dependencies"
         }
