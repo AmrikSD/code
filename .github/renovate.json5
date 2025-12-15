@@ -1,7 +1,7 @@
 {
     "enabled": true,
     "prConcurrentLimit": 12,
-    "prHourlyLimit": 12,
+    "prHourlyLimit": 0,
     "semanticCommits": "enabled",
     "dependencyDashboard": true,
     "dependencyDashboardTitle": "Renovate Dashboard",
