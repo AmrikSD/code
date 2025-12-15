@@ -121,6 +121,26 @@
             "matchDatasources": ["helm"],
             "matchUpdateTypes": ["patch"],
             "labels": ["renovate/helm", "dep/patch"]
+        },
+        {
+            "matchManagers": ["bazel"],
+            "matchUpdateTypes": ["major"],
+            "labels": ["renovate/bazel_dep", "dep/major"]
+        },
+        {
+            "matchManagers": ["bazel"],
+            "matchUpdateTypes": ["minor"],
+            "labels": ["renovate/bazel_dep", "dep/minor"]
+        },
+        {
+            "matchManagers": ["bazel"],
+            "matchUpdateTypes": ["patch"],
+            "labels": ["renovate/bazel_dep", "dep/patch"]
+        },
+        {
+            "matchManagers": ["bazel"],
+            "matchUpdateTypes": ["minor", "patch"],
+            "groupName": "bazel dependencies"
         }
     ]
 }
