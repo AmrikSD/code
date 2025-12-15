@@ -859,7 +859,7 @@
     "@@rules_oci+//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "XCh21ZXkFyIWtRJj/7sw0Rrfb1BopaITW9BVDZySeB0=",
-        "usagesDigest": "WWZ8AAi5I4L7ZcJtfJ3JdYQeVSplgNub8h95xf+MjLY=",
+        "usagesDigest": "w7D4S4VgoclMMyfvxEs9ogm6kVEbRSjKuKJeHrQgkHc=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1230,7 +1230,7 @@
               "reproducible": true
             }
           },
-          "home-assistant_linux_arm64_v8": {
+          "home-assistant_linux_arm64": {
             "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_pull",
             "attributes": {
               "www_authenticate_challenges": {},
@@ -1238,8 +1238,8 @@
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
               "identifier": "sha256:c9da2a0a5738ceb26e1b4f672825c09371e51ae5e285beffa3072757b7817f3e",
-              "platform": "linux/arm64/v8",
-              "target_name": "home-assistant_linux_arm64_v8",
+              "platform": "linux/arm64",
+              "target_name": "home-assistant_linux_arm64",
               "bazel_tags": []
             }
           },
@@ -1256,45 +1256,6 @@
               "bazel_tags": []
             }
           },
-          "home-assistant_linux_arm_v6": {
-            "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_pull",
-            "attributes": {
-              "www_authenticate_challenges": {},
-              "scheme": "https",
-              "registry": "index.docker.io",
-              "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:c9da2a0a5738ceb26e1b4f672825c09371e51ae5e285beffa3072757b7817f3e",
-              "platform": "linux/arm/v6",
-              "target_name": "home-assistant_linux_arm_v6",
-              "bazel_tags": []
-            }
-          },
-          "home-assistant_linux_arm_v7": {
-            "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_pull",
-            "attributes": {
-              "www_authenticate_challenges": {},
-              "scheme": "https",
-              "registry": "index.docker.io",
-              "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:c9da2a0a5738ceb26e1b4f672825c09371e51ae5e285beffa3072757b7817f3e",
-              "platform": "linux/arm/v7",
-              "target_name": "home-assistant_linux_arm_v7",
-              "bazel_tags": []
-            }
-          },
-          "home-assistant_linux_386": {
-            "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_pull",
-            "attributes": {
-              "www_authenticate_challenges": {},
-              "scheme": "https",
-              "registry": "index.docker.io",
-              "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:c9da2a0a5738ceb26e1b4f672825c09371e51ae5e285beffa3072757b7817f3e",
-              "platform": "linux/386",
-              "target_name": "home-assistant_linux_386",
-              "bazel_tags": []
-            }
-          },
           "home-assistant": {
             "repoRuleId": "@@rules_oci+//oci/private:pull.bzl%oci_alias",
             "attributes": {
@@ -1305,10 +1266,8 @@
               "repository": "homeassistant/home-assistant",
               "identifier": "sha256:c9da2a0a5738ceb26e1b4f672825c09371e51ae5e285beffa3072757b7817f3e",
               "platforms": {
-                "@@platforms//cpu:arm64": "@home-assistant_linux_arm64_v8",
-                "@@platforms//cpu:x86_64": "@home-assistant_linux_amd64",
-                "@@platforms//cpu:armv7": "@home-assistant_linux_arm_v7",
-                "@@platforms//cpu:i386": "@home-assistant_linux_386"
+                "@@platforms//cpu:arm64": "@home-assistant_linux_arm64",
+                "@@platforms//cpu:x86_64": "@home-assistant_linux_amd64"
               },
               "bzlmod_repository": "home-assistant",
               "reproducible": true
@@ -1672,11 +1631,8 @@
             "grafana_linux_arm64",
             "grafana_linux_arm_v7",
             "home-assistant",
-            "home-assistant_linux_arm64_v8",
+            "home-assistant_linux_arm64",
             "home-assistant_linux_amd64",
-            "home-assistant_linux_arm_v6",
-            "home-assistant_linux_arm_v7",
-            "home-assistant_linux_386",
             "wireguard",
             "wireguard_linux_amd64",
             "wireguard_linux_arm64",

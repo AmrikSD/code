@@ -6,7 +6,14 @@ java_test(
     name = "LeetcodeTest",
     srcs = ["LeetcodeTest.java"],
     deps = [
-        "@maven//:junit_junit",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
+        "@maven//:org_junit_platform_junit_platform_runner",
+    ],
+    runtime_deps = [
+        "@maven//:org_junit_jupiter_junit_jupiter_engine",
+        "@maven//:org_junit_platform_junit_platform_console",
+        "@maven//:org_junit_platform_junit_platform_launcher",
+        "@maven//:org_junit_platform_junit_platform_reporting",
     ],
 )
 
@@ -15,8 +22,15 @@ java_test(
     srcs = ["TwoSumTest.java"],
     deps = [
         "//projects/Leetcode/Java/src/main/java/uk/co/amrik/leetcode:lc-library",
-        "@maven//:junit_junit",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
         "@maven//:org_assertj_assertj_core",
+        "@maven//:org_junit_platform_junit_platform_runner",
+    ],
+    runtime_deps = [
+        "@maven//:org_junit_jupiter_junit_jupiter_engine",
+        "@maven//:org_junit_platform_junit_platform_console",
+        "@maven//:org_junit_platform_junit_platform_launcher",
+        "@maven//:org_junit_platform_junit_platform_reporting",
     ],
 )
 
@@ -25,8 +39,15 @@ java_test(
     srcs = ["MergeAlternatelyTest.java"],
     deps = [
         "//projects/Leetcode/Java/src/main/java/uk/co/amrik/leetcode:lc-library",
-        "@maven//:junit_junit",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
         "@maven//:org_assertj_assertj_core",
+        "@maven//:org_junit_platform_junit_platform_runner",
+    ],
+    runtime_deps = [
+        "@maven//:org_junit_jupiter_junit_jupiter_engine",
+        "@maven//:org_junit_platform_junit_platform_console",
+        "@maven//:org_junit_platform_junit_platform_launcher",
+        "@maven//:org_junit_platform_junit_platform_reporting",
     ],
 )
 
@@ -35,8 +56,15 @@ java_test(
     srcs = ["MoveZerosTest.java"],
     deps = [
         "//projects/Leetcode/Java/src/main/java/uk/co/amrik/leetcode:lc-library",
-        "@maven//:junit_junit",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
         "@maven//:org_assertj_assertj_core",
+        "@maven//:org_junit_platform_junit_platform_runner",
+    ],
+    runtime_deps = [
+        "@maven//:org_junit_jupiter_junit_jupiter_engine",
+        "@maven//:org_junit_platform_junit_platform_console",
+        "@maven//:org_junit_platform_junit_platform_launcher",
+        "@maven//:org_junit_platform_junit_platform_reporting",
     ],
 )
 
@@ -45,8 +73,15 @@ java_test(
     srcs = ["IsSubsequenceTest.java"],
     deps = [
         "//projects/Leetcode/Java/src/main/java/uk/co/amrik/leetcode:lc-library",
-        "@maven//:junit_junit",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
         "@maven//:org_assertj_assertj_core",
+        "@maven//:org_junit_platform_junit_platform_runner",
+    ],
+    runtime_deps = [
+        "@maven//:org_junit_jupiter_junit_jupiter_engine",
+        "@maven//:org_junit_platform_junit_platform_console",
+        "@maven//:org_junit_platform_junit_platform_launcher",
+        "@maven//:org_junit_platform_junit_platform_reporting",
     ],
 )
 
