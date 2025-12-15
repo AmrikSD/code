@@ -145,6 +145,14 @@
             "matchDatasources": ["bazel"],
             "matchUpdateTypes": ["minor", "patch"],
             "groupName": "bazel dependencies"
+        },
+        {
+            "matchManagers": ["bazel-module"],
+            "postUpgradeTasks": {
+                "commands": ["bazel mod deps --lockfile_mode=update"],
+                "fileFilters": ["MODULE.bazel.lock"],
+                "executionMode": "update"
+            }
         }
     ]
 }
