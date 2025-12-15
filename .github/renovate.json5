@@ -144,7 +144,7 @@
             "matchManagers": ["bazel-module"],
             "matchDatasources": ["bazel"],
             "matchUpdateTypes": ["minor", "patch"],
-            "groupName": "bazel dependencies"
+            "groupName": "bazel"
         },
         {
             "matchManagers": ["bazel-module"],
