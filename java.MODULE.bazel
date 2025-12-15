@@ -17,7 +17,7 @@ JERSEY_VERSION = "4.0.0-M4"
 FLYWAY_VERSION = "11.12.0"
 
 # renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
-JACKSON_VERSION = "2.20.0"
+JACKSON_VERSION = "2.20.1"
 
 # renovate: datasource=maven depName=org.jooq:jooq
 JOOQ_VERSION = "3.20.8"
