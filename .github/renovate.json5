@@ -153,6 +153,14 @@
                 "fileFilters": ["MODULE.bazel.lock"],
                 "executionMode": "update"
             }
+        },
+        {
+            "matchManagers": ["gomod"],
+            "postUpgradeTasks": {
+                "commands": ["bazel run @rules_go//go -- mod tidy"],
+                "fileFilters": ["go.sum"],
+                "executionMode": "update"
+            }
         }
     ]
 }
