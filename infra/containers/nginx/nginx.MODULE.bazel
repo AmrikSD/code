@@ -3,7 +3,7 @@ oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 # renovate: datasource=docker depName=docker.io/library/nginx
 oci.pull(
     name = "nginx",
-    digest = "sha256:f547e3d0d5d02f7009737b284abc87d808e4252b42dceea361811e9fc606287f",
+    digest = "sha256:fb01117203ff38c2f9af91db1a7409459182a37c87cced5cb442d1d8fcc66d19",
     image = "docker.io/library/nginx",
     platforms = [
         "linux/386",

@@ -3,7 +3,7 @@ oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 # renovate: datasource=docker depName=docker.io/linuxserver/radarr
 oci.pull(
     name = "radarr",
-    digest = "sha256:fae2aafa6ecace3524fc79d102f5bfd25fb151caed6a454cee46479236ac33bf",
+    digest = "sha256:6c0948b42c149e36bb3dbc0b64d36c77b2d3c9dccf1b424c4f72af1e57ba0c21",
     image = "docker.io/linuxserver/radarr",
     platforms = [
         "linux/amd64",
