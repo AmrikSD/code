@@ -155,7 +155,7 @@
             "postUpgradeTasks": {
                 "commands": ["bazel mod deps --lockfile_mode=update"],
                 "fileFilters": ["MODULE.bazel.lock"],
-                "executionMode": "branch"
+                "executionMode": "update"
             }
         },
         {
@@ -163,7 +163,7 @@
             "postUpgradeTasks": {
                 "commands": ["bazel run @rules_go//go -- mod tidy"],
                 "fileFilters": ["go.sum"],
-                "executionMode": "branch"
+                "executionMode": "update"
             }
         }
     ]
