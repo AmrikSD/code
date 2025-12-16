@@ -143,12 +143,6 @@ Since Maven considers these versions stable and newer, Renovate's default `ignor
 
 This regex only allows pure semver versions like `14.10.0`, excluding anything with build metadata like `-1-ga0757dfb3`.
 
-# References
-
-- [Maven ComparableVersion API](https://maven.apache.org/ref/3.6.0/maven-artifact/apidocs/org/apache/maven/artifact/versioning/ComparableVersion.html)
-- [Maven Versioning (Apache Confluence)](https://cwiki.apache.org/confluence/display/MAVENOLD/Versioning)
-- [Renovate Configuration Options](https://docs.renovatebot.com/configuration-options/)
-
 # Why This Matters
 
 Many CI/CD systems use git-describe to generate version numbers, which can produce formats like `v14.10.0-1-ga0757dfb3`. If these are published to Maven repositories, they'll be treated as stable releases that are "newer" than the base version, causing dependency managers to prefer them over clean semver releases.
@@ -157,3 +151,9 @@ The best practice is to either:
 1. Strip git metadata before publishing to Maven repos
 2. Use `allowedVersions` in Renovate to filter them out
 3. Ensure your build system only publishes clean semver versions to production artifact repositories
+
+# References
+
+- [Maven ComparableVersion API](https://maven.apache.org/ref/3.6.0/maven-artifact/apidocs/org/apache/maven/artifact/versioning/ComparableVersion.html)
+- [Maven Versioning (Apache Confluence)](https://cwiki.apache.org/confluence/display/MAVENOLD/Versioning)
+- [Renovate Configuration Options](https://docs.renovatebot.com/configuration-options/)
