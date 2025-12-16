@@ -1,0 +1,159 @@
+---
+layout: post
+title:  "Maven Version Comparison"
+subtitle: "Why `14.10.0-1-ga0757dfb3` is Considered \"Stable\""
+date: 2025-12-16 00:00:00
+categories: [tutorials]
+---
+# The Problem
+
+When using Renovate to manage Maven/Gradle dependencies, you might notice it updating to versions like `14.10.0-1-ga0757dfb3` instead of clean semver versions like `14.10.0`. Even though these look like pre-release versions (with git-describe metadata), Renovate treats them as **stable releases** and updates to them.
+
+# Why This Happens
+
+Maven has a specific set of **well-known qualifiers** that determine version ordering:
+
+1. `alpha` or `a`
+2. `beta` or `b`
+3. `milestone` or `m`
+4. `rc` or `cr`
+5. `snapshot`
+6. **(empty string) or `ga` or `final`** ← **These are equivalent and stable!**
+7. `sp`
+
+The key insight: **`ga` (Generally Available) is a stable qualifier**, equivalent to having no qualifier at all.
+
+When Maven parses `14.10.0-1-ga0757dfb3`:
+- It sees the `ga` qualifier (embedded in `ga0757dfb3`)
+- It treats this as a **stable version**
+- The additional segments (`-1-`) make it **greater than** `14.10.0`
+
+Therefore: `14.10.0 < 14.10.0-1-ga0757dfb3` in Maven's version ordering.
+
+# Testing It Yourself
+
+You can verify Maven's version comparison behavior using this Docker-based tool:
+
+## Java Code (`VersionCompare.java`)
+
+```java
+import org.apache.maven.artifact.versioning.ComparableVersion;
+
+public class VersionCompare {
+    public static void main(String[] args) {
+        if (args.length != 2) {
+            System.out.println("Usage: java VersionCompare <version1> <version2>");
+            System.exit(1);
+        }
+
+        String v1String = args[0];
+        String v2String = args[1];
+
+        ComparableVersion v1 = new ComparableVersion(v1String);
+        ComparableVersion v2 = new ComparableVersion(v2String);
+
+        int comparison = v1.compareTo(v2);
+
+        System.out.println("Version 1: " + v1String);
+        System.out.println("Version 2: " + v2String);
+        System.out.println();
+
+        if (comparison < 0) {
+            System.out.println("Result: " + v1String + " < " + v2String);
+        } else if (comparison > 0) {
+            System.out.println("Result: " + v1String + " > " + v2String);
+        } else {
+            System.out.println("Result: " + v1String + " = " + v2String);
+        }
+
+        System.out.println("\nComparison value: " + comparison);
+    }
+}
+```
+
+## Dockerfile (`Dockerfile.version-compare`)
+
+```dockerfile
+FROM maven:3.9-eclipse-temurin-17
+
+WORKDIR /app
+
+# Download Maven artifact library
+RUN wget -q https://repo1.maven.org/maven2/org/apache/maven/maven-artifact/3.9.0/maven-artifact-3.9.0.jar
+
+# Copy and compile the Java program
+COPY VersionCompare.java .
+RUN javac -cp maven-artifact-3.9.0.jar VersionCompare.java
+
+# Set the entrypoint to run the comparison
+ENTRYPOINT ["java", "-cp", ".:maven-artifact-3.9.0.jar", "VersionCompare"]
+```
+
+## Build and Run
+
+```bash
+# Build the Docker image
+docker build -f Dockerfile.version-compare -t maven-version-compare .
+
+# Run comparisons
+docker run --rm maven-version-compare "14.10.0" "14.10.0-1-ga0757dfb3"
+docker run --rm maven-version-compare "1.0" "1.0-ga"
+docker run --rm maven-version-compare "1.0-alpha" "1.0-ga"
+```
+
+## Example Output
+
+```
+=== Test 1: ga vs empty ===
+Version 1: 1.0
+Version 2: 1.0-ga
+
+Result: 1.0 = 1.0-ga
+Comparison value: 0
+
+=== Test 2: stable vs git-describe version ===
+Version 1: 14.10.0
+Version 2: 14.10.0-1-ga0757dfb3
+
+Result: 14.10.0 < 14.10.0-1-ga0757dfb3
+Comparison value: -1
+
+=== Test 3: alpha vs ga ===
+Version 1: 1.0-alpha
+Version 2: 1.0-ga
+
+Result: 1.0-alpha < 1.0-ga
+Comparison value: -5
+```
+
+# The Solution for Renovate
+
+Since Maven considers these versions stable and newer, Renovate's default `ignoreUnstable` behavior won't filter them out. You need to explicitly restrict allowed versions:
+
+```json
+{
+  "packageRules": [
+    {
+      "matchPackageNames": ["com.example:your-package"],
+      "allowedVersions": "/^[0-9]+\\.[0-9]+\\.[0-9]+$/"
+    }
+  ]
+}
+```
+
+This regex only allows pure semver versions like `14.10.0`, excluding anything with build metadata like `-1-ga0757dfb3`.
+
+# Why This Matters
+
+Many CI/CD systems use git-describe to generate version numbers, which can produce formats like `v14.10.0-1-ga0757dfb3`. If these are published to Maven repositories, they'll be treated as stable releases that are "newer" than the base version, causing dependency managers to prefer them over clean semver releases.
+
+The best practice is to either:
+1. Strip git metadata before publishing to Maven repos
+2. Use `allowedVersions` in Renovate to filter them out
+3. Ensure your build system only publishes clean semver versions to production artifact repositories
+
+# References
+
+- [Maven ComparableVersion API](https://maven.apache.org/ref/3.6.0/maven-artifact/apidocs/org/apache/maven/artifact/versioning/ComparableVersion.html)
+- [Maven Versioning (Apache Confluence)](https://cwiki.apache.org/confluence/display/MAVENOLD/Versioning)
+- [Renovate Configuration Options](https://docs.renovatebot.com/configuration-options/)
