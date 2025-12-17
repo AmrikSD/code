@@ -869,7 +869,7 @@
     "@@rules_oci+//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "XCh21ZXkFyIWtRJj/7sw0Rrfb1BopaITW9BVDZySeB0=",
-        "usagesDigest": "w7D4S4VgoclMMyfvxEs9ogm6kVEbRSjKuKJeHrQgkHc=",
+        "usagesDigest": "7+2YVIF/1F+bCH+d9IJ3zE840qj3Kkfnb/SdJKjLxOg=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1190,7 +1190,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:70d9599b186ce287be0d2c5ba9a78acb2e86c1a68c9c41449454d0fc3eeb84e8",
+              "identifier": "sha256:adaf2d6b44c7e2b711b931b98be153778d313806582a24eab21178804fac2976",
               "platform": "linux/amd64",
               "target_name": "grafana_linux_amd64",
               "bazel_tags": []
@@ -1203,7 +1203,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:70d9599b186ce287be0d2c5ba9a78acb2e86c1a68c9c41449454d0fc3eeb84e8",
+              "identifier": "sha256:adaf2d6b44c7e2b711b931b98be153778d313806582a24eab21178804fac2976",
               "platform": "linux/arm64",
               "target_name": "grafana_linux_arm64",
               "bazel_tags": []
@@ -1216,7 +1216,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:70d9599b186ce287be0d2c5ba9a78acb2e86c1a68c9c41449454d0fc3eeb84e8",
+              "identifier": "sha256:adaf2d6b44c7e2b711b931b98be153778d313806582a24eab21178804fac2976",
               "platform": "linux/arm/v7",
               "target_name": "grafana_linux_arm_v7",
               "bazel_tags": []
@@ -1230,7 +1230,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "grafana/grafana-oss",
-              "identifier": "sha256:70d9599b186ce287be0d2c5ba9a78acb2e86c1a68c9c41449454d0fc3eeb84e8",
+              "identifier": "sha256:adaf2d6b44c7e2b711b931b98be153778d313806582a24eab21178804fac2976",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@grafana_linux_amd64",
                 "@@platforms//cpu:arm64": "@grafana_linux_arm64",
@@ -1376,7 +1376,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/prowlarr",
-              "identifier": "sha256:475853535de3de8441b87c1457c30f2e695f4831228b12b6b7274e9da409d874",
+              "identifier": "sha256:67a8aaedcfd6989f3030b937a6a07007310b1dfc7ee8df16d2cbfa48d1c1158c",
               "platform": "linux/amd64",
               "target_name": "prowlarr_linux_amd64",
               "bazel_tags": []
@@ -1389,7 +1389,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/prowlarr",
-              "identifier": "sha256:475853535de3de8441b87c1457c30f2e695f4831228b12b6b7274e9da409d874",
+              "identifier": "sha256:67a8aaedcfd6989f3030b937a6a07007310b1dfc7ee8df16d2cbfa48d1c1158c",
               "platform": "linux/arm64",
               "target_name": "prowlarr_linux_arm64",
               "bazel_tags": []
@@ -1403,7 +1403,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/prowlarr",
-              "identifier": "sha256:475853535de3de8441b87c1457c30f2e695f4831228b12b6b7274e9da409d874",
+              "identifier": "sha256:67a8aaedcfd6989f3030b937a6a07007310b1dfc7ee8df16d2cbfa48d1c1158c",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@prowlarr_linux_amd64",
                 "@@platforms//cpu:arm64": "@prowlarr_linux_arm64"
