@@ -1,5 +1,8 @@
 {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "enabled": true,
+    "platformAutomerge": true,
+    "automerge": true,
     "allowedPostUpgradeCommands": [
         "^bazel mod deps --lockfile_mode=update$",
         "^bazel run @rules_go//go -- mod tidy$"
@@ -9,7 +12,9 @@
     "semanticCommits": "enabled",
     "dependencyDashboard": true,
     "dependencyDashboardTitle": "Renovate Dashboard",
-    "suppressNotifications": ["prIgnoreNotification"],
+    "suppressNotifications": [
+        "prIgnoreNotification"
+    ],
     "rebaseWhen": "conflicted",
     "ignoreDeps": [
         "ghcr.io/fluxcd/helm-controller",
@@ -19,9 +24,19 @@
         "ghcr.io/fluxcd/notification-controller",
         "ghcr.io/fluxcd/source-controller"
     ],
-    "pre-commit": {"enabled": true},
-    "flux": {"fileMatch": ["infra/kubernetes/cluster-(d+).+\\.ya?ml$"]},
-    "helm-values": {"fileMatch": ["infra/kubernetes/cluster-(d+).+\\.ya?ml$"]},
+    "pre-commit": {
+        "enabled": true
+    },
+    "flux": {
+        "fileMatch": [
+            "infra/kubernetes/cluster-(d+).+\\.ya?ml$"
+        ]
+    },
+    "helm-values": {
+        "fileMatch": [
+            "infra/kubernetes/cluster-(d+).+\\.ya?ml$"
+        ]
+    },
     "kubernetes": {
         "fileMatch": [
             "infra/kubernetes/cluster-(d+).+\\.ya?ml$",
@@ -45,7 +60,9 @@
         },
         {
             "customType": "regex",
-            "fileMatch": ["infra/kubernetes/cluster-(d+).+\\.ya?ml$"],
+            "fileMatch": [
+                "infra/kubernetes/cluster-(d+).+\\.ya?ml$"
+            ],
             "matchStrings": [
                 "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
                 "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/v?(?<currentValue>.*)\n"
@@ -54,7 +71,10 @@
         },
         {
             "customType": "regex",
-            "fileMatch": ["infra/containers/.+/.+\\.MODULE\\.bazel$", "MODULE.bazel"],
+            "fileMatch": [
+                "infra/containers/.+/.+\\.MODULE\\.bazel$",
+                "MODULE.bazel"
+            ],
             "matchStrings": [
                 "# renovate: datasource\\s*\\=\\s*(?<datasource>(\\w)+) depName=(?<depName>[^\\s]+)\\s+\\S+_VERSION\\s*=\\s*\"(?<currentValue>[^\"]+)\""
             ],
@@ -65,107 +85,223 @@
     ],
     "packageRules": [
         {
-            "matchDatasources": ["helm"],
+            "matchDatasources": [
+                "helm"
+            ],
             "separateMinorPatch": true,
             "ignoreDeprecated": true
         },
         {
-            "matchDatasources": ["docker"],
+            "matchDatasources": [
+                "docker"
+            ],
             "enabled": true,
             "commitMessageTopic": "container image {{depName}}",
             "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
-            "matchUpdateTypes": ["major", "minor", "patch"]
+            "matchUpdateTypes": [
+                "major",
+                "minor",
+                "patch"
+            ]
         },
         {
-            "matchDatasources": ["docker"],
-            "matchUpdateTypes": ["major"],
-            "labels": ["renovate/image", "dep/major"]
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "labels": [
+                "renovate/image",
+                "dep/major"
+            ]
         },
         {
-            "matchDatasources": ["docker"],
-            "matchUpdateTypes": ["minor"],
-            "labels": ["renovate/image", "dep/minor"]
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchUpdateTypes": [
+                "minor"
+            ],
+            "labels": [
+                "renovate/image",
+                "dep/minor"
+            ]
         },
         {
-            "matchDatasources": ["docker"],
-            "matchUpdateTypes": ["patch"],
-            "labels": ["renovate/image", "dep/patch"]
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchUpdateTypes": [
+                "patch"
+            ],
+            "labels": [
+                "renovate/image",
+                "dep/patch"
+            ]
         },
         {
-            "matchDatasources": ["docker"],
-            "matchUpdateTypes": ["digest"],
-            "labels": ["renovate/image", "dep/digest"]
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchUpdateTypes": [
+                "digest"
+            ],
+            "labels": [
+                "renovate/image",
+                "dep/digest"
+            ]
         },
         {
-            "matchFileNames": ["infra/containers/**"],
-            "matchDatasources": ["docker"],
+            "matchFileNames": [
+                "infra/containers/**"
+            ],
+            "matchDatasources": [
+                "docker"
+            ],
             "groupName": "infra containers"
         },
         {
-            "matchDatasources": ["maven"],
-            "matchUpdateTypes": ["minor", "patch"],
+            "matchDatasources": [
+                "maven"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "patch"
+            ],
             "groupName": "java dependencies"
         },
         {
-            "matchFileNames": ["projects/wedding/**"],
-            "matchUpdateTypes": ["minor", "patch"],
+            "matchFileNames": [
+                "projects/wedding/**"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "patch"
+            ],
             "groupName": "wedding project dependencies"
         },
         {
-            "matchDatasources": ["helm"],
-            "matchUpdateTypes": ["major"],
-            "labels": ["renovate/helm", "dep/major"]
+            "matchDatasources": [
+                "helm"
+            ],
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "labels": [
+                "renovate/helm",
+                "dep/major"
+            ]
         },
         {
-            "matchDatasources": ["helm"],
-            "matchUpdateTypes": ["minor"],
-            "labels": ["renovate/helm", "dep/minor"]
+            "matchDatasources": [
+                "helm"
+            ],
+            "matchUpdateTypes": [
+                "minor"
+            ],
+            "labels": [
+                "renovate/helm",
+                "dep/minor"
+            ]
         },
         {
-            "matchDatasources": ["helm"],
-            "matchUpdateTypes": ["patch"],
-            "labels": ["renovate/helm", "dep/patch"]
+            "matchDatasources": [
+                "helm"
+            ],
+            "matchUpdateTypes": [
+                "patch"
+            ],
+            "labels": [
+                "renovate/helm",
+                "dep/patch"
+            ]
         },
         {
-            "matchManagers": ["bazel-module"],
-            "matchDatasources": ["bazel"],
-            "matchUpdateTypes": ["major"],
-            "labels": ["renovate/bazel_dep", "dep/major"]
+            "matchManagers": [
+                "bazel-module"
+            ],
+            "matchDatasources": [
+                "bazel"
+            ],
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "labels": [
+                "renovate/bazel_dep",
+                "dep/major"
+            ]
         },
         {
-            "matchManagers": ["bazel-module"],
-            "matchDatasources": ["bazel"],
-            "matchUpdateTypes": ["minor"],
-            "labels": ["renovate/bazel_dep", "dep/minor"]
+            "matchManagers": [
+                "bazel-module"
+            ],
+            "matchDatasources": [
+                "bazel"
+            ],
+            "matchUpdateTypes": [
+                "minor"
+            ],
+            "labels": [
+                "renovate/bazel_dep",
+                "dep/minor"
+            ]
         },
         {
-            "matchManagers": ["bazel-module"],
-            "matchDatasources": ["bazel"],
-            "matchUpdateTypes": ["patch"],
-            "labels": ["renovate/bazel_dep", "dep/patch"]
+            "matchManagers": [
+                "bazel-module"
+            ],
+            "matchDatasources": [
+                "bazel"
+            ],
+            "matchUpdateTypes": [
+                "patch"
+            ],
+            "labels": [
+                "renovate/bazel_dep",
+                "dep/patch"
+            ]
         },
         {
-            "matchManagers": ["bazel-module"],
-            "matchDatasources": ["bazel"],
-            "matchUpdateTypes": ["minor", "patch"],
+            "matchManagers": [
+                "bazel-module"
+            ],
+            "matchDatasources": [
+                "bazel"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "patch"
+            ],
             "groupName": "bazel dependencies"
         },
         {
-            "matchManagers": ["bazel-module"],
+            "matchManagers": [
+                "bazel-module"
+            ],
             "postUpgradeTasks": {
-                "commands": ["bazel mod deps --lockfile_mode=update"],
-                "fileFilters": ["MODULE.bazel.lock"],
+                "commands": [
+                    "bazel mod deps --lockfile_mode=update"
+                ],
+                "fileFilters": [
+                    "MODULE.bazel.lock"
+                ],
                 "executionMode": "update"
             }
         },
         {
-            "matchManagers": ["gomod"],
+            "matchManagers": [
+                "gomod"
+            ],
             "postUpgradeTasks": {
-                "commands": ["bazel run @rules_go//go -- mod tidy"],
-                "fileFilters": ["go.sum"],
+                "commands": [
+                    "bazel run @rules_go//go -- mod tidy"
+                ],
+                "fileFilters": [
+                    "go.sum"
+                ],
                 "executionMode": "update"
             }
         }
     ]
 }
-
