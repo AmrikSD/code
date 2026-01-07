@@ -29,7 +29,7 @@ POSTGRES_VERSION = "42.7.8"
 ASSERTJ_VERSION = "3.27.6"
 
 # renovate: datasource=maven depName=org.junit.jupiter:junit-jupiter-api
-JUNIT_VERSION = "5.10.3"
+JUNIT_VERSION = "6.1.0-M1"
 
 JUNIT_PLATFORM_VERSION = "1.10.3"
 
