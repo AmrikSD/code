@@ -34,12 +34,6 @@ module "gcp" {
   cf_tunnel_secret = random_bytes.tunnel_secret.base64
 }
 
-module "kubernetes" {
-  source            = "./kubernetes/"
-  github_repository = "code"
-  github_org        = "AmrikSD"
-}
-
 module "unifi" {
   source   = "./unifi/"
   api_url  = "https://10.0.0.1"

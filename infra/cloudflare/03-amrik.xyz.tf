@@ -5,7 +5,7 @@ variable "tunnel_secret" {
 
 resource "cloudflare_record" "amrik_xyz" {
   zone_id = data.sops_file.cloudflare-secret.data["cloudflare.amrik.xyz.zone_id"]
-  name    = "@"
+  name    = "amrik.xyz"
   type    = "CNAME"
   content = cloudflare_zero_trust_tunnel_cloudflared.gcp_tunnel.cname
   proxied = true
@@ -29,10 +29,6 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "gcp_tunnel_config" {
   account_id = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
   tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.gcp_tunnel.id
   config {
-    ingress_rule {
-      hostname = cloudflare_record.frappe_app.hostname
-      service  = "http://frontend:8080"
-    }
     ingress_rule {
       hostname = cloudflare_record.amrik_xyz.hostname
       service  = "http://frontend:8080"
