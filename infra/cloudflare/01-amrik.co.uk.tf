@@ -52,7 +52,7 @@ resource "cloudflare_pages_project" "thai" {
 
   build_config {
     build_command   = ""
-    root_dir        = "ITP1/Pronunciation/app"
+    root_dir        = "ITP1/app"
     destination_dir = ""
   }
 
