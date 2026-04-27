@@ -14,7 +14,7 @@ JETTY_VERSION = "12.1.8"
 JERSEY_VERSION = "4.0.2"
 
 # renovate: datasource=maven depName=org.flywaydb:flyway-core
-FLYWAY_VERSION = "11.20.3"
+FLYWAY_VERSION = "12.5.0"
 
 # renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
 JACKSON_VERSION = "2.21.2"
@@ -64,7 +64,7 @@ maven.install(
 
         "com.typesafe:config:1.4.6",
 
-        "org.flywaydb:flyway-core:11.20.3",
+        "org.flywaydb:flyway-core:12.5.0",
         "org.flywaydb:flyway-database-postgresql:11.20.3",
 
         "org.postgresql:postgresql:42.7.10",
