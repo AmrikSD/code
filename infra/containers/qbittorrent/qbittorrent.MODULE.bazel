@@ -3,7 +3,7 @@ oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 # renovate: datasource=docker depName=docker.io/linuxserver/qbittorrent
 oci.pull(
     name = "qbittorrent",
-    digest = "sha256:474ef1f1c63fc060236e85cd6ec4a3232aea5a0d7a033c6bab9911039933f147",
+    digest = "sha256:3679a75dd2304b695525d83a4ff14c458708b5da4a7ce53044240932139590e1",
     image = "docker.io/linuxserver/qbittorrent",
     platforms = [
         "linux/amd64",
