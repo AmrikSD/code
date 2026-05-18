@@ -31,7 +31,7 @@ ASSERTJ_VERSION = "3.27.7"
 # renovate: datasource=maven depName=org.junit.jupiter:junit-jupiter-api
 JUNIT_VERSION = "5.14.3"
 
-JUNIT_PLATFORM_VERSION = "1.10.3"
+JUNIT_PLATFORM_VERSION = "1.14.3"
 
 MOCKITO_VERSION = "5.12.0"
 
