@@ -3,7 +3,7 @@ oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
 # renovate: datasource=docker depName=docker.io/grafana/grafana-oss
 oci.pull(
     name = "grafana",
-    digest = "sha256:83749231c3835e390a3144e5e940203e42b9589761f20ef3169c716e734ad505",
+    digest = "sha256:2d1f9ae67c1778d33e291d4c3c759cd8b650e67491f02533499eb950e075eeb5",
     image = "docker.io/grafana/grafana-oss",
     platforms = [
         "linux/amd64",

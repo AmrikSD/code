@@ -6,6 +6,14 @@ permissions:
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "infra/containers/**"
+      - "MODULE.bazel"
+      - "MODULE.bazel.lock"
+      - ".github/workflows/docker.yml"
 
 jobs:
   get-matrix:
@@ -47,4 +55,3 @@ jobs:
 
       - name: Push
         run: bazel run ${{matrix.target}}
-
