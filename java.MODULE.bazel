@@ -8,7 +8,7 @@ GUICE_VERSION = "7.0.0"
 RESTEASY_VERSION = "7.0.2.Final"
 
 # renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
-JETTY_VERSION = "12.1.8"
+JETTY_VERSION = "12.1.9"
 
 # renovate: datasource=maven depName=org.glassfish.jersey:jersey-bom
 JERSEY_VERSION = "4.0.2"
@@ -17,19 +17,19 @@ JERSEY_VERSION = "4.0.2"
 FLYWAY_VERSION = "12.6.1"
 
 # renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
-JACKSON_VERSION = "2.21.2"
+JACKSON_VERSION = "2.21.3"
 
 # renovate: datasource=maven depName=org.jooq:jooq
-JOOQ_VERSION = "3.21.2"
+JOOQ_VERSION = "3.21.4"
 
 # renovate: datasource=maven depName=org.postgresql:postgresql
-POSTGRES_VERSION = "42.7.10"
+POSTGRES_VERSION = "42.7.11"
 
 # renovate: datasource=maven depName=org.assertj:assertj-core
 ASSERTJ_VERSION = "3.27.7"
 
 # renovate: datasource=maven depName=org.junit.jupiter:junit-jupiter-api
-JUNIT_VERSION = "5.14.3"
+JUNIT_VERSION = "5.14.4"
 
 JUNIT_PLATFORM_VERSION = "1.14.3"
 
@@ -60,14 +60,14 @@ maven.install(
         # Jakarta Servlet API (for EE10)
         "jakarta.servlet:jakarta.servlet-api:6.1.0",
 
-        "org.slf4j:slf4j-api:2.0.17",
+        "org.slf4j:slf4j-api:2.0.18",
 
-        "com.typesafe:config:1.4.6",
+        "com.typesafe:config:1.4.8",
 
         "org.flywaydb:flyway-core:12.6.1",
         "org.flywaydb:flyway-database-postgresql:12.6.1",
 
-        "org.postgresql:postgresql:42.7.10",
+        "org.postgresql:postgresql:42.7.11",
         "com.zaxxer:HikariCP:7.0.2",
     ],
     fetch_sources = True,
