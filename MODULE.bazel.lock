@@ -962,7 +962,7 @@
     "@@rules_oci+//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "lE1POK6aGkZhUzM6nk3YB1H6JYeQggTjPTihFmlAXiQ=",
-        "usagesDigest": "j7C7Uy6DrL6bBQlSjfP0wD9ZV1zMUgwubbBadEVQXeI=",
+        "usagesDigest": "0VPMRHqdkVCW4gdL1oQI8GHuJ3W93DS+cZA1EBUJRuQ=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -974,7 +974,7 @@
               "scheme": "https",
               "registry": "gcr.io",
               "repository": "distroless/static",
-              "identifier": "sha256:47b2d72ff90843eb8a768b5c2f89b40741843b639d065b9b937b07cd59b479c6",
+              "identifier": "sha256:3592aa8171c77482f62bbc4164e6a2d141c6122554ace66e5cc910cadb961ff0",
               "platform": "linux/amd64",
               "target_name": "distroless_linux_amd64",
               "bazel_tags": []
@@ -987,7 +987,7 @@
               "scheme": "https",
               "registry": "gcr.io",
               "repository": "distroless/static",
-              "identifier": "sha256:47b2d72ff90843eb8a768b5c2f89b40741843b639d065b9b937b07cd59b479c6",
+              "identifier": "sha256:3592aa8171c77482f62bbc4164e6a2d141c6122554ace66e5cc910cadb961ff0",
               "platform": "linux/arm/v7",
               "target_name": "distroless_linux_arm_v7",
               "bazel_tags": []
@@ -1000,7 +1000,7 @@
               "scheme": "https",
               "registry": "gcr.io",
               "repository": "distroless/static",
-              "identifier": "sha256:47b2d72ff90843eb8a768b5c2f89b40741843b639d065b9b937b07cd59b479c6",
+              "identifier": "sha256:3592aa8171c77482f62bbc4164e6a2d141c6122554ace66e5cc910cadb961ff0",
               "platform": "linux/arm64/v8",
               "target_name": "distroless_linux_arm64_v8",
               "bazel_tags": []
@@ -1013,7 +1013,7 @@
               "scheme": "https",
               "registry": "gcr.io",
               "repository": "distroless/static",
-              "identifier": "sha256:47b2d72ff90843eb8a768b5c2f89b40741843b639d065b9b937b07cd59b479c6",
+              "identifier": "sha256:3592aa8171c77482f62bbc4164e6a2d141c6122554ace66e5cc910cadb961ff0",
               "platform": "linux/s390x",
               "target_name": "distroless_linux_s390x",
               "bazel_tags": []
@@ -1026,7 +1026,7 @@
               "scheme": "https",
               "registry": "gcr.io",
               "repository": "distroless/static",
-              "identifier": "sha256:47b2d72ff90843eb8a768b5c2f89b40741843b639d065b9b937b07cd59b479c6",
+              "identifier": "sha256:3592aa8171c77482f62bbc4164e6a2d141c6122554ace66e5cc910cadb961ff0",
               "platform": "linux/ppc64le",
               "target_name": "distroless_linux_ppc64le",
               "bazel_tags": []
@@ -1040,7 +1040,7 @@
               "scheme": "https",
               "registry": "gcr.io",
               "repository": "distroless/static",
-              "identifier": "sha256:47b2d72ff90843eb8a768b5c2f89b40741843b639d065b9b937b07cd59b479c6",
+              "identifier": "sha256:3592aa8171c77482f62bbc4164e6a2d141c6122554ace66e5cc910cadb961ff0",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@distroless_linux_amd64",
                 "@@platforms//cpu:armv7": "@distroless_linux_arm_v7",
@@ -1059,7 +1059,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:06aa3d7be10bc6307990c81bdca075793132e9163391abc370c015e344e23128",
+              "identifier": "sha256:800e7c98538c6bf725f5177e841aa720ae0ed1c378bbea368b6330bfe18a36b3",
               "platform": "linux/386",
               "target_name": "nginx_linux_386",
               "bazel_tags": []
@@ -1072,7 +1072,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:06aa3d7be10bc6307990c81bdca075793132e9163391abc370c015e344e23128",
+              "identifier": "sha256:800e7c98538c6bf725f5177e841aa720ae0ed1c378bbea368b6330bfe18a36b3",
               "platform": "linux/amd64",
               "target_name": "nginx_linux_amd64",
               "bazel_tags": []
@@ -1085,7 +1085,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:06aa3d7be10bc6307990c81bdca075793132e9163391abc370c015e344e23128",
+              "identifier": "sha256:800e7c98538c6bf725f5177e841aa720ae0ed1c378bbea368b6330bfe18a36b3",
               "platform": "linux/arm/v5",
               "target_name": "nginx_linux_arm_v5",
               "bazel_tags": []
@@ -1098,7 +1098,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:06aa3d7be10bc6307990c81bdca075793132e9163391abc370c015e344e23128",
+              "identifier": "sha256:800e7c98538c6bf725f5177e841aa720ae0ed1c378bbea368b6330bfe18a36b3",
               "platform": "linux/arm/v7",
               "target_name": "nginx_linux_arm_v7",
               "bazel_tags": []
@@ -1111,7 +1111,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:06aa3d7be10bc6307990c81bdca075793132e9163391abc370c015e344e23128",
+              "identifier": "sha256:800e7c98538c6bf725f5177e841aa720ae0ed1c378bbea368b6330bfe18a36b3",
               "platform": "linux/arm64/v8",
               "target_name": "nginx_linux_arm64_v8",
               "bazel_tags": []
@@ -1124,7 +1124,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:06aa3d7be10bc6307990c81bdca075793132e9163391abc370c015e344e23128",
+              "identifier": "sha256:800e7c98538c6bf725f5177e841aa720ae0ed1c378bbea368b6330bfe18a36b3",
               "platform": "linux/mips64le",
               "target_name": "nginx_linux_mips64le",
               "bazel_tags": []
@@ -1137,7 +1137,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:06aa3d7be10bc6307990c81bdca075793132e9163391abc370c015e344e23128",
+              "identifier": "sha256:800e7c98538c6bf725f5177e841aa720ae0ed1c378bbea368b6330bfe18a36b3",
               "platform": "linux/ppc64le",
               "target_name": "nginx_linux_ppc64le",
               "bazel_tags": []
@@ -1150,7 +1150,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:06aa3d7be10bc6307990c81bdca075793132e9163391abc370c015e344e23128",
+              "identifier": "sha256:800e7c98538c6bf725f5177e841aa720ae0ed1c378bbea368b6330bfe18a36b3",
               "platform": "linux/s390x",
               "target_name": "nginx_linux_s390x",
               "bazel_tags": []
@@ -1164,7 +1164,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "library/nginx",
-              "identifier": "sha256:06aa3d7be10bc6307990c81bdca075793132e9163391abc370c015e344e23128",
+              "identifier": "sha256:800e7c98538c6bf725f5177e841aa720ae0ed1c378bbea368b6330bfe18a36b3",
               "platforms": {
                 "@@platforms//cpu:i386": "@nginx_linux_386",
                 "@@platforms//cpu:x86_64": "@nginx_linux_amd64",
@@ -1340,7 +1340,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:f0baa7922ecec7790c40c41baf08ab218b6ab8db5f96dc03b03a0ae33d987c3d",
+              "identifier": "sha256:ff875078181a0383bf3fca9f061be12d6180896dbd531de04e094e25505b0bb9",
               "platform": "linux/arm64",
               "target_name": "home-assistant_linux_arm64",
               "bazel_tags": []
@@ -1353,7 +1353,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:f0baa7922ecec7790c40c41baf08ab218b6ab8db5f96dc03b03a0ae33d987c3d",
+              "identifier": "sha256:ff875078181a0383bf3fca9f061be12d6180896dbd531de04e094e25505b0bb9",
               "platform": "linux/amd64",
               "target_name": "home-assistant_linux_amd64",
               "bazel_tags": []
@@ -1367,7 +1367,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "homeassistant/home-assistant",
-              "identifier": "sha256:f0baa7922ecec7790c40c41baf08ab218b6ab8db5f96dc03b03a0ae33d987c3d",
+              "identifier": "sha256:ff875078181a0383bf3fca9f061be12d6180896dbd531de04e094e25505b0bb9",
               "platforms": {
                 "@@platforms//cpu:arm64": "@home-assistant_linux_arm64",
                 "@@platforms//cpu:x86_64": "@home-assistant_linux_amd64"
@@ -1426,7 +1426,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/radarr",
-              "identifier": "sha256:15417a594ebda4c660a9fa9748e7199d33e2d17b31bbc5ad7ba2e86f0b414763",
+              "identifier": "sha256:079e48870584baf2a3e7e43e7ba6d3c834555931851a59c82c51cc792d285caf",
               "platform": "linux/amd64",
               "target_name": "radarr_linux_amd64",
               "bazel_tags": []
@@ -1439,7 +1439,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/radarr",
-              "identifier": "sha256:15417a594ebda4c660a9fa9748e7199d33e2d17b31bbc5ad7ba2e86f0b414763",
+              "identifier": "sha256:079e48870584baf2a3e7e43e7ba6d3c834555931851a59c82c51cc792d285caf",
               "platform": "linux/arm64",
               "target_name": "radarr_linux_arm64",
               "bazel_tags": []
@@ -1453,7 +1453,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/radarr",
-              "identifier": "sha256:15417a594ebda4c660a9fa9748e7199d33e2d17b31bbc5ad7ba2e86f0b414763",
+              "identifier": "sha256:079e48870584baf2a3e7e43e7ba6d3c834555931851a59c82c51cc792d285caf",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@radarr_linux_amd64",
                 "@@platforms//cpu:arm64": "@radarr_linux_arm64"
@@ -1469,7 +1469,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/prowlarr",
-              "identifier": "sha256:a89f252d6a22bd25af14a5380aec0adcc3c3af2e3282164f981680e6844070f3",
+              "identifier": "sha256:c9fe528f34b1fd3715438b6f6d6991d64e2965f2c055db36398bc66a0e7eab01",
               "platform": "linux/amd64",
               "target_name": "prowlarr_linux_amd64",
               "bazel_tags": []
@@ -1482,7 +1482,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/prowlarr",
-              "identifier": "sha256:a89f252d6a22bd25af14a5380aec0adcc3c3af2e3282164f981680e6844070f3",
+              "identifier": "sha256:c9fe528f34b1fd3715438b6f6d6991d64e2965f2c055db36398bc66a0e7eab01",
               "platform": "linux/arm64",
               "target_name": "prowlarr_linux_arm64",
               "bazel_tags": []
@@ -1496,7 +1496,7 @@
               "scheme": "https",
               "registry": "index.docker.io",
               "repository": "linuxserver/prowlarr",
-              "identifier": "sha256:a89f252d6a22bd25af14a5380aec0adcc3c3af2e3282164f981680e6844070f3",
+              "identifier": "sha256:c9fe528f34b1fd3715438b6f6d6991d64e2965f2c055db36398bc66a0e7eab01",
               "platforms": {
                 "@@platforms//cpu:x86_64": "@prowlarr_linux_amd64",
                 "@@platforms//cpu:arm64": "@prowlarr_linux_arm64"
