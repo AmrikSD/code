@@ -6,6 +6,11 @@ import "fmt"
 func Bootstrap(jiraKey string) string {
 	return fmt.Sprintf(`Use the Jira CLI skill to read issue %s and any immediately relevant linked context.
 
+Before doing anything else, load relevant skills by exact name:
+- jira-cli (for ticket analysis)
+- github-cli (for repository/PR work)
+- kaas-clusters (only if the issue touches KaaS clusters/tenants)
+
 Summarize the task:
 1. What is the goal?
 2. What are the acceptance criteria?
