@@ -17,7 +17,7 @@ Summarize the task:
 3. What constraints or technical requirements exist?
 4. What is unclear or missing?
 
-If requirements are ambiguous or incomplete, stop and ask focused clarifying questions before making any changes.
+If requirements are ambiguous or incomplete, stop and ask focused clarifying questions using the questions workflow before making any changes.
 
 If the task is clear enough, use the GitHub CLI skill to locate the relevant repository under ~/code, inspect the codebase, implement the smallest correct solution, and verify it.
 
