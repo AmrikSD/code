@@ -136,7 +136,9 @@ func printDryRun(p *plan) {
 
 func run(p *plan) int {
 	// Build the opencode command.
-	opencodeArgs := []string{"run", "--prompt", p.prompt}
+	// Use the default interactive TUI command with a bootstrap prompt so the
+	// tmux window stays open for the work session.
+	opencodeArgs := []string{"--prompt", p.prompt}
 	opencodeBin := "opencode"
 
 	if p.useTmux {
