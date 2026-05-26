@@ -1,15 +1,15 @@
 load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
 go_library(
-    name = "do_lib",
+    name = "vibe_lib",
     srcs = ["main.go"],
-    importpath = "github.com/amriksd/code/projects/do/cmd/do",
+    importpath = "github.com/amriksd/code/projects/vibe/cmd/vibe",
     visibility = ["//visibility:private"],
-    deps = ["//projects/do/internal/cli"],
+    deps = ["//projects/vibe/internal/cli"],
 )
 
 go_binary(
-    name = "do",
-    embed = [":do_lib"],
+    name = "vibe",
+    embed = [":vibe_lib"],
     visibility = ["//visibility:public"],
 )

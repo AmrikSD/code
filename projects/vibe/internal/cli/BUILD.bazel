@@ -1,0 +1,13 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "cli",
+    srcs = ["app.go"],
+    importpath = "github.com/amriksd/code/projects/vibe/internal/cli",
+    visibility = ["//projects/vibe:__subpackages__"],
+    deps = [
+        "//projects/vibe/internal/prompt",
+        "//projects/vibe/internal/tmux",
+        "//projects/vibe/internal/version",
+    ],
+)

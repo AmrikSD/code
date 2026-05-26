@@ -7,16 +7,16 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/amriksd/code/projects/do/internal/prompt"
-	"github.com/amriksd/code/projects/do/internal/tmux"
-	"github.com/amriksd/code/projects/do/internal/version"
+	"github.com/amriksd/code/projects/vibe/internal/prompt"
+	"github.com/amriksd/code/projects/vibe/internal/tmux"
+	"github.com/amriksd/code/projects/vibe/internal/version"
 )
 
-const usage = `do - start work on a Jira ticket
+const usage = `vibe - start work on a Jira ticket
 
 Usage:
-  do <jira-key>
-  do [flags]
+  vibe <jira-key>
+  vibe [flags]
 
 Arguments:
   <jira-key>    Jira issue key (e.g. ENG-3355)
@@ -28,9 +28,9 @@ Flags:
   --help        Show this help message
 
 Examples:
-  do ENG-3355
-  do ENG-3355 --dry-run
-  do ENG-3355 --no-tmux
+  vibe ENG-3355
+  vibe ENG-3355 --dry-run
+  vibe ENG-3355 --no-tmux
 `
 
 // Params holds the parsed CLI parameters.
@@ -48,7 +48,7 @@ type plan struct {
 }
 
 func Run() int {
-	fs := flag.NewFlagSet("do", flag.ContinueOnError)
+	fs := flag.NewFlagSet("vibe", flag.ContinueOnError)
 	fs.Usage = func() {
 		fmt.Fprint(os.Stderr, usage)
 	}
@@ -57,7 +57,7 @@ func Run() int {
 	dryRun := fs.Bool("dry-run", false, "Show what would happen without executing")
 	noTmux := fs.Bool("no-tmux", false, "Skip tmux window creation")
 
-	// Reorder os.Args so flags work in any position (e.g. "do ENG-3355 --dry-run").
+	// Reorder os.Args so flags work in any position (e.g. "vibe ENG-3355 --dry-run").
 	reordered := reorderArgs(os.Args[1:])
 
 	if err := fs.Parse(reordered); err != nil {

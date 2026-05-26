@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/amriksd/code/projects/do/internal/cli"
+	"github.com/amriksd/code/projects/vibe/internal/cli"
 )
 
 func main() {

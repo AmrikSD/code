@@ -1,8 +1,0 @@
-load("@rules_go//go:def.bzl", "go_library")
-
-go_library(
-    name = "tmux",
-    srcs = ["tmux.go"],
-    importpath = "github.com/amriksd/code/projects/do/internal/tmux",
-    visibility = ["//projects/do:__subpackages__"],
-)
