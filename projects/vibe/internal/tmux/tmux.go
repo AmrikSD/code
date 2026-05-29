@@ -40,9 +40,10 @@ func SwitchToWindow(name string) error {
 }
 
 // NewWindow creates a new tmux window with the given name and working directory,
-// then runs the specified command inside it.
+// then runs the specified command inside it. The window is appended to the end
+// of the current session's window list so it opens as a new tab on the right.
 func NewWindow(name, workdir string, command []string) error {
-	args := []string{"new-window", "-n", name}
+	args := []string{"new-window", "-a", "-n", name}
 	if workdir != "" {
 		args = append(args, "-c", workdir)
 	}

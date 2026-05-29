@@ -125,7 +125,7 @@ func printDryRun(p *plan) {
 	fmt.Printf("[dry-run] Jira key:   %s\n", p.jiraKey)
 
 	if p.useTmux {
-		fmt.Printf("[dry-run] tmux:       create/switch to window %q\n", p.jiraKey)
+		fmt.Printf("[dry-run] tmux:       create/switch to rightmost window %q\n", p.jiraKey)
 	} else {
 		fmt.Printf("[dry-run] tmux:       disabled\n")
 	}
@@ -171,7 +171,7 @@ func runWithTmux(windowName, bin string, args []string) int {
 		return 1
 	}
 
-	fmt.Printf("started work on %s in tmux window %q\n", windowName, windowName)
+	fmt.Printf("started work on %s in new rightmost tmux window %q\n", windowName, windowName)
 	return 0
 }
 
