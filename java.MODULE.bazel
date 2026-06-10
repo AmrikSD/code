@@ -8,19 +8,19 @@ GUICE_VERSION = "7.0.0"
 RESTEASY_VERSION = "7.0.2.Final"
 
 # renovate: datasource=maven depName=org.eclipse.jetty:jetty-bom
-JETTY_VERSION = "12.1.9"
+JETTY_VERSION = "12.1.10"
 
 # renovate: datasource=maven depName=org.glassfish.jersey:jersey-bom
 JERSEY_VERSION = "4.0.2"
 
 # renovate: datasource=maven depName=org.flywaydb:flyway-core
-FLYWAY_VERSION = "12.6.2"
+FLYWAY_VERSION = "12.8.1"
 
 # renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
-JACKSON_VERSION = "2.21.3"
+JACKSON_VERSION = "2.22.0"
 
 # renovate: datasource=maven depName=org.jooq:jooq
-JOOQ_VERSION = "3.21.4"
+JOOQ_VERSION = "3.21.5"
 
 # renovate: datasource=maven depName=org.postgresql:postgresql
 POSTGRES_VERSION = "42.7.11"
@@ -62,10 +62,10 @@ maven.install(
 
         "org.slf4j:slf4j-api:2.0.18",
 
-        "com.typesafe:config:1.4.8",
+        "com.typesafe:config:1.4.9",
 
-        "org.flywaydb:flyway-core:12.6.2",
-        "org.flywaydb:flyway-database-postgresql:12.6.2",
+        "org.flywaydb:flyway-core:12.8.1",
+        "org.flywaydb:flyway-database-postgresql:12.8.1",
 
         "org.postgresql:postgresql:42.7.11",
         "com.zaxxer:HikariCP:7.0.2",
