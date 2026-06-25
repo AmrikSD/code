@@ -14,13 +14,13 @@ JETTY_VERSION = "12.1.10"
 JERSEY_VERSION = "5.0.0-M1"
 
 # renovate: datasource=maven depName=org.flywaydb:flyway-core
-FLYWAY_VERSION = "12.8.1"
+FLYWAY_VERSION = "12.9.0"
 
 # renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
 JACKSON_VERSION = "2.22.0"
 
 # renovate: datasource=maven depName=org.jooq:jooq
-JOOQ_VERSION = "3.21.5"
+JOOQ_VERSION = "3.21.6"
 
 # renovate: datasource=maven depName=org.postgresql:postgresql
 POSTGRES_VERSION = "42.7.11"
@@ -64,11 +64,11 @@ maven.install(
 
         "com.typesafe:config:1.4.9",
 
-        "org.flywaydb:flyway-core:12.8.1",
-        "org.flywaydb:flyway-database-postgresql:12.8.1",
+        "org.flywaydb:flyway-core:12.9.0",
+        "org.flywaydb:flyway-database-postgresql:12.9.0",
 
         "org.postgresql:postgresql:42.7.11",
-        "com.zaxxer:HikariCP:7.0.2",
+        "com.zaxxer:HikariCP:7.1.0",
     ],
     fetch_sources = True,
     repositories = [
