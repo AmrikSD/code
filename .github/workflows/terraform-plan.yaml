@@ -2,13 +2,14 @@ name: "Terraform Plan"
 on:
   pull_request:
     branches: ["main"]
+    paths: ["infra/**"]
 
 concurrency:
   group: terraform-${{ github.workflow }}
   cancel-in-progress: false
 
 jobs:
-  deploy-via-tailscale:
+  plan:
     runs-on: ubuntu-latest
     steps:
       - name: Generate Token
@@ -26,25 +27,12 @@ jobs:
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.12.0"
+          terraform_version: "1.15.7"
 
       - name: Setup SOPS
         uses: nhedger/setup-sops@v2
         with:
-          version: "3.9.1"
-
-      - name: Install self-signed CA
-        run: |
-          echo "${{ secrets.SELF_SIGNED_CA }}" | sudo tee /usr/local/share/ca-certificates/my-ca.crt > /dev/null
-          echo "${{ secrets.KUBE_HOST }} truenas.local" | sudo tee -a /etc/hosts > /dev/null
-          sudo update-ca-certificates
-
-      - name: Connect Tailscale
-        uses: tailscale/github-action@v3
-        with:
-          oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
-          tags: tag:ci
+          version: "3.11.0"
 
       - name: Terraform Init & Plan
         id: plan
