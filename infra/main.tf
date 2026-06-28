@@ -23,16 +23,9 @@ resource "random_bytes" "tunnel_secret" {
 }
 
 module "cloudflare" {
-  source        = "./cloudflare/"
-  tunnel_secret = random_bytes.tunnel_secret.base64
+  source = "./cloudflare/"
 }
 
-module "gcp" {
-  source           = "./gcp/"
-  cf_account_id    = data.sops_file.cloudflare-secret.data["cloudflare.account_id"]
-  cf_tunnel_id     = module.cloudflare.tunnel_id
-  cf_tunnel_secret = random_bytes.tunnel_secret.base64
-}
 
 module "aws" {
   source = "./aws"
