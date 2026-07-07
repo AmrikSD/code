@@ -38,6 +38,7 @@ MOCKITO_VERSION = "5.12.0"
 TESTCONTAINERS_VERSION = "1.19.8"
 
 maven.install(
+    known_contributing_modules = ["protobuf"],
     artifacts = [
         # Testing
         "org.assertj:assertj-core:" + ASSERTJ_VERSION,
