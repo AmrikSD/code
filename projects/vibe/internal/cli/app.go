@@ -15,11 +15,17 @@ import (
 const usage = `vibe - start work on a Jira ticket
 
 Usage:
-  vibe <jira-key>
-  vibe [flags]
+  vibe <jira-key> [flags]
+  vibe queue [flags]
 
 Arguments:
-  <jira-key>    Jira issue key (e.g. ENG-3355)
+  <jira-key>    Jira issue key (e.g. ENG-3355 or SUP-17). Service desk keys
+                (SUP-*) get the support-desk prompt instead of the
+                implementation prompt.
+
+Commands:
+  queue         List the open service desk queue, pick a ticket, claim it,
+                and start work on it (see "vibe queue --help")
 
 Flags:
   --dry-run     Show what would happen without executing
@@ -29,8 +35,9 @@ Flags:
 
 Examples:
   vibe ENG-3355
-  vibe ENG-3355 --dry-run
-  vibe ENG-3355 --no-tmux
+  vibe SUP-17 --dry-run
+  vibe queue
+  vibe queue --next
 `
 
 // Params holds the parsed CLI parameters.
@@ -48,6 +55,10 @@ type plan struct {
 }
 
 func Run() int {
+	if len(os.Args) > 1 && os.Args[1] == "queue" {
+		return runQueue(os.Args[2:])
+	}
+
 	fs := flag.NewFlagSet("vibe", flag.ContinueOnError)
 	fs.Usage = func() {
 		fmt.Fprint(os.Stderr, usage)
@@ -107,13 +118,19 @@ func reorderArgs(args []string) []string {
 }
 
 func execute(params Params) int {
+	return launch(params.JiraKey, params.DryRun, params.NoTmux)
+}
+
+// launch starts (or switches to) an opencode session for a Jira key. It is
+// shared by the direct "vibe <key>" path and the "vibe queue" picker.
+func launch(jiraKey string, dryRun, noTmux bool) int {
 	p := &plan{
-		jiraKey: params.JiraKey,
-		useTmux: !params.NoTmux,
-		prompt:  prompt.Bootstrap(params.JiraKey),
+		jiraKey: jiraKey,
+		useTmux: !noTmux,
+		prompt:  prompt.Bootstrap(jiraKey),
 	}
 
-	if params.DryRun {
+	if dryRun {
 		printDryRun(p)
 		return 0
 	}
@@ -123,6 +140,11 @@ func execute(params Params) int {
 
 func printDryRun(p *plan) {
 	fmt.Printf("[dry-run] Jira key:   %s\n", p.jiraKey)
+	if prompt.IsServiceDesk(p.jiraKey) {
+		fmt.Printf("[dry-run] prompt:     service desk\n")
+	} else {
+		fmt.Printf("[dry-run] prompt:     engineering\n")
+	}
 
 	if p.useTmux {
 		fmt.Printf("[dry-run] tmux:       create/switch to rightmost window %q\n", p.jiraKey)
