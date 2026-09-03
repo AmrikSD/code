@@ -66,7 +66,7 @@ maven.install(
         "com.typesafe:config:1.4.9",
 
         "org.flywaydb:flyway-core:12.10.0",
-        "org.flywaydb:flyway-database-postgresql:12.10.0",
+        "org.flywaydb:flyway-database-postgresql:13.5.0",
 
         "org.postgresql:postgresql:42.7.12",
         "com.zaxxer:HikariCP:7.1.0",
