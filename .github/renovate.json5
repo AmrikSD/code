@@ -363,6 +363,7 @@
                     "bazel run @rules_go//go -- mod tidy"
                 ],
                 "fileFilters": [
+                    "go.mod",
                     "go.sum"
                 ],
                 "executionMode": "update"
