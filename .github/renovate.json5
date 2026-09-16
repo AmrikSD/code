@@ -341,10 +341,11 @@
                 "pin",
                 "pinDigest"
             ],
-            "groupName": "all non-major dependencies",
+            // Grouped PRs always use groupName as the commit topic, so the
+            // fun title lives here; groupSlug keeps the branch name stable.
+            "groupName": "the world 🫪",
             "groupSlug": "all-non-major",
             "commitMessageAction": "bump",
-            "commitMessageTopic": "the world 🫪",
             "commitMessageExtra": ""
         },
         {
