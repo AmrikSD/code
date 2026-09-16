@@ -79,6 +79,17 @@
             "datasourceTemplate": "{{datasource}}",
             "depNameTemplate": "{{depName}}",
             "versioningTemplate": "loose"
+        },
+        {
+            "customType": "regex",
+            "fileMatch": [
+                "(^|/)go\\.MODULE\\.bazel$"
+            ],
+            "matchStrings": [
+                "go_sdk\\.download\\([^)]*?version\\s*=\\s*\"(?<currentValue>[^\"]+)\""
+            ],
+            "depNameTemplate": "go",
+            "datasourceTemplate": "golang-version"
         }
     ],
     "packageRules": [
@@ -272,6 +283,27 @@
                 "patch"
             ],
             "groupName": "bazel dependencies"
+        },
+        {
+            "matchManagers": [
+                "custom.regex"
+            ],
+            "matchDatasources": [
+                "golang-version"
+            ],
+            "matchDepNames": [
+                "go"
+            ],
+            "groupName": "bazel dependencies",
+            "postUpgradeTasks": {
+                "commands": [
+                    "bazel mod deps --lockfile_mode=update"
+                ],
+                "fileFilters": [
+                    "MODULE.bazel.lock"
+                ],
+                "executionMode": "update"
+            }
         },
         {
             "matchManagers": [
