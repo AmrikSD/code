@@ -6,10 +6,25 @@ terraform {
     use_lockfile = true
   }
   required_version = "~> 1.15.0"
+  # Provider versions are pinned here, next to .terraform.lock.hcl, so
+  # Renovate updates the lock file in the same commit as the bump (it
+  # only refreshes lock files in the directory of the changed pin).
   required_providers {
     sops = {
       source  = "carlpett/sops"
       version = "~> 1.4.0"
+    }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "6.52.0"
+    }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 4.52.5"
+    }
+    unifi = {
+      source  = "ubiquiti-community/unifi"
+      version = "0.55.0"
     }
   }
 }
