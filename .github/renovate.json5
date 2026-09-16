@@ -344,6 +344,19 @@
                 ],
                 "executionMode": "update"
             }
+        },
+        {
+            // Last rule wins: every non-breaking update across all managers
+            // lands in one PR. Majors stay as individual PRs.
+            "matchUpdateTypes": [
+                "minor",
+                "patch",
+                "digest",
+                "pin",
+                "pinDigest"
+            ],
+            "groupName": "all non-major dependencies",
+            "groupSlug": "all-non-major"
         }
     ]
 }
