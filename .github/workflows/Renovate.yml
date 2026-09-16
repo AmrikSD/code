@@ -32,10 +32,11 @@ env:
   RENOVATE_PLATFORM_COMMIT: true
   # Global-only options (rejected if set in renovate.json5)
   RENOVATE_ALLOWED_COMMANDS: '["^bazel mod deps --lockfile_mode=update$", "^bazel run @rules_go//go -- mod tidy$"]'
-  # The container ships an empty ~/.android-sdk which makes transitive
-  # rules_android hard-fail during bazel analysis; point it at a missing
-  # path so the SDK repo rule no-ops like on dev machines.
-  RENOVATE_CUSTOM_ENV_VARIABLES: '{"ANDROID_HOME": "/nonexistent-android-sdk"}'
+  # The container sets ANDROID_HOME to an empty SDK dir, which makes
+  # transitive rules_android hard-fail during bazel analysis. An empty
+  # value is falsy to android_sdk_repository, so it creates its empty
+  # stub repo instead — same as an unset ANDROID_HOME on dev machines.
+  RENOVATE_CUSTOM_ENV_VARIABLES: '{"ANDROID_HOME": ""}'
   RENOVATE_ALLOWED_UNSAFE_EXECUTIONS: '["bazelModDeps"]'
   WORKFLOW_RENOVATE_VERSION: "${{ inputs.version || 'full' }}"
 
