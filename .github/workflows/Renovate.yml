@@ -30,6 +30,9 @@ env:
   RENOVATE_DRY_RUN: "${{ inputs.dryRun == true }}"
   RENOVATE_PLATFORM: github
   RENOVATE_PLATFORM_COMMIT: true
+  # Global-only options (rejected if set in renovate.json5)
+  RENOVATE_ALLOWED_COMMANDS: '["^bazel mod deps --lockfile_mode=update$", "^bazel run @rules_go//go -- mod tidy$"]'
+  RENOVATE_ALLOWED_UNSAFE_EXECUTIONS: '["bazelModDeps"]'
   WORKFLOW_RENOVATE_VERSION: "${{ inputs.version || 'full' }}"
 
 jobs:

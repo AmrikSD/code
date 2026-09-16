@@ -1,10 +1,6 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "enabled": true,
-    "allowedPostUpgradeCommands": [
-        "^bazel mod deps --lockfile_mode=update$",
-        "^bazel run @rules_go//go -- mod tidy$"
-    ],
     "prConcurrentLimit": 12,
     "prHourlyLimit": 0,
     "semanticCommits": "enabled",
