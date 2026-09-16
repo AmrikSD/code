@@ -22,6 +22,7 @@ on:
     paths:
       - .github/renovate.json5
       - .github/renovate/**.json5
+      - .github/workflows/Renovate.yml
 
 env:
   LOG_LEVEL: "${{ inputs.logLevel || 'debug' }}"
