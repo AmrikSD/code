@@ -5,6 +5,12 @@
     // includes full changelogs, which blew past GitHub's body size limit on
     // grouped PRs (API 500s on creation).
     "prBodyTemplate": "{{{table}}}{{{notes}}}{{{controls}}}",
+    // Tidy go.mod/go.sum with Renovate's own Go toolchain — running it
+    // through `bazel run @rules_go//go` fails in the Renovate container
+    // (empty Android SDK dir trips rules_android during analysis).
+    "postUpdateOptions": [
+        "gomodTidy"
+    ],
     "prConcurrentLimit": 12,
     "prHourlyLimit": 0,
     "semanticCommits": "enabled",
@@ -327,20 +333,6 @@
                 ],
                 "fileFilters": [
                     "MODULE.bazel.lock"
-                ],
-                "executionMode": "update"
-            }
-        },
-        {
-            "matchManagers": [
-                "gomod"
-            ],
-            "postUpgradeTasks": {
-                "commands": [
-                    "bazel run @rules_go//go -- mod tidy"
-                ],
-                "fileFilters": [
-                    "go.sum"
                 ],
                 "executionMode": "update"
             }
