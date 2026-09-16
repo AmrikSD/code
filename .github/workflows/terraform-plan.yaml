@@ -24,10 +24,16 @@ jobs:
         with:
           token: "${{ steps.app-token.outputs.token }}"
 
+      # Version lives in infra/.terraform-version so Renovate bumps it in
+      # lockstep with required_version (it cannot push workflow files).
+      - name: Read terraform version
+        id: tf-version
+        run: echo "version=$(cat infra/.terraform-version)" >> "$GITHUB_OUTPUT"
+
       - name: Setup terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.15.7"
+          terraform_version: "${{ steps.tf-version.outputs.version }}"
 
       - name: Setup SOPS
         uses: nhedger/setup-sops@v2
