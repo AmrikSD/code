@@ -342,7 +342,10 @@
                 "pinDigest"
             ],
             "groupName": "all non-major dependencies",
-            "groupSlug": "all-non-major"
+            "groupSlug": "all-non-major",
+            "commitMessageAction": "bump",
+            "commitMessageTopic": "the world 🫪",
+            "commitMessageExtra": ""
         },
         {
             // Workflow file pushes need the app's `workflows` permission and
