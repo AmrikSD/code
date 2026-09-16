@@ -357,6 +357,16 @@
             ],
             "groupName": "all non-major dependencies",
             "groupSlug": "all-non-major"
+        },
+        {
+            // Workflow file pushes need the app's `workflows` permission and
+            // currently get rejected; keep them out of the main group so a
+            // rejected push can't block every other update.
+            "matchManagers": [
+                "github-actions"
+            ],
+            "groupName": "github actions",
+            "groupSlug": "github-actions"
         }
     ]
 }
