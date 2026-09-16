@@ -1,8 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "6.52.0"
+      source = "hashicorp/aws"
     }
   }
 }
@@ -118,11 +117,11 @@ resource "aws_iam_access_key" "terraform_user" {
 }
 
 output "account_id" {
-    value = aws_organizations_account.account.id
+  value = aws_organizations_account.account.id
 }
 
 output "account_name" {
-    value = aws_organizations_account.account.name
+  value = aws_organizations_account.account.name
 }
 
 output "terraform_access_key" {
