@@ -17,6 +17,7 @@ const usage = `vibe - start work on a Jira ticket
 Usage:
   vibe <jira-key> [flags]
   vibe queue [flags]
+  vibe completion <shell>
 
 Arguments:
   <jira-key>    Jira issue key (e.g. ENG-3355 or SUP-17). Service desk keys
@@ -26,6 +27,8 @@ Arguments:
 Commands:
   queue         List the open service desk queue, pick a ticket, claim it,
                 and start work on it (see "vibe queue --help")
+  completion    Print a shell completion script for zsh or bash. Tab-completing
+                <jira-key> lists your open tickets (see "vibe completion --help")
 
 Flags:
   --dry-run     Show what would happen without executing
@@ -38,6 +41,7 @@ Examples:
   vibe SUP-17 --dry-run
   vibe queue
   vibe queue --next
+  source <(vibe completion zsh)
 `
 
 // Params holds the parsed CLI parameters.
@@ -55,8 +59,16 @@ type plan struct {
 }
 
 func Run() int {
-	if len(os.Args) > 1 && os.Args[1] == "queue" {
-		return runQueue(os.Args[2:])
+	if len(os.Args) > 1 {
+		switch os.Args[1] {
+		case "queue":
+			return runQueue(os.Args[2:])
+		case "completion":
+			return runCompletion(os.Args[2:])
+		case "__complete":
+			// Hidden: called by the shell completion scripts.
+			return runComplete(os.Args[2:])
+		}
 	}
 
 	fs := flag.NewFlagSet("vibe", flag.ContinueOnError)
