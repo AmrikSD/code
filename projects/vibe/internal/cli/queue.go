@@ -220,6 +220,7 @@ func claim(is *jira.Issue, dryRun bool) error {
 			return err
 		}
 		fmt.Printf("assigned %s to %s\n", is.Key, me)
+		invalidateCompletionCache()
 	}
 	if needsMove {
 		if err := jira.Move(is.Key, statusInProgress); err != nil {

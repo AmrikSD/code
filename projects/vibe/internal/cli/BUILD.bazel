@@ -1,9 +1,10 @@
-load("@rules_go//go:def.bzl", "go_library")
+load("@rules_go//go:def.bzl", "go_library", "go_test")
 
 go_library(
     name = "cli",
     srcs = [
         "app.go",
+        "completion.go",
         "queue.go",
     ],
     importpath = "github.com/amriksd/code/projects/vibe/internal/cli",
@@ -14,4 +15,11 @@ go_library(
         "//projects/vibe/internal/tmux",
         "//projects/vibe/internal/version",
     ],
+)
+
+go_test(
+    name = "cli_test",
+    srcs = ["completion_test.go"],
+    embed = [":cli"],
+    deps = ["//projects/vibe/internal/jira"],
 )
