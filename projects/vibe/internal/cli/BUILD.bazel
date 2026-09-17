@@ -21,4 +21,5 @@ go_test(
     name = "cli_test",
     srcs = ["completion_test.go"],
     embed = [":cli"],
+    deps = ["//projects/vibe/internal/jira"],
 )

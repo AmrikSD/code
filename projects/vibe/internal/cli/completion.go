@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"time"
 
@@ -170,12 +171,25 @@ func assignedTickets() []candidate {
 	if err != nil {
 		return nil
 	}
+	sortForCompletion(issues)
 	out := make([]candidate, 0, len(issues))
 	for _, is := range issues {
 		out = append(out, candidate{is.Key, is.Status + ": " + oneLine(is.Summary, 60)})
 	}
 	writeCompletionCache(out)
 	return out
+}
+
+// sortForCompletion puts In Progress tickets first, then the most recently
+// updated. The shell scripts are told to keep this order.
+func sortForCompletion(issues []jira.Issue) {
+	sort.SliceStable(issues, func(i, j int) bool {
+		a, b := issues[i], issues[j]
+		if (a.Status == statusInProgress) != (b.Status == statusInProgress) {
+			return a.Status == statusInProgress
+		}
+		return a.Updated.After(b.Updated)
+	})
 }
 
 func completionCachePath() (string, error) {
@@ -263,7 +277,8 @@ _vibe() {
         [[ "$desc" == "$line" ]] && desc=""
         completions+=("${value//:/\\:}:${desc}")
     done
-    _describe -t vibe 'vibe' completions
+    # -o nosort keeps vibe's order: In Progress first, then most recently updated.
+    _describe -t vibe 'vibe' completions -o nosort
 }
 
 compdef _vibe vibe
@@ -279,5 +294,6 @@ _vibe() {
     COMPREPLY=($(compgen -W "${values}" -- "${cur}"))
 }
 
-complete -F _vibe vibe
+# bash >= 4.4 can keep vibe's order (In Progress first, then most recently updated).
+complete -o nosort -F _vibe vibe 2>/dev/null || complete -F _vibe vibe
 `

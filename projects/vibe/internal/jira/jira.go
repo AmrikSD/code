@@ -24,7 +24,11 @@ type Issue struct {
 	Priority string
 	Comments int
 	Created  time.Time
+	Updated  time.Time
 }
+
+// jiraTime is the timestamp layout Jira Cloud uses.
+const jiraTime = "2006-01-02T15:04:05.000-0700"
 
 // rawIssue mirrors the shape of `jira issue list --raw`.
 type rawIssue struct {
@@ -32,6 +36,7 @@ type rawIssue struct {
 	Fields struct {
 		Summary  string `json:"summary"`
 		Created  string `json:"created"`
+		Updated  string `json:"updated"`
 		Status   named  `json:"status"`
 		Assignee *user  `json:"assignee"`
 		Reporter *user  `json:"reporter"`
@@ -93,8 +98,11 @@ func Search(jql string, limit int) ([]Issue, error) {
 		if r.Fields.Comment != nil {
 			is.Comments = r.Fields.Comment.Total
 		}
-		if t, err := time.Parse("2006-01-02T15:04:05.000-0700", r.Fields.Created); err == nil {
+		if t, err := time.Parse(jiraTime, r.Fields.Created); err == nil {
 			is.Created = t
+		}
+		if t, err := time.Parse(jiraTime, r.Fields.Updated); err == nil {
+			is.Updated = t
 		}
 		issues = append(issues, is)
 	}

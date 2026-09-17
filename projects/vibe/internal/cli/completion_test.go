@@ -3,6 +3,9 @@ package cli
 import (
 	"reflect"
 	"testing"
+	"time"
+
+	"github.com/amriksd/code/projects/vibe/internal/jira"
 )
 
 func TestCompleteCandidates(t *testing.T) {
@@ -64,5 +67,25 @@ func TestCompleteCandidatesDoesNotFetchTicketsForFlags(t *testing.T) {
 	}
 	if called {
 		t.Fatal("tickets fetched while completing something that is not a Jira key")
+	}
+}
+
+func TestSortForCompletion(t *testing.T) {
+	day := func(n int) time.Time { return time.Date(2026, 9, n, 0, 0, 0, 0, time.UTC) }
+	issues := []jira.Issue{
+		{Key: "ENG-1", Status: "To Do", Updated: day(10)},
+		{Key: "ENG-2", Status: "In Progress", Updated: day(1)},
+		{Key: "ENG-3", Status: "Review", Updated: day(12)},
+		{Key: "ENG-4", Status: "In Progress", Updated: day(5)},
+		{Key: "ENG-5", Status: "To Do", Updated: day(11)},
+	}
+	sortForCompletion(issues)
+	var got []string
+	for _, is := range issues {
+		got = append(got, is.Key)
+	}
+	want := []string{"ENG-4", "ENG-2", "ENG-3", "ENG-5", "ENG-1"}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("order = %v, want %v", got, want)
 	}
 }
