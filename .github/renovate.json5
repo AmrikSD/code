@@ -118,9 +118,6 @@
             "labels": [
                 "renovate/image",
                 "dep/digest"
-            ],
-            "schedule": [
-                "before 4am on the first day of the month"
             ]
         },
         {
