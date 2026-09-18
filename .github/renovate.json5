@@ -343,14 +343,7 @@
             "groupName": "the world 🫪",
             "groupSlug": "all-non-major",
             "commitMessageAction": "bump",
-            "commitMessageExtra": "",
-            // One PR a week. A schedule on any grouped upgrade gates the
-            // whole branch, so it lives here rather than on a single update
-            // type, and it must be a window the 11:00 UTC cron can land in
-            // (GitHub often starts it hours late, hence the whole day).
-            "schedule": [
-                "on monday"
-            ]
+            "commitMessageExtra": ""
         },
         {
             "matchManagers": [
