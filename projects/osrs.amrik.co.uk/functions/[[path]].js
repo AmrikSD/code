@@ -1,12 +1,21 @@
-// Pages Function fallback: static assets in dist/ are served before this
-// runs, so anything reaching here is either an API call, a fingerprinted
-// asset that lives on gim-hub.com (the bundles reference the same
-// content-hashed /hashed/* paths production serves, so we proxy rather than
-// vendor 30k icon files), or an SPA route that needs index.html.
+// Catch-all Pages Function. NOTE: in Pages, Functions run BEFORE static
+// assets, so this must serve the deployed files itself (env.ASSETS) and only
+// then fall back to proxying. Anything file-like that isn't in dist/ lives on
+// gim-hub.com (the bundles reference the same content-hashed /hashed/* paths
+// production serves, so 30k icon files aren't vendored here); clean paths get
+// the SPA's index.html.
 const UPSTREAM = "https://gim-hub.com";
 
 export async function onRequest({ request, env }) {
   const url = new URL(request.url);
+
+  if (!url.pathname.startsWith("/api/")) {
+    const asset = await env.ASSETS.fetch(request);
+    if (asset.status < 400) {
+      return asset;
+    }
+  }
+
   const lastSegment = url.pathname.split("/").pop();
   const looksLikeFile = lastSegment.includes(".");
 
