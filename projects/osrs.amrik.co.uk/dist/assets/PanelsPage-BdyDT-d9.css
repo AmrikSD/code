@@ -1,0 +1,1 @@
+#panels-page-container{grid-template-columns:repeat(auto-fill,minmax(310px,max-content));justify-content:center;align-items:start;gap:16px;padding:8px;display:grid;overflow-y:auto}
