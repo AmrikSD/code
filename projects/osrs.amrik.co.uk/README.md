@@ -17,3 +17,5 @@ cp -r dist/assets dist/index.html dist/favicon.png dist/apple-touch-icon.png \
 (Only those four entries — the heavyweight `dist/hashed/` icon/map assets are
 deliberately not vendored; the function proxies them from gim-hub.com, which
 serves identical content-hashed files.)
+
+Deployed via Cloudflare Pages; infra in `infra/cloudflare/03-osrs.amrik.co.uk.tf`.
