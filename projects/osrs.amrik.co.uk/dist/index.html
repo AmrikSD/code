@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>GIM hub</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Standalone dev shell: replaces the Laravel blade so `vp dev` can run
+         without PHP. CSRF token is a dummy; GET endpoints never check it. -->
+    <meta name="csrf-token" content="dev-standalone" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <script>
+      const storedTheme = localStorage.getItem("settings-site-theme");
+      const prefersDarkTheme = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle(
+        "dark-mode",
+        storedTheme === "dark" || (!storedTheme && prefersDarkTheme),
+      );
+    </script>
+    <script type="module" crossorigin src="/assets/index-ECFZ9VXS.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-chart-nVum2GeV.js">
+    <link rel="modulepreload" crossorigin href="/assets/runtime-dom.esm-bundler-zh7KGz__.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-Bv5yRAOJ.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-zod-CgjYf8-x.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-date-BVJU_nYO.js">
+    <link rel="modulepreload" crossorigin href="/assets/skill-data-CnWDg3GQ.js">
+    <link rel="modulepreload" crossorigin href="/assets/api-CH6dSx_W.js">
+    <link rel="modulepreload" crossorigin href="/assets/images-CGhuHwaJ.js">
+    <link rel="modulepreload" crossorigin href="/assets/CachedImage-J9e5mOFN.js">
+    <link rel="modulepreload" crossorigin href="/assets/member-colors-B696-L8n.js">
+    <link rel="modulepreload" crossorigin href="/assets/group-Dx77bX59.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-ClQOzSaI.css">
+  </head>
+  <body id="root"></body>
+</html>
