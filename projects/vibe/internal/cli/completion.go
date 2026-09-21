@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/amriksd/code/projects/vibe/internal/jira"
+	"github.com/amriksd/code/projects/vibe/internal/prompt"
 )
 
 const completionUsage = `vibe completion - shell completion
@@ -34,8 +35,8 @@ Ticket results are cached for a couple of minutes so repeated tabs are
 instant. Claiming a ticket with "vibe queue" clears the cache.
 `
 
-// assignedJQL is what the <jira-key> completion lists.
-const assignedJQL = "assignee = currentUser() AND statusCategory != Done"
+// assignedJQL is the baseline query for what <jira-key> completion lists.
+const assignedJQL = "assignee = currentUser()"
 
 const (
 	completionCacheTTL   = 2 * time.Minute
@@ -168,7 +169,7 @@ func assignedTickets() []candidate {
 	if cached, ok := readCompletionCache(); ok {
 		return cached
 	}
-	issues, err := jira.Search(assignedJQL, completionCacheLimit)
+	issues, err := jira.Search(assignedTicketsJQL(prompt.ServiceDeskProjects()), completionCacheLimit)
 	if err != nil {
 		return nil
 	}
@@ -179,6 +180,30 @@ func assignedTickets() []candidate {
 	}
 	writeCompletionCache(out)
 	return out
+}
+
+func assignedTicketsJQL(serviceDeskProjects []string) string {
+	clauses := []string{assignedJQL}
+	if len(serviceDeskProjects) > 0 {
+		quoted := make([]string, 0, len(serviceDeskProjects))
+		for _, project := range serviceDeskProjects {
+			project = strings.TrimSpace(project)
+			if project == "" {
+				continue
+			}
+			project = strings.ReplaceAll(project, "\"", "")
+			if project == "" {
+				continue
+			}
+			quoted = append(quoted, fmt.Sprintf("\"%s\"", project))
+		}
+		if len(quoted) > 0 {
+			serviceDeskClause := fmt.Sprintf("(project IN (%s) AND assignee IS EMPTY)", strings.Join(quoted, ", "))
+			clauses = []string{fmt.Sprintf("(%s OR %s)", assignedJQL, serviceDeskClause)}
+		}
+	}
+	clauses = append(clauses, "statusCategory != Done")
+	return strings.Join(clauses, " AND ")
 }
 
 // sortForCompletion puts In Progress tickets first, then the most recently
