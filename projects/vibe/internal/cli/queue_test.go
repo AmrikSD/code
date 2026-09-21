@@ -32,6 +32,33 @@ func TestParseStatePreferences(t *testing.T) {
 	}
 }
 
+func TestQueueProjectDefault(t *testing.T) {
+	got := queueProjectDefault(func(string) string { return "" })
+	if got != "SUP" {
+		t.Fatalf("queueProjectDefault(empty) = %q, want %q", got, "SUP")
+	}
+
+	got = queueProjectDefault(func(key string) string {
+		if key == queueProjectEnvVar {
+			return "help"
+		}
+		return ""
+	})
+	if got != "HELP" {
+		t.Fatalf("queueProjectDefault(queue env) = %q, want %q", got, "HELP")
+	}
+
+	got = queueProjectDefault(func(key string) string {
+		if key == "VIBE_SERVICE_DESK_PROJECTS" {
+			return "help,sup"
+		}
+		return ""
+	})
+	if got != "HELP" {
+		t.Fatalf("queueProjectDefault(service env) = %q, want %q", got, "HELP")
+	}
+}
+
 func TestPickPreferredStatePrefersConfiguredOrder(t *testing.T) {
 	state, ok := pickPreferredState([]string{"In Progress", "Start", "In review"}, []string{"Start", "In review"})
 	if !ok {
