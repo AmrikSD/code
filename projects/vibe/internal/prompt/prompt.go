@@ -2,20 +2,69 @@ package prompt
 
 import (
 	"fmt"
+	"os"
 	"strings"
 )
 
-// serviceDeskProjects lists Jira project keys that are service desks rather
+const (
+	defaultServiceDeskProject = "SUP"
+	serviceDeskProjectsEnvVar = "VIBE_SERVICE_DESK_PROJECTS"
+)
+
+// serviceDeskProjects returns Jira project keys that are service desks rather
 // than engineering backlogs. Tickets in these projects get the support
 // bootstrap prompt instead of the implementation one.
-var serviceDeskProjects = map[string]bool{
-	"SUP": true,
+func serviceDeskProjects(getenv func(string) string) map[string]bool {
+	projects := parseProjectKeys(serviceDeskProjectsRaw(getenv))
+	out := make(map[string]bool, len(projects))
+	for _, project := range projects {
+		out[project] = true
+	}
+	return out
+}
+
+func serviceDeskProjectsRaw(getenv func(string) string) string {
+	if getenv == nil {
+		return defaultServiceDeskProject
+	}
+	if raw := strings.TrimSpace(getenv(serviceDeskProjectsEnvVar)); raw != "" {
+		return raw
+	}
+	return defaultServiceDeskProject
+}
+
+func parseProjectKeys(csv string) []string {
+	parts := strings.Split(csv, ",")
+	out := make([]string, 0, len(parts))
+	seen := map[string]bool{}
+	for _, part := range parts {
+		key := strings.ToUpper(strings.TrimSpace(part))
+		if key == "" || seen[key] {
+			continue
+		}
+		seen[key] = true
+		out = append(out, key)
+	}
+	if len(out) == 0 {
+		return []string{defaultServiceDeskProject}
+	}
+	return out
+}
+
+func DefaultServiceDeskProject() string {
+	projects := parseProjectKeys(serviceDeskProjectsRaw(os.Getenv))
+	return projects[0]
+}
+
+func DefaultServiceDeskProjectFrom(getenv func(string) string) string {
+	projects := parseProjectKeys(serviceDeskProjectsRaw(getenv))
+	return projects[0]
 }
 
 // IsServiceDesk reports whether a Jira key belongs to a service desk project.
 func IsServiceDesk(jiraKey string) bool {
-	project, _, _ := strings.Cut(jiraKey, "-")
-	return serviceDeskProjects[project]
+	project, _, _ := strings.Cut(strings.ToUpper(jiraKey), "-")
+	return serviceDeskProjects(os.Getenv)[project]
 }
 
 // Bootstrap returns the OpenCode bootstrap prompt appropriate for a Jira key:

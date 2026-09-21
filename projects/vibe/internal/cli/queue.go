@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/amriksd/code/projects/vibe/internal/jira"
+	"github.com/amriksd/code/projects/vibe/internal/prompt"
 )
 
 const queueUsage = `vibe queue - work the service desk queue
@@ -29,7 +30,7 @@ Flags:
   --next          Skip the picker: take the oldest unassigned "To Do" ticket
   --no-claim      Don't assign or transition the ticket
   --claim-states  Preferred transition states, in order (default "In Progress,Start,In review")
-  --project KEY   Service desk project (default "SUP")
+  --project KEY   Service desk project (default from VIBE_QUEUE_PROJECT or VIBE_SERVICE_DESK_PROJECTS)
   --jql QUERY     Override the queue query entirely
   --limit N       Maximum tickets to list (default 50)
   --dry-run       Show what would happen without executing
@@ -37,6 +38,8 @@ Flags:
   --help          Show this help message
 
 Environment:
+  VIBE_QUEUE_PROJECT  Default for --project
+  VIBE_SERVICE_DESK_PROJECTS  Service desk project keys for support flow (first key also seeds --project)
   VIBE_CLAIM_STATES  Default for --claim-states
 
 Examples:
@@ -49,7 +52,7 @@ Examples:
 `
 
 const (
-	defaultDeskProject = "SUP"
+	queueProjectEnvVar = "VIBE_QUEUE_PROJECT"
 	defaultClaimStates = "In Progress,Start,In review"
 	claimStatesEnvVar  = "VIBE_CLAIM_STATES"
 	statusToDo         = "To Do"
@@ -75,12 +78,13 @@ func runQueue(argv []string) int {
 	}
 
 	var params queueParams
+	projectDefault := queueProjectDefault(os.Getenv)
 	claimStatesDefault := claimStatesDefault(os.Getenv)
 	fs.BoolVar(&params.List, "list", false, "Print the queue and exit")
 	fs.BoolVar(&params.Next, "next", false, "Take the oldest unassigned To Do ticket")
 	fs.BoolVar(&params.NoClaim, "no-claim", false, "Don't assign/transition the ticket")
 	fs.StringVar(&params.ClaimStates, "claim-states", claimStatesDefault, "Preferred transition states, in order")
-	fs.StringVar(&params.Project, "project", defaultDeskProject, "Service desk project key")
+	fs.StringVar(&params.Project, "project", projectDefault, "Service desk project key")
 	fs.StringVar(&params.JQL, "jql", "", "Override the queue query")
 	fs.IntVar(&params.Limit, "limit", 50, "Maximum tickets to list")
 	fs.BoolVar(&params.DryRun, "dry-run", false, "Show what would happen without executing")
@@ -278,6 +282,17 @@ func claimStatesDefault(getenv func(string) string) string {
 		return defaultClaimStates
 	}
 	return fromEnv
+}
+
+func queueProjectDefault(getenv func(string) string) string {
+	if getenv == nil {
+		return prompt.DefaultServiceDeskProjectFrom(nil)
+	}
+	fromEnv := strings.ToUpper(strings.TrimSpace(getenv(queueProjectEnvVar)))
+	if fromEnv != "" {
+		return fromEnv
+	}
+	return prompt.DefaultServiceDeskProjectFrom(getenv)
 }
 
 func moveWithFallback(move func(string, string) error, key string, preferredStates []string) (string, error) {
