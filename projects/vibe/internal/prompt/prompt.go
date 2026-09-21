@@ -61,6 +61,14 @@ func DefaultServiceDeskProjectFrom(getenv func(string) string) string {
 	return projects[0]
 }
 
+func ServiceDeskProjects() []string {
+	return ServiceDeskProjectsFrom(os.Getenv)
+}
+
+func ServiceDeskProjectsFrom(getenv func(string) string) []string {
+	return parseProjectKeys(serviceDeskProjectsRaw(getenv))
+}
+
 // IsServiceDesk reports whether a Jira key belongs to a service desk project.
 func IsServiceDesk(jiraKey string) bool {
 	project, _, _ := strings.Cut(strings.ToUpper(jiraKey), "-")

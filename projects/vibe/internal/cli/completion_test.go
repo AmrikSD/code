@@ -89,3 +89,23 @@ func TestSortForCompletion(t *testing.T) {
 		t.Errorf("order = %v, want %v", got, want)
 	}
 }
+
+func TestAssignedTicketsJQL(t *testing.T) {
+	got := assignedTicketsJQL(nil)
+	want := "assignee = currentUser() AND statusCategory != Done"
+	if got != want {
+		t.Fatalf("assignedTicketsJQL(nil) = %q, want %q", got, want)
+	}
+
+	got = assignedTicketsJQL([]string{"SUP"})
+	want = "(assignee = currentUser() OR (project IN (\"SUP\") AND assignee IS EMPTY)) AND statusCategory != Done"
+	if got != want {
+		t.Fatalf("assignedTicketsJQL(single) = %q, want %q", got, want)
+	}
+
+	got = assignedTicketsJQL([]string{"SUP", "HELP"})
+	want = "(assignee = currentUser() OR (project IN (\"SUP\", \"HELP\") AND assignee IS EMPTY)) AND statusCategory != Done"
+	if got != want {
+		t.Fatalf("assignedTicketsJQL(multi) = %q, want %q", got, want)
+	}
+}
