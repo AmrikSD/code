@@ -32,6 +32,23 @@ func TestParseStatePreferences(t *testing.T) {
 	}
 }
 
+func TestClaimStatesDefault(t *testing.T) {
+	got := claimStatesDefault(func(string) string { return "" })
+	if got != defaultClaimStates {
+		t.Fatalf("claimStatesDefault(empty) = %q, want %q", got, defaultClaimStates)
+	}
+
+	got = claimStatesDefault(func(string) string { return " Start,In review " })
+	if got != "Start,In review" {
+		t.Fatalf("claimStatesDefault(env) = %q, want %q", got, "Start,In review")
+	}
+
+	got = claimStatesDefault(nil)
+	if got != defaultClaimStates {
+		t.Fatalf("claimStatesDefault(nil) = %q, want %q", got, defaultClaimStates)
+	}
+}
+
 func TestPickPreferredStatePrefersConfiguredOrder(t *testing.T) {
 	state, ok := pickPreferredState([]string{"In Progress", "Start", "In review"}, []string{"Start", "In review"})
 	if !ok {

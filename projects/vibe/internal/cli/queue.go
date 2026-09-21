@@ -36,17 +36,22 @@ Flags:
   --no-tmux       Skip tmux window creation, run opencode in current shell
   --help          Show this help message
 
+Environment:
+  VIBE_CLAIM_STATES  Default for --claim-states
+
 Examples:
   vibe queue                  # list, pick, claim, go
   vibe queue --list           # just look
   vibe queue --next           # grab the oldest unclaimed ticket
   vibe queue --next --dry-run
+  VIBE_CLAIM_STATES='Start,In review' vibe queue --next
   vibe queue --jql 'project = SUP AND assignee = currentUser() AND statusCategory != Done'
 `
 
 const (
 	defaultDeskProject = "SUP"
 	defaultClaimStates = "In Progress,Start,In review"
+	claimStatesEnvVar  = "VIBE_CLAIM_STATES"
 	statusToDo         = "To Do"
 	statusInProgress   = "In Progress"
 )
@@ -70,10 +75,11 @@ func runQueue(argv []string) int {
 	}
 
 	var params queueParams
+	claimStatesDefault := claimStatesDefault(os.Getenv)
 	fs.BoolVar(&params.List, "list", false, "Print the queue and exit")
 	fs.BoolVar(&params.Next, "next", false, "Take the oldest unassigned To Do ticket")
 	fs.BoolVar(&params.NoClaim, "no-claim", false, "Don't assign/transition the ticket")
-	fs.StringVar(&params.ClaimStates, "claim-states", defaultClaimStates, "Preferred transition states, in order")
+	fs.StringVar(&params.ClaimStates, "claim-states", claimStatesDefault, "Preferred transition states, in order")
 	fs.StringVar(&params.Project, "project", defaultDeskProject, "Service desk project key")
 	fs.StringVar(&params.JQL, "jql", "", "Override the queue query")
 	fs.IntVar(&params.Limit, "limit", 50, "Maximum tickets to list")
@@ -261,6 +267,17 @@ func parseStatePreferences(csv string) []string {
 		return []string{statusInProgress}
 	}
 	return out
+}
+
+func claimStatesDefault(getenv func(string) string) string {
+	if getenv == nil {
+		return defaultClaimStates
+	}
+	fromEnv := strings.TrimSpace(getenv(claimStatesEnvVar))
+	if fromEnv == "" {
+		return defaultClaimStates
+	}
+	return fromEnv
 }
 
 func moveWithFallback(move func(string, string) error, key string, preferredStates []string) (string, error) {
