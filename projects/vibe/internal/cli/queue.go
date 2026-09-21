@@ -2,9 +2,11 @@ package cli
 
 import (
 	"bufio"
+	"errors"
 	"flag"
 	"fmt"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
 	"text/tabwriter"
@@ -16,7 +18,7 @@ import (
 const queueUsage = `vibe queue - work the service desk queue
 
 Lists open tickets in the service desk queue (oldest first), lets you pick
-one, claims it (assigns to you and moves it to In Progress), and starts a
+one, claims it (assigns to you and moves it to an active state), and starts a
 vibe session on it with the support-desk prompt.
 
 Usage:
@@ -25,7 +27,8 @@ Usage:
 Flags:
   --list          Print the queue and exit
   --next          Skip the picker: take the oldest unassigned "To Do" ticket
-  --no-claim      Don't assign the ticket to yourself or move it to In Progress
+  --no-claim      Don't assign or transition the ticket
+  --claim-states  Preferred transition states, in order (default "In Progress,Start,In review")
   --project KEY   Service desk project (default "SUP")
   --jql QUERY     Override the queue query entirely
   --limit N       Maximum tickets to list (default 50)
@@ -43,19 +46,21 @@ Examples:
 
 const (
 	defaultDeskProject = "SUP"
+	defaultClaimStates = "In Progress,Start,In review"
 	statusToDo         = "To Do"
 	statusInProgress   = "In Progress"
 )
 
 type queueParams struct {
-	List    bool
-	Next    bool
-	NoClaim bool
-	Project string
-	JQL     string
-	Limit   int
-	DryRun  bool
-	NoTmux  bool
+	List        bool
+	Next        bool
+	NoClaim     bool
+	ClaimStates string
+	Project     string
+	JQL         string
+	Limit       int
+	DryRun      bool
+	NoTmux      bool
 }
 
 func runQueue(argv []string) int {
@@ -68,6 +73,7 @@ func runQueue(argv []string) int {
 	fs.BoolVar(&params.List, "list", false, "Print the queue and exit")
 	fs.BoolVar(&params.Next, "next", false, "Take the oldest unassigned To Do ticket")
 	fs.BoolVar(&params.NoClaim, "no-claim", false, "Don't assign/transition the ticket")
+	fs.StringVar(&params.ClaimStates, "claim-states", defaultClaimStates, "Preferred transition states, in order")
 	fs.StringVar(&params.Project, "project", defaultDeskProject, "Service desk project key")
 	fs.StringVar(&params.JQL, "jql", "", "Override the queue query")
 	fs.IntVar(&params.Limit, "limit", 50, "Maximum tickets to list")
@@ -90,6 +96,7 @@ func runQueue(argv []string) int {
 	if params.Limit <= 0 || params.Limit > 100 {
 		params.Limit = 100
 	}
+	claimStates := parseStatePreferences(params.ClaimStates)
 
 	issues, err := jira.Search(params.JQL, params.Limit)
 	if err != nil {
@@ -122,7 +129,7 @@ func runQueue(argv []string) int {
 	}
 
 	if !params.NoClaim {
-		if err := claim(picked, params.DryRun); err != nil {
+		if err := claim(picked, params.DryRun, claimStates); err != nil {
 			fmt.Fprintf(os.Stderr, "error: %s\n", err)
 			return 1
 		}
@@ -188,9 +195,9 @@ func pickIssue(issues []jira.Issue) *jira.Issue {
 	}
 }
 
-// claim assigns the ticket to the current user and moves it to In Progress,
+// claim assigns the ticket to the current user and moves it to an active state,
 // skipping whichever steps are already done.
-func claim(is *jira.Issue, dryRun bool) error {
+func claim(is *jira.Issue, dryRun bool, preferredStates []string) error {
 	me, err := jira.Me()
 	if err != nil {
 		return err
@@ -204,7 +211,9 @@ func claim(is *jira.Issue, dryRun bool) error {
 			fmt.Printf("[dry-run] jira:       assign %s to %s\n", is.Key, me)
 		}
 		if needsMove {
-			fmt.Printf("[dry-run] jira:       move %s to %q\n", is.Key, statusInProgress)
+			if len(preferredStates) > 0 {
+				fmt.Printf("[dry-run] jira:       move %s to %q\n", is.Key, preferredStates[0])
+			}
 		}
 		if !needsAssign && !needsMove {
 			fmt.Printf("[dry-run] jira:       %s already claimed (%s, %s)\n", is.Key, is.Assignee, is.Status)
@@ -223,12 +232,89 @@ func claim(is *jira.Issue, dryRun bool) error {
 		invalidateCompletionCache()
 	}
 	if needsMove {
-		if err := jira.Move(is.Key, statusInProgress); err != nil {
+		toState, err := moveWithFallback(jira.Move, is.Key, preferredStates)
+		if err != nil {
 			return err
 		}
-		fmt.Printf("moved %s to %q\n", is.Key, statusInProgress)
+		fmt.Printf("moved %s to %q\n", is.Key, toState)
 	}
 	return nil
+}
+
+func parseStatePreferences(csv string) []string {
+	parts := strings.Split(csv, ",")
+	out := make([]string, 0, len(parts))
+	seen := map[string]bool{}
+	for _, part := range parts {
+		state := strings.TrimSpace(part)
+		if state == "" {
+			continue
+		}
+		key := strings.ToUpper(state)
+		if seen[key] {
+			continue
+		}
+		seen[key] = true
+		out = append(out, state)
+	}
+	if len(out) == 0 {
+		return []string{statusInProgress}
+	}
+	return out
+}
+
+func moveWithFallback(move func(string, string) error, key string, preferredStates []string) (string, error) {
+	if len(preferredStates) == 0 {
+		preferredStates = []string{statusInProgress}
+	}
+	target := preferredStates[0]
+	if err := move(key, target); err == nil {
+		return target, nil
+	} else {
+		states := availableStates(err)
+		fallback, ok := pickPreferredState(preferredStates, states)
+		if !ok || strings.EqualFold(fallback, target) {
+			return "", err
+		}
+		if err2 := move(key, fallback); err2 != nil {
+			return "", errors.Join(err, err2)
+		}
+		return fallback, nil
+	}
+}
+
+var availableStateRE = regexp.MustCompile(`'([^']+)'`)
+
+func availableStates(err error) []string {
+	if err == nil {
+		return nil
+	}
+	matches := availableStateRE.FindAllStringSubmatch(err.Error(), -1)
+	out := make([]string, 0, len(matches))
+	for _, m := range matches {
+		if len(m) < 2 {
+			continue
+		}
+		state := strings.TrimSpace(m[1])
+		if state != "" {
+			out = append(out, state)
+		}
+	}
+	return out
+}
+
+func pickPreferredState(preferredStates, available []string) (string, bool) {
+	if len(preferredStates) == 0 || len(available) == 0 {
+		return "", false
+	}
+	for _, want := range preferredStates {
+		for _, have := range available {
+			if strings.EqualFold(have, want) {
+				return have, true
+			}
+		}
+	}
+	return "", false
 }
 
 func age(t time.Time) string {

@@ -66,7 +66,8 @@ var (
 	queueFlags = []candidate{
 		{"--list", "print the queue and exit"},
 		{"--next", "take the oldest unassigned To Do ticket"},
-		{"--no-claim", "don't assign or move the ticket"},
+		{"--no-claim", "don't assign or transition the ticket"},
+		{"--claim-states", "preferred transition states, in order"},
 		{"--project", "service desk project (default SUP)"},
 		{"--jql", "override the queue query"},
 		{"--limit", "maximum tickets to list"},
