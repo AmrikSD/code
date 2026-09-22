@@ -17,7 +17,7 @@ JERSEY_VERSION = "5.0.0-M1"
 FLYWAY_VERSION = "13.7.0"
 
 # renovate: datasource=maven depName=com.fasterxml.jackson:jackson-bom
-JACKSON_VERSION = "2.22.2"
+JACKSON_VERSION = "2.22.3"
 
 # renovate: datasource=maven depName=org.jooq:jooq
 JOOQ_VERSION = "3.21.8"
@@ -61,7 +61,7 @@ maven.install(
         # Jakarta Servlet API (for EE10)
         "jakarta.servlet:jakarta.servlet-api:6.1.0",
 
-        "org.slf4j:slf4j-api:2.0.19",
+        "org.slf4j:slf4j-api:2.0.20",
 
         "com.typesafe:config:1.4.9",
 
