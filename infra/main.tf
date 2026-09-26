@@ -20,7 +20,7 @@ terraform {
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 4.52.5"
+      version = "~> 5.26.0"
     }
     unifi = {
       source  = "ubiquiti-community/unifi"
