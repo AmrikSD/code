@@ -23,7 +23,6 @@ learning is the point.
 | Project | What it is | Stack |
 |---------|------------|-------|
 | [amrik.co.uk](./projects/amrik.co.uk) | Personal site and blog | Jekyll |
-| [osrs.amrik.co.uk](./projects/osrs.amrik.co.uk) | Year-in-review "Wrapped" for a gim-hub.com group | Static SPA, Cloudflare Pages Functions |
 | [Rolodex](./projects/Rolodex) | Document indexer, inspired by Paperless-ngx | Java, Postgres |
 | [vibe](./projects/vibe) | CLI that starts work on a Jira ticket | Go |
 | [csv-to-pdf](./projects/csv-to-pdf) | Turns scuffed CSVs into decent looking PDFs | HTML, JS |
