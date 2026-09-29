@@ -5,6 +5,6 @@ test --test_output=errors
 build --build_tag_filters=-skip
 
 common:ci --lockfile_mode=error
-build:ci --repository_cache=.bazel-repository-cache
-build:ci --disk_cache=.bazel-disk-cache
+build:ci --repository_cache=/tmp/bazel-repository-cache
+build:ci --disk_cache=/tmp/bazel-disk-cache
 test:ci --test_output=errors
