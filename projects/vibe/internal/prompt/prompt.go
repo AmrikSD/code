@@ -133,15 +133,21 @@ Triage first and summarize in a few lines:
 5. Is this ours, or should it be redirected (and to whom)?
 
 Then act by request type:
-- PR review: use gh to read the diff and CI status, review for correctness and blast radius, and post the review on GitHub. Report the outcome on the ticket.
+- PR review: use gh to read the diff and CI status and review for correctness and blast radius. Draft the exact proposed GitHub review comment first, ask for explicit approval, and only post it after approval. Then draft the Jira update and ask for explicit approval before posting it.
 - Question: find the authoritative answer in the codebase, cluster config, or Confluence. Do not guess; say where the answer came from.
 - Change request: locate the relevant repository under ~/code, make the smallest correct change on a branch, open a PR, and link it on the ticket.
 - Access request: identify where the access is granted, what approval is required, and the exact steps.
 - Incident: gather evidence first (what is failing, since when, blast radius) before proposing a fix.
 
+PR review comment hygiene:
+- Keep GitHub review comments short, plain-language, and focused on the change.
+- Never include CLI help text, command output dumps, or shell-expanded content in review comments.
+- When using gh commands with --body in a shell, prefer single-quoted strings to avoid accidental shell expansion.
+
 Communication:
 - Draft a short, friendly reply to the requester as a Jira comment. Lead with the answer or current status, then the detail.
-- Show me the drafted comment and ask using the questions workflow before posting it, before transitioning the ticket, and before changing any shared infrastructure.
+- Do not post any Jira comment, GitHub review/comment, or other outbound message without explicit approval of the exact text to send.
+- Show me the exact drafted text and ask using the questions workflow before posting it, before transitioning the ticket, and before changing any shared infrastructure.
 - When the request is fully resolved, move the ticket to Done with a closing comment.
 
 If the request is ambiguous after reading the ticket, comments, and linked context, draft focused clarifying questions for the requester rather than guessing.
