@@ -1,29 +1,38 @@
-name: CI
+name: Bazel CI
 on:
   pull_request:
   push:
     branches:
       - main
 
+permissions:
+  contents: read
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  test-image:
+  bazel-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - name: Cache Bazel
+
+      - name: Set up Bazel
+        uses: bazel-contrib/setup-bazel@0.14.0
+
+      - name: Restore Bazel caches
         uses: actions/cache@v6
         with:
           path: |
-            ~/.cache/bazel
-          key: ${{ runner.os }}-bazel-${{ hashFiles('.bazelversion', '.bazelrc', 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel') }}
+            /tmp/bazel-repository-cache
+            /tmp/bazel-disk-cache
+          key: ${{ runner.os }}-bazel-${{ hashFiles('.bazelversion', '.bazelrc', 'MODULE.bazel', 'MODULE.bazel.lock', '**/*.MODULE.bazel', 'go.mod', 'go.sum') }}
           restore-keys: |
             ${{ runner.os }}-bazel-
-      - name: Clear Bazel cache
-        run: |
-          bazel clean --expunge
-      - name: Check that the image builds
-        run: bazel test //...
+
+      - name: Check module resolution and lockfile
+        run: bazel build --nobuild --config=ci //...
+
+      - name: Run tests
+        run: bazel test --config=ci //...
