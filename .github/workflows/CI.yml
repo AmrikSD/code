@@ -25,8 +25,8 @@ jobs:
         uses: actions/cache@v6
         with:
           path: |
-            .bazel-repository-cache
-            .bazel-disk-cache
+            /tmp/bazel-repository-cache
+            /tmp/bazel-disk-cache
           key: ${{ runner.os }}-bazel-${{ hashFiles('.bazelversion', '.bazelrc', 'MODULE.bazel', 'MODULE.bazel.lock', '**/*.MODULE.bazel', 'go.mod', 'go.sum') }}
           restore-keys: |
             ${{ runner.os }}-bazel-
