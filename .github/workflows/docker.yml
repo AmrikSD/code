@@ -16,35 +16,55 @@ on:
       - ".github/workflows/docker.yml"
 
 jobs:
-  get-matrix:
+  build-matrix:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.generate-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v7
-      - name: Cache Bazel
+
+      - name: Set up Bazel
+        uses: bazel-contrib/setup-bazel@0.14.0
+
+      - name: Restore Bazel caches
         uses: actions/cache@v6
         with:
           path: |
-            ~/.cache/bazel
-          key: ${{ runner.os }}-bazel-${{ hashFiles('.bazelversion', '.bazelrc', 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel') }}
+            .bazel-repository-cache
+            .bazel-disk-cache
+          key: ${{ runner.os }}-bazel-${{ hashFiles('.bazelversion', '.bazelrc', 'MODULE.bazel', 'MODULE.bazel.lock', '**/*.MODULE.bazel', 'go.mod', 'go.sum') }}
           restore-keys: |
             ${{ runner.os }}-bazel-
+
       - name: Generate Matrix
         id: generate-matrix
         run: |
-          MATRIX=$(bazel query 'kind("oci_push", //infra/containers/...)' | jq -R -s -c '{"include": [split("\n")[] | select(. != "")] | map({target: .})}')
+          MATRIX=$(bazel query --config=ci 'kind("oci_push", //infra/containers/...)' | jq -R -s -c '{"include": [split("\n")[] | select(. != "")] | map({target: .})}')
           echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
+
   push-images:
-    needs: get-matrix
+    needs: build-matrix
     runs-on: ubuntu-latest
-    if: needs.get-matrix.outputs.matrix != '[]' # Only run if images have changed
+    if: needs.build-matrix.outputs.matrix != '[]'
     strategy:
-      matrix: ${{ fromJson(needs.get-matrix.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.build-matrix.outputs.matrix) }}
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
+
+      - name: Set up Bazel
+        uses: bazel-contrib/setup-bazel@0.14.0
+
+      - name: Restore Bazel caches
+        uses: actions/cache@v6
+        with:
+          path: |
+            .bazel-repository-cache
+            .bazel-disk-cache
+          key: ${{ runner.os }}-bazel-${{ hashFiles('.bazelversion', '.bazelrc', 'MODULE.bazel', 'MODULE.bazel.lock', '**/*.MODULE.bazel', 'go.mod', 'go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-bazel-
 
       - name: Login to Github Container Registry
         uses: docker/login-action@v4
@@ -54,4 +74,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push
-        run: bazel run ${{matrix.target}}
+        run: bazel run --config=ci ${{matrix.target}}
