@@ -2,6 +2,17 @@
     $schema: 'https://docs.renovatebot.com/renovate-schema.json',
     enabled: true,
     prBodyTemplate: '{{{table}}}{{{notes}}}{{{controls}}}',
+    prBodyColumns: [
+        'Package',
+        'Type',
+        'Update',
+        'Change',
+        'Pending',
+        'Diff',
+    ],
+    prBodyDefinitions: {
+        Diff: '{{#if logJSON.versions.[0].releaseNotes.url}}[notes]({{{logJSON.versions.[0].releaseNotes.url}}}){{/if}}',
+    },
     prConcurrentLimit: 12,
     prHourlyLimit: 0,
     semanticCommits: 'enabled',
@@ -310,6 +321,51 @@
                     'go.sum',
                 ],
                 executionMode: 'update',
+            },
+        },
+        {
+            matchDatasources: [
+                'github-tags',
+                'github-releases',
+            ],
+            matchUpdateTypes: [
+                'major',
+                'minor',
+                'patch',
+            ],
+            prBodyDefinitions: {
+                Diff: '[diff]({{{sourceUrl}}}/compare/{{{currentVersion}}}...{{{newVersion}}})',
+            },
+        },
+        {
+            matchManagers: [
+                'terraform',
+                'terraform-version',
+            ],
+            matchDatasources: [
+                'terraform-provider',
+                'github-releases',
+            ],
+            matchUpdateTypes: [
+                'major',
+                'minor',
+                'patch',
+            ],
+            prBodyDefinitions: {
+                Diff: '{{#if sourceUrl}}[diff]({{{sourceUrl}}}/compare/v{{{currentVersion}}}...v{{{newVersion}}}){{/if}}',
+            },
+        },
+        {
+            matchDatasources: [
+                'golang-version',
+            ],
+            matchUpdateTypes: [
+                'major',
+                'minor',
+                'patch',
+            ],
+            prBodyDefinitions: {
+                Diff: '[diff]({{{sourceUrl}}}/compare/go{{{currentVersion}}}...go{{{newVersion}}})',
             },
         },
     ],
