@@ -17,6 +17,8 @@ git clone https://github.com/AmrikSD/code ~/code/AmrikSD/code
 
 Then open a new terminal.
 
+On a network that intercepts TLS and sets `SSL_CERT_FILE`, as some company laptops do, `setup.sh` first builds a certificate store from that file and points Bazel at it in `~/.bazelrc`. Bazel cannot download anything there otherwise.
+
 Before you start, on a Mac: install the 1Password app, sign in, and turn on "Integrate with 1Password CLI" in its Developer settings. The GPG key and the work secrets are read from it. Without it the setup still finishes, and re-running it later picks them up.
 
 ## Enjoy
