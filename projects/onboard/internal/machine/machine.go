@@ -10,7 +10,11 @@ import (
 
 const script = `set -euo pipefail
 repo=$1 dir=$2 work=$3
-[ -d "$dir/.git" ] || gh repo clone "$repo" "$dir"
+if [ -d "$dir/.git" ]; then
+  git -C "$dir" pull --ff-only || echo "Could not update $dir, carrying on with what is there."
+else
+  gh repo clone "$repo" "$dir"
+fi
 if [ "$work" = work ]; then git -C "$dir" submodule update --init; fi
 "$dir/bootstrap.sh"
 printf '\nPress enter to continue. '
@@ -23,8 +27,8 @@ func HasDotfiles(dir string) bool {
 	return err == nil
 }
 
-// Bootstrap returns the command that clones repo into dir if needed and runs
-// its bootstrap.sh. With work set it fetches the repo's submodules first, which
+// Bootstrap returns the command that clones repo into dir, or updates the
+// checkout already there, and runs its bootstrap.sh. With work set it fetches the repo's submodules first, which
 // is where the work-only config lives.
 func Bootstrap(repo, dir string, work bool) *exec.Cmd {
 	mode := "personal"
