@@ -8,14 +8,17 @@ import (
 	"path/filepath"
 )
 
+// The first clone goes over HTTPS with gh's sign-in, because SSH is only set up
+// by the dotfiles themselves.
 const script = `set -euo pipefail
 repo=$1 dir=$2 work=$3
+https=(-c credential.helper= -c 'credential.helper=!gh auth git-credential' -c url.https://github.com/.insteadOf=git@github.com:)
 if [ -d "$dir/.git" ]; then
   git -C "$dir" pull --ff-only || echo "Could not update $dir, carrying on with what is there."
 else
-  gh repo clone "$repo" "$dir"
+  git "${https[@]}" clone "https://github.com/$repo" "$dir"
 fi
-if [ "$work" = work ]; then git -C "$dir" submodule update --init; fi
+if [ "$work" = work ]; then git "${https[@]}" -C "$dir" submodule update --init; fi
 "$dir/bootstrap.sh"
 printf '\nPress enter to continue. '
 read -r _

@@ -60,13 +60,13 @@ func run() int {
 }
 
 // signedIn makes sure gh is signed in, walking through gh's own login when it
-// is not. SSH is asked for because repos are cloned over SSH, and gh offers to
-// create and upload a key for a machine that has none.
+// is not. Repos are cloned over SSH with the key the dotfiles set up, so gh is
+// told not to generate one for this machine.
 func signedIn() bool {
 	if _, err := github.GH("auth", "status"); err == nil {
 		return true
 	}
-	login := exec.Command("gh", "auth", "login", "--git-protocol", "ssh", "--web")
+	login := exec.Command("gh", "auth", "login", "--git-protocol", "ssh", "--skip-ssh-key", "--web")
 	login.Stdin, login.Stdout, login.Stderr = os.Stdin, os.Stdout, os.Stderr
 	if err := login.Run(); err != nil {
 		fmt.Fprintln(os.Stderr, "Could not sign in to GitHub:", err)

@@ -11,15 +11,15 @@ git clone https://github.com/AmrikSD/code ~/code/AmrikSD/code
 
 `setup.sh` installs Nix if it is missing, then builds and starts the onboarding flow:
 
-1. GitHub: signs in with `gh` if needed. Pick SSH and let it upload a key.
-2. Tools and config: clones the dotfiles repo into `~/.dotfiles`, or updates it, and runs its `bootstrap.sh`. That installs every tool and app, links the config, adds the Claude Code hooks and imports the GPG signing key. Tick "Work setup" on a work machine to fetch the work-only config too.
+1. GitHub: signs in with `gh` in the browser if needed. No SSH key is created.
+2. Tools and config: clones the dotfiles repo into `~/.dotfiles`, or updates it, and runs its `bootstrap.sh`. That installs every tool and app, links the config (including SSH through the 1Password agent), adds the Claude Code hooks and imports the GPG signing key. Tick "Work setup" on a work machine to fetch the work-only config too.
 3. Repositories: lists your account and organisations with a tick box each. Ticking an owner ticks every repo under it, opening one lets you pick repos individually. Whatever is ticked is cloned into `~/code/<owner>/<repo>`.
 
 Then open a new terminal.
 
 On a network that intercepts TLS and sets `SSL_CERT_FILE`, as some company laptops do, `setup.sh` first builds a certificate store from that file and points Bazel at it in `~/.bazelrc`. Bazel cannot download anything there otherwise.
 
-Before you start, on a Mac: install the 1Password app, sign in, and turn on "Integrate with 1Password CLI" in its Developer settings. The GPG key and the work secrets are read from it. Without it the setup still finishes, and re-running it later picks them up.
+Before you start: install the 1Password app, sign in, and in its Developer settings turn on "Use the SSH agent" and "Integrate with 1Password CLI". Your SSH key, GPG key and the work secrets all come from it, so every machine uses the same keys. Without the SSH agent the repositories step cannot clone anything.
 
 ## Enjoy
 
