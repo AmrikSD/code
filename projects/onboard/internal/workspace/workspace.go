@@ -41,11 +41,17 @@ func Clone(root, owner, repo, url string) error {
 // Register adds each owner's checkouts to gita, grouped by owner. It does
 // nothing when gita is not installed.
 func Register(root string, owners []string) error {
-	if _, err := exec.LookPath("gita"); err != nil {
-		return nil
+	gita, err := exec.LookPath("gita")
+	if err != nil {
+		// Tools installed during this run are not on this process's PATH yet.
+		home, _ := os.UserHomeDir()
+		gita = filepath.Join(home, ".nix-profile", "bin", "gita")
+		if _, err := os.Stat(gita); err != nil {
+			return nil
+		}
 	}
 	for _, owner := range owners {
-		if out, err := exec.Command("gita", "add", "-a", filepath.Join(root, owner)).CombinedOutput(); err != nil {
+		if out, err := exec.Command(gita, "add", "-a", filepath.Join(root, owner)).CombinedOutput(); err != nil {
 			return fmt.Errorf("gita add %s: %s", owner, lastLine(string(out), err.Error()))
 		}
 	}

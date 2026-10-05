@@ -1,12 +1,13 @@
-// Command onboard clones your GitHub repositories onto a new machine. It shows
-// your account and organisations with a tick box each, and clones whatever is
-// ticked into <dir>/<owner>/<repo>.
+// Command onboard sets up a new machine. It fetches the dotfiles repo and runs
+// its bootstrap, then shows your GitHub account and organisations with a tick
+// box each and clones whatever is ticked into <dir>/<owner>/<repo>.
 package main
 
 import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"sync"
@@ -24,11 +25,12 @@ func run() int {
 	home, _ := os.UserHomeDir()
 	dir := flag.String("dir", filepath.Join(home, "code"), "directory to clone into, as <dir>/<owner>/<repo>")
 	owner := flag.String("owner", "", "comma separated owners to offer, instead of your account and all your organisations")
-	yes := flag.Bool("yes", false, "skip the picker and clone everything: the -owner list, or your own account")
+	yes := flag.Bool("yes", false, "skip the setup and picker and clone everything: the -owner list, or your own account")
+	dotfiles := flag.String("dotfiles", "AmrikSD/.dotfiles", "dotfiles repo whose bootstrap.sh sets the machine up")
+	dotfilesDir := flag.String("dotfiles-dir", filepath.Join(home, ".dotfiles"), "where the dotfiles repo lives")
 	flag.Parse()
 
-	if _, err := github.GH("auth", "status"); err != nil {
-		fmt.Fprintln(os.Stderr, "Not signed in to GitHub. Run: gh auth login")
+	if !signedIn() {
 		return 1
 	}
 
@@ -41,7 +43,7 @@ func run() int {
 		return cloneAll(*dir, owners)
 	}
 
-	model, err := tui.Run(tui.Config{Root: *dir, Owners: owners, GH: github.GH})
+	model, err := tui.Run(tui.Config{Root: *dir, Owners: owners, GH: github.GH, Dotfiles: *dotfiles, DotfilesDir: *dotfilesDir})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return 1
@@ -55,6 +57,22 @@ func run() int {
 		return 1
 	}
 	return 0
+}
+
+// signedIn makes sure gh is signed in, walking through gh's own login when it
+// is not. SSH is asked for because repos are cloned over SSH, and gh offers to
+// create and upload a key for a machine that has none.
+func signedIn() bool {
+	if _, err := github.GH("auth", "status"); err == nil {
+		return true
+	}
+	login := exec.Command("gh", "auth", "login", "--git-protocol", "ssh", "--web")
+	login.Stdin, login.Stdout, login.Stderr = os.Stdin, os.Stdout, os.Stderr
+	if err := login.Run(); err != nil {
+		fmt.Fprintln(os.Stderr, "Could not sign in to GitHub:", err)
+		return false
+	}
+	return true
 }
 
 func cloneAll(dir string, owners []string) int {

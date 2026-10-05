@@ -1,9 +1,11 @@
-// Package tui is the terminal UI: tick owners and repos, then watch them clone.
+// Package tui is the terminal UI: set the machine up, tick owners and repos,
+// then watch them clone.
 package tui
 
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"strings"
 	"time"
 
@@ -11,6 +13,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 
 	"github.com/amriksd/code/projects/onboard/internal/github"
+	"github.com/amriksd/code/projects/onboard/internal/machine"
 	"github.com/amriksd/code/projects/onboard/internal/picker"
 	"github.com/amriksd/code/projects/onboard/internal/workspace"
 )
@@ -36,6 +39,12 @@ type Config struct {
 	Owners []string
 	GH     github.Runner
 	Clone  func(root, owner, repo, url string) error
+
+	// Dotfiles is the owner/name of the dotfiles repo and DotfilesDir is where
+	// it lives. Its bootstrap.sh installs tools and links config.
+	Dotfiles    string
+	DotfilesDir string
+	Bootstrap   func(repo, dir string, work bool) *exec.Cmd
 }
 
 // Result is the outcome of cloning one repo.
@@ -47,7 +56,8 @@ type Result struct {
 type stage int
 
 const (
-	picking stage = iota
+	setup stage = iota
+	picking
 	cloning
 	done
 )
@@ -67,6 +77,7 @@ type (
 		err error
 	}
 	registeredMsg struct{ err error }
+	bootstrapMsg  struct{ err error }
 	tickMsg       struct{}
 )
 
@@ -83,6 +94,11 @@ type Model struct {
 	ticked      map[string]bool
 	err         error
 
+	setupCursor  int
+	setupTools   bool
+	setupWork    bool
+	bootstrapErr error
+
 	jobs        []picker.Selection
 	next        int
 	active      map[int]bool
@@ -95,7 +111,18 @@ func New(cfg Config) Model {
 	if cfg.Clone == nil {
 		cfg.Clone = workspace.Clone
 	}
-	return Model{cfg: cfg, picker: &picker.Picker{}, height: 24, width: 80, ticked: map[string]bool{}, active: map[int]bool{}}
+	if cfg.Bootstrap == nil {
+		cfg.Bootstrap = machine.Bootstrap
+	}
+	return Model{
+		cfg:        cfg,
+		picker:     &picker.Picker{},
+		height:     24,
+		width:      80,
+		ticked:     map[string]bool{},
+		active:     map[int]bool{},
+		setupTools: !machine.HasDotfiles(cfg.DotfilesDir),
+	}
 }
 
 // Run shows the UI and returns the model as it was when the user left.
@@ -134,6 +161,12 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case registeredMsg:
 		m.RegisterErr = msg.err
 		m.stage = done
+	case bootstrapMsg:
+		m.bootstrapErr = msg.err
+		m.setupTools, m.setupWork = false, false
+		if msg.err == nil {
+			m.stage = picking
+		}
 	case tea.KeyMsg:
 		return m.key(msg.String())
 	}
@@ -198,6 +231,8 @@ func (m Model) key(key string) (tea.Model, tea.Cmd) {
 		return m, tea.Quit
 	}
 	switch m.stage {
+	case setup:
+		return m.keySetup(key)
 	case cloning:
 		return m, nil
 	case done:
@@ -236,6 +271,33 @@ func (m Model) key(key string) (tea.Model, tea.Cmd) {
 		return m.start()
 	}
 	m.scroll()
+	return m, nil
+}
+
+func (m Model) keySetup(key string) (tea.Model, tea.Cmd) {
+	switch key {
+	case "q", "esc":
+		return m, tea.Quit
+	case "up", "k":
+		m.setupCursor = 0
+	case "down", "j":
+		m.setupCursor = 1
+	case " ", "x":
+		if m.setupCursor == 0 {
+			m.setupTools = !m.setupTools
+			m.setupWork = m.setupWork && m.setupTools
+		} else {
+			m.setupWork = !m.setupWork
+			m.setupTools = m.setupTools || m.setupWork
+		}
+	case "enter":
+		if !m.setupTools {
+			m.stage = picking
+			return m, nil
+		}
+		cmd := m.cfg.Bootstrap(m.cfg.Dotfiles, m.cfg.DotfilesDir, m.setupWork)
+		return m, tea.ExecProcess(cmd, func(err error) tea.Msg { return bootstrapMsg{err: err} })
+	}
 	return m, nil
 }
 
@@ -281,6 +343,8 @@ func (m Model) View() string {
 	switch {
 	case m.err != nil:
 		return fmt.Sprintf("\n  %s\n\n  %s\n", bad.Render(m.err.Error()), dim.Render("q quit"))
+	case m.stage == setup:
+		return m.viewSetup()
 	case m.stage == cloning:
 		return m.viewCloning()
 	case m.stage == done:
@@ -288,6 +352,41 @@ func (m Model) View() string {
 	default:
 		return m.viewPicking()
 	}
+}
+
+func (m Model) viewSetup() string {
+	var b strings.Builder
+	fmt.Fprintf(&b, "\n  %s\n\n", title.Render("Set up this machine"))
+
+	tools := fmt.Sprintf("clones %s into %s and runs its bootstrap", m.cfg.Dotfiles, tilde(m.cfg.DotfilesDir))
+	if machine.HasDotfiles(m.cfg.DotfilesDir) {
+		tools = fmt.Sprintf("%s is already here, tick to run its bootstrap again", tilde(m.cfg.DotfilesDir))
+	}
+	rows := []struct {
+		ticked bool
+		name   string
+		detail string
+	}{
+		{m.setupTools, "Tools and config", tools},
+		{m.setupWork, "Work setup      ", "also fetches the work-only config"},
+	}
+	for i, row := range rows {
+		cursor := "  "
+		if i == m.setupCursor {
+			cursor = pointer.Render("❯ ")
+		}
+		box := "[ ]"
+		if row.ticked {
+			box = good.Render("[x]")
+		}
+		fmt.Fprintf(&b, "  %s%s %s  %s\n", cursor, box, bold.Render(row.name), dim.Render(row.detail))
+	}
+
+	if m.bootstrapErr != nil {
+		fmt.Fprintf(&b, "\n  %s\n", bad.Render("The bootstrap failed: "+m.bootstrapErr.Error()))
+	}
+	fmt.Fprintf(&b, "\n  %s\n", dim.Render("space tick · enter continue to repositories · q quit"))
+	return b.String()
 }
 
 func (m Model) viewPicking() string {
