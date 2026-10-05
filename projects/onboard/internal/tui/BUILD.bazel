@@ -1,0 +1,28 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "tui",
+    srcs = ["tui.go"],
+    importpath = "github.com/amriksd/code/projects/onboard/internal/tui",
+    visibility = ["//projects/onboard:__subpackages__"],
+    deps = [
+        "//projects/onboard/internal/github",
+        "//projects/onboard/internal/picker",
+        "//projects/onboard/internal/workspace",
+        "@com_github_charmbracelet_bubbletea//:bubbletea",
+        "@com_github_charmbracelet_lipgloss//:lipgloss",
+    ],
+)
+
+go_test(
+    name = "tui_test",
+    srcs = [
+        "errors_test.go",
+        "tui_test.go",
+    ],
+    embed = [":tui"],
+    deps = [
+        "//projects/onboard/internal/github",
+        "//projects/onboard/internal/picker",
+    ],
+)
