@@ -1,0 +1,14 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "picker",
+    srcs = ["picker.go"],
+    importpath = "github.com/amriksd/code/projects/onboard/internal/picker",
+    visibility = ["//projects/onboard:__subpackages__"],
+)
+
+go_test(
+    name = "picker_test",
+    srcs = ["picker_test.go"],
+    embed = [":picker"],
+)

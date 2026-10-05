@@ -25,6 +25,7 @@ learning is the point.
 | [amrik.co.uk](./projects/amrik.co.uk) | Personal site and blog | Jekyll |
 | [Rolodex](./projects/Rolodex) | Document indexer, inspired by Paperless-ngx | Java, Postgres |
 | [vibe](./projects/vibe) | CLI that starts work on a Jira ticket | Go |
+| [onboard](./projects/onboard) | TUI that clones my repos onto a new machine | Go |
 | [csv-to-pdf](./projects/csv-to-pdf) | Turns scuffed CSVs into decent looking PDFs | HTML, JS |
 | [Leetcode](./projects/Leetcode) | Practice problems | Go, Java |
 

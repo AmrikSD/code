@@ -1,0 +1,14 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "github",
+    srcs = ["github.go"],
+    importpath = "github.com/amriksd/code/projects/onboard/internal/github",
+    visibility = ["//projects/onboard:__subpackages__"],
+)
+
+go_test(
+    name = "github_test",
+    srcs = ["github_test.go"],
+    embed = [":github"],
+)
