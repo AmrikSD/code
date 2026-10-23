@@ -5,7 +5,7 @@ terraform {
     region       = "eu-west-2"
     use_lockfile = true
   }
-  required_version = "~> 1.16.0"
+  required_version = "~> 1.17.0"
   # Provider versions are pinned here, next to .terraform.lock.hcl, so
   # Renovate updates the lock file in the same commit as the bump (it
   # only refreshes lock files in the directory of the changed pin).
@@ -16,7 +16,7 @@ terraform {
     }
     aws = {
       source  = "hashicorp/aws"
-      version = "6.69.1"
+      version = "6.70.0"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
