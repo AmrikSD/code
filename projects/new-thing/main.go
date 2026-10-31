@@ -1,8 +1,13 @@
-package main
+package greetings
 
-import "fmt"
+import (
+	"fmt"
+
+	greetings "github.com/amriksd/code/projects/new-thing"
+)
 
 func main() {
-	fmt.Println("Make it say boo")
-	fireworks()
+	say := greetings.Hello("hi")
+
+	fmt.Printf("say")
 }
