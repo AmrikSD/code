@@ -16,7 +16,7 @@ terraform {
     }
     aws = {
       source  = "hashicorp/aws"
-      version = "6.70.0"
+      version = "6.71.0"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
@@ -24,7 +24,7 @@ terraform {
     }
     unifi = {
       source  = "ubiquiti-community/unifi"
-      version = "0.59.0"
+      version = "0.64.0"
     }
   }
 }
